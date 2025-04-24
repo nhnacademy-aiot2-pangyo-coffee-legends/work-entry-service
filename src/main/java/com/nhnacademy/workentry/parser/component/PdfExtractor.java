@@ -1,23 +1,22 @@
-package com.nhnacademy.workentry.parser;
+package com.nhnacademy.workentry.parser.component;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 
 @Slf4j
-public class PdfToTxt {
-    public static void main(String[] args) {
-        // PDF 파일 경로 설정
-        String pdfFilePath = "src/main/resources/work-log/hyeongho/hyeongho.pdf";
-        String textFilePath = "src/main/resources/work-log/hyeongho/hyeongho.txt";
-
+@Component
+public class PdfExtractor {
+    public void extract(Path pdfFile, Path textFile) {
         try {
             // PDF 문서 열기
-            PDDocument document = PDDocument.load(new File(pdfFilePath));
+            PDDocument document = PDDocument.load(new File(pdfFile.toString()));
 
             // PDF 문서에서 텍스트 추출하기
             PDFTextStripper stripper = new PDFTextStripper();
@@ -28,7 +27,7 @@ public class PdfToTxt {
             String text = stripper.getText(document);
 
             // 추출된 텍스트를 텍스트 파일로 저장하기
-            FileWriter writer = new FileWriter(textFilePath);
+            FileWriter writer = new FileWriter(textFile.toString());
             writer.write(text);
             writer.close();
 

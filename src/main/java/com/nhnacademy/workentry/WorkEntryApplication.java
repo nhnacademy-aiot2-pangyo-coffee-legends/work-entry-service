@@ -40,11 +40,11 @@ public class WorkEntryApplication implements CommandLineRunner {
 
                     // TXT 경로: .../yeong/yeong.txt
                     Path txt = outDir.resolve(name + ".txt");
-                    conversion.pdfToTxt(pdf, txt);
+                    conversion.convert(pdf, outDir);
 
                     // CSV 경로: .../yeong/yeong.csv
                     Path csv = outDir.resolve(name + ".csv");
-                    conversion.txtToCsv(txt, csv);
+                    conversion.convert(pdf, outDir);
 
                     log.debug("✅ 처리완료 : {}", name);
                 } catch (IOException e) {
