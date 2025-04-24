@@ -31,6 +31,7 @@ public class AttendanceConversionService {
         List<AttendanceRecord> records = textParser.parse(txtPath);
 
         csvWriter.write(csvPath, records);
+
     }
 
 
