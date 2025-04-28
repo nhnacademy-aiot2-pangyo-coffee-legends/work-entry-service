@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,6 +17,7 @@ import java.util.stream.Stream;
 @Slf4j
 @SpringBootApplication
 @RequiredArgsConstructor
+@EnableFeignClients
 public class WorkEntryApplication implements CommandLineRunner {
 
     private final AttendanceConversionService conversion;
