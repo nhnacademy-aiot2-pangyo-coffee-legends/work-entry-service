@@ -17,11 +17,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * {@code TextParser} 클래스는 PDF에서 추출된 텍스트 데이터를 정제하여
+ * {@link AttendanceRecord} 객체 리스트로 변환하는 역할을 담당합니다.
+ * <p>
+ * 이 클래스는 텍스트 파일에서 유효한 출결 정보만을 필터링 및 파싱하여,
+ * 데이터베이스 입력 혹은 CSV 파일 생성을 위한 중간 데이터 형태로 가공합니다.
+ * </p>
+ *
+ * 주요 기능:
+ * <ul>
+ *     <li>출결 상태, 입실/퇴실 시간 등의 필드 파싱</li>
+ *     <li>근무 시간 계산</li>
+ *     <li>이상 데이터 및 인코딩 오류 정제</li>
+ * </ul>
+ */
 @Slf4j
 @Component
 public class TextParser {
     private static final Pattern DATE_LINE_PATTERN = Pattern.compile("^\\d{4}.*");
 
+    /**
+     * 지정된 텍스트 파일로부터 출결 정보를 추출하여 {@code AttendanceRecord} 객체의 리스트로 반환합니다.
+     * <p>
+     * 날짜 형식 정제, 시간 형식 검증, 근무 시간 계산, 출결 상태 판단 등의 과정을 수행합니다.
+     *
+     * @param txtFile 정제할 텍스트 파일의 경로
+     * @return 출결 정보가 담긴 {@link AttendanceRecord} 리스트
+     * @throws IOException 파일 읽기 실패 시 발생
+     */
     public List<AttendanceRecord> parse(Path txtFile) throws IOException {
         List<AttendanceRecord> records = new ArrayList<>();
 
@@ -98,11 +122,22 @@ public class TextParser {
         return records;
     }
 
-
+    /**
+     * "HH:mm" 형식의 유효한 시간 문자열인지 검증합니다.
+     *
+     * @param timeStr 검증할 시간 문자열
+     * @return 유효하면 {@code true}, 그렇지 않으면 {@code false}
+     */
     private static boolean isValidTimeFormat(String timeStr) {
         return timeStr != null && timeStr.matches("\\d{2}:\\d{2}");
     }
 
+    /**
+     * 이름 문자열을 기반으로 사원번호를 반환합니다.
+     *
+     * @param mbName 사원의 이름 문자열
+     * @return 사원번호, 없을 경우 {@code null}
+     */
     private static Long getMbNo(String mbName){
         return switch (mbName) {
             case "kyeongyeong" -> 95L;
