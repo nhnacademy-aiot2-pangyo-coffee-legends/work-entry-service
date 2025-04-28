@@ -1,4 +1,4 @@
-package attendance.entity;
+package com.nhnacademy.workentry.attendance.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
