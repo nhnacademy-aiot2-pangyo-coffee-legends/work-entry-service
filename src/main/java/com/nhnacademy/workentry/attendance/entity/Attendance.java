@@ -1,4 +1,4 @@
-package attendance.entity;
+package com.nhnacademy.workentry.attendance.entity;
 
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
@@ -20,8 +20,6 @@ public class Attendance {
 
     @Column(name = "mb_no", nullable = false)
     private Long mbNo;
-    @Column(name = "mb_name")
-    private String mbName;
 
     @Column(name = "work_date", nullable = false)
     private LocalDateTime workDate;
@@ -32,6 +30,15 @@ public class Attendance {
     @Column(name = "out_time")
     private LocalDateTime outTime;
 
+    @Column(name="work_minutes")
+    private Integer workMinutes;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "code", nullable = false)
+    private AttendanceStatus status;
+
+
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
@@ -39,25 +46,34 @@ public class Attendance {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "code", nullable = false)
-    private AttendanceStatus status;
-
-    public Attendance(Long id, Long mbNo, LocalDateTime workDate, LocalDateTime inTime, LocalDateTime outTime, LocalDateTime createdAt, LocalDateTime updatedAt, AttendanceStatus status) {
-        this.id = id;
+    public Attendance(
+            Long mbNo,
+            LocalDateTime workDate,
+            LocalDateTime inTime,
+            LocalDateTime outTime,
+            Integer workMinutes,
+            AttendanceStatus status) {
         this.mbNo = mbNo;
         this.workDate = workDate;
         this.inTime = inTime;
         this.outTime = outTime;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.workMinutes = workMinutes;
         this.status = status;
     }
 
-    public String getMbName() {
-        return mbName;
+    public static Attendance of(Long mbNo, LocalDateTime workDate, LocalDateTime inTime, LocalDateTime outTime, Integer workMinutes, AttendanceStatus status) {
+        return new Attendance(mbNo, workDate, inTime, outTime, workMinutes, status);
     }
 
+    @PrePersist
+    public void prePersist() {
+        createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 
     public Long getId() {
         return id;
@@ -67,21 +83,21 @@ public class Attendance {
         return mbNo;
     }
 
-
     public LocalDateTime getWorkDate() {
         return workDate;
     }
-
 
     public LocalDateTime getInTime() {
         return inTime;
     }
 
-
     public LocalDateTime getOutTime() {
         return outTime;
     }
 
+    public Integer getWorkMinutes() {
+        return workMinutes;
+    }
 
     public AttendanceStatus getStatus() {
         return status;
