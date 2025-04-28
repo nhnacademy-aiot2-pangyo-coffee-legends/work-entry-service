@@ -1,7 +1,7 @@
-package attendance.controller;
+package com.nhnacademy.workentry.attendance.controller;
 
-import attendance.dto.AttendanceDto;
-import attendance.service.AttendanceService;
+import com.nhnacademy.workentry.attendance.dto.AttendanceDto;
+import com.nhnacademy.workentry.attendance.service.AttendanceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,14 +21,14 @@ public class AttendanceController {
 
     private final AttendanceService attendanceService;
 
-    @GetMapping("/{mbNo}")
-    public List<AttendanceDto> getAttendanceByMbNo(
-            @PathVariable Long mbNo,
+    @GetMapping("/{no}")
+    public List<AttendanceDto> getAttendanceByNo(
+            @PathVariable Long no,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end) {
 
-        log.info("🔍 회원 {}의 출결 조회 요청: {} ~ {}", mbNo, start, end);
-        List<AttendanceDto> result = attendanceService.getAttendanceByMbNoAndDateRange(mbNo, start, end);
+        log.info("🔍 회원 {}의 출결 조회 요청: {} ~ {}", no, start, end);
+        List<AttendanceDto> result = attendanceService.getAttendanceByNoAndDateRange(no, start, end);
         log.debug("조회된 출결 수: {}", result.size());
 
         return result;
