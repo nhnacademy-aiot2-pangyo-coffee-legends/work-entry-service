@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
  * 이 클래스는 텍스트 파일에서 유효한 출결 정보만을 필터링 및 파싱하여,
  * 데이터베이스 입력 혹은 CSV 파일 생성을 위한 중간 데이터 형태로 가공합니다.
  * </p>
- *
+ * <p>
  * 주요 기능:
  * <ul>
  *     <li>출결 상태, 입실/퇴실 시간 등의 필드 파싱</li>
@@ -36,6 +36,37 @@ import java.util.regex.Pattern;
 @Component
 public class TextParser {
     private static final Pattern DATE_LINE_PATTERN = Pattern.compile("^\\d{4}.*");
+
+    /**
+     * "HH:mm" 형식의 유효한 시간 문자열인지 검증합니다.
+     *
+     * @param timeStr 검증할 시간 문자열
+     * @return 유효하면 {@code true}, 그렇지 않으면 {@code false}
+     */
+    private static boolean isValidTimeFormat(String timeStr) {
+        return timeStr != null && timeStr.matches("\\d{2}:\\d{2}");
+    }
+
+    /**
+     * 이름 문자열을 기반으로 사원번호를 반환합니다.
+     *
+     * @param mbName 사원의 이름 문자열
+     * @return 사원번호, 없을 경우 {@code null}
+     */
+    private static Long getMbNo(String mbName) {
+        return switch (mbName) {
+            case "kyeongyeong" -> 95L;
+            case "hyeongho" -> 96L;
+            case "inho" -> 97L;
+            case "seungeu" -> 98L;
+            case "miseong" -> 99L;
+            case "noah" -> 100L;
+            case "hyeonsup" -> 101L;
+            case "yurim" -> 76L;
+            default -> null;
+        };
+
+    }
 
     /**
      * 지정된 텍스트 파일로부터 출결 정보를 추출하여 {@code AttendanceRecord} 객체의 리스트로 반환합니다.
@@ -122,35 +153,5 @@ public class TextParser {
         return records;
     }
 
-    /**
-     * "HH:mm" 형식의 유효한 시간 문자열인지 검증합니다.
-     *
-     * @param timeStr 검증할 시간 문자열
-     * @return 유효하면 {@code true}, 그렇지 않으면 {@code false}
-     */
-    private static boolean isValidTimeFormat(String timeStr) {
-        return timeStr != null && timeStr.matches("\\d{2}:\\d{2}");
-    }
-
-    /**
-     * 이름 문자열을 기반으로 사원번호를 반환합니다.
-     *
-     * @param mbName 사원의 이름 문자열
-     * @return 사원번호, 없을 경우 {@code null}
-     */
-    private static Long getMbNo(String mbName){
-        return switch (mbName) {
-            case "kyeongyeong" -> 95L;
-            case "hyeongho" -> 96L;
-            case "inho" -> 97L;
-            case "seungeu" -> 98L;
-            case "miseong" -> 99L;
-            case "noah" -> 100L;
-            case "hyeonsup" -> 101L;
-            case "yurim" -> 76L;
-            default -> null;
-        };
-
-    }
 
 }

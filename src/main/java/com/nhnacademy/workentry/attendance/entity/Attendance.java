@@ -9,22 +9,22 @@ import java.time.LocalDateTime;
  * 출결 기록 정보를 담는 엔티티입니다.
  */
 @Entity
-@Table(name = "attendance", uniqueConstraints = {@UniqueConstraint(columnNames = {"mb_no", "work_date"})})
+@Table(name = "attendance")
 @NoArgsConstructor
 public class Attendance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "no")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "mb_no", nullable = false)
     private Long mbNo;
 
-    @Column(name = "work_date", nullable = false)
+    @Column(name = "work_date")
     private LocalDateTime workDate;
 
-    @Column(name = "in_time", nullable = false)
+    @Column(name = "in_time")
     private LocalDateTime inTime;
 
     @Column(name = "out_time")
@@ -35,7 +35,7 @@ public class Attendance {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "code", nullable = false)
+    @JoinColumn(name = "status", nullable = false)
     private AttendanceStatus status;
 
 
@@ -46,7 +46,7 @@ public class Attendance {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public Attendance(
+    private Attendance(
             Long mbNo,
             LocalDateTime workDate,
             LocalDateTime inTime,
@@ -61,7 +61,7 @@ public class Attendance {
         this.status = status;
     }
 
-    public static Attendance of(Long mbNo, LocalDateTime workDate, LocalDateTime inTime, LocalDateTime outTime, Integer workMinutes, AttendanceStatus status) {
+    public static Attendance newAttendance(Long mbNo, LocalDateTime workDate, LocalDateTime inTime, LocalDateTime outTime, Integer workMinutes, AttendanceStatus status) {
         return new Attendance(mbNo, workDate, inTime, outTime, workMinutes, status);
     }
 

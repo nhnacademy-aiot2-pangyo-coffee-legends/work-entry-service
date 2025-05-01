@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 public class AttendanceDto {
      Long id;
      Long no;
-     String name; // 멤버 이름 (FeignClient 통해 가져옴)
      LocalDateTime workDate;
      LocalDateTime inTime;
      LocalDateTime outTime;
@@ -22,14 +21,12 @@ public class AttendanceDto {
      * Attendance 엔티티와 MemberInfoResponse DTO를 기반으로 AttendanceDto를 생성합니다.
      *
      * @param attendance Attendance 엔티티
-     * @param member     MemberInfoResponse (FeignClient를 통해 받은 회원 정보)
      * @return AttendanceDto 인스턴스
      */
-    public static AttendanceDto from(Attendance attendance, MemberInfoResponse member) {
+    public static AttendanceDto from(Attendance attendance) {
         return new AttendanceDto(
                 attendance.getId(),
                 attendance.getMbNo(),
-                member.getName(),
                 attendance.getWorkDate(),
                 attendance.getInTime(),
                 attendance.getOutTime(),

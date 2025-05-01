@@ -17,6 +17,6 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     // 회원 번호와 날짜 범위로 출결 기록 조회
     List<Attendance> findByMbNoAndWorkDateBetween(Long mbNo, LocalDateTime start, LocalDateTime end);
 
-    // 최근 7일 전체 출결 기록 조회
+    // 최근 30일 전체 출결 기록 조회
     List<Attendance> findByWorkDateBetween(LocalDateTime start, LocalDateTime end);
 }
