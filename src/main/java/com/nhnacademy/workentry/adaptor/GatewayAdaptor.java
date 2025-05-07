@@ -1,19 +1,13 @@
 package com.nhnacademy.workentry.adaptor;
 
 
-import com.nhnacademy.workentry.attendance.dto.AttendanceDto;
-import com.nhnacademy.workentry.attendance.dto.AttendanceSummaryDto;
 import com.nhnacademy.workentry.authenfication.token.JwtIssueRequest;
 import com.nhnacademy.workentry.authenfication.token.JwtResponse;
 import com.nhnacademy.workentry.authenfication.token.TokenRequest;
-import com.nhnacademy.workentry.member.dto.MemberResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * Gateway를 통해 member-service 및 attendance-service와 통신하는 어댑터입니다.
@@ -27,8 +21,8 @@ public interface GatewayAdaptor {
      * @param email 조회할 회원 이메일
      * @return 조회된 회원 정보
      */
-    @GetMapping("/members/email/{mbEmail}")
-    ResponseEntity<MemberResponse> getMemberByMbEmail(@PathVariable("mbEmail") String email);
+//    @GetMapping("/members/email/{mbEmail}")
+//    ResponseEntity<MemberResponse> getMemberByMbEmail(@PathVariable("mbEmail") String email);
 
     /**
      * JWT 토큰 발급 요청을 보냅니다.

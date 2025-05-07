@@ -1,4 +1,4 @@
-package com.nhnacademy.workentry.influxdb.controller.service.impl;
+package com.nhnacademy.workentry.entry.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,8 +6,8 @@ import com.influxdb.client.InfluxDBClient;
 import com.influxdb.client.QueryApi;
 import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
-import com.nhnacademy.frontservice.influxdb.EntryCountDto;
-import com.nhnacademy.frontservice.influxdb.service.EntryService;
+import com.nhnacademy.workentry.entry.dto.EntryCountDto;
+import com.nhnacademy.workentry.entry.service.EntryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

@@ -1,9 +1,10 @@
-package com.nhnacademy.workentry.influxdb.controller;
+package com.nhnacademy.workentry.entry.controller;
 
-import com.nhnacademy.frontservice.influxdb.EntryCountDto;
-import com.nhnacademy.frontservice.influxdb.realtime.dto.EntryRealtimeDto;
-import com.nhnacademy.frontservice.influxdb.realtime.service.impl.EntryRealtimeServiceImpl;
-import com.nhnacademy.frontservice.influxdb.service.impl.EntryServiceImpl;
+
+import com.nhnacademy.workentry.entry.dto.EntryCountDto;
+import com.nhnacademy.workentry.entry.realtime.dto.EntryRealtimeDto;
+import com.nhnacademy.workentry.entry.realtime.service.impl.EntryRealtimeServiceImpl;
+import com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +19,10 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/entries")
-public class EntryApiController {
+public class EntryController {
     private final EntryServiceImpl entryServiceImpl;
     private final EntryRealtimeServiceImpl entryRealtimeServiceImpl;
-    public EntryApiController(EntryServiceImpl entryServiceImpl, EntryRealtimeServiceImpl entryRealtimeServiceImpl) {
+    public EntryController(EntryServiceImpl entryServiceImpl, EntryRealtimeServiceImpl entryRealtimeServiceImpl) {
         this.entryServiceImpl = entryServiceImpl;
         this.entryRealtimeServiceImpl = entryRealtimeServiceImpl;
     }

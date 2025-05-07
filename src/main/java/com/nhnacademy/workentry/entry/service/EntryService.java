@@ -1,7 +1,6 @@
-package com.nhnacademy.workentry.influxdb.controller.service;
+package com.nhnacademy.workentry.entry.service;
 
-
-import com.nhnacademy.frontservice.influxdb.EntryCountDto;
+import com.nhnacademy.workentry.entry.dto.EntryCountDto;
 
 import java.util.List;
 
