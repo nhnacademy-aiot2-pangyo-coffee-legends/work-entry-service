@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
  * 출결 기록 정보를 담는 엔티티입니다.
  */
 @Entity
-@Table(name = "attendance")
+@Table(name = "attendances")
 @NoArgsConstructor
 public class Attendance {
 
@@ -34,7 +34,7 @@ public class Attendance {
     private Integer workMinutes;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "status", nullable = false)
     private AttendanceStatus status;
 

@@ -23,9 +23,9 @@ public class LogTailWatcher {
      */
     @PostConstruct
     public void startTail() {
-        startWatchingFile("logs/frontservice-entry-info.log");
-        startWatchingFile("logs/frontservice-attendance-info.log");
-        startWatchingFile("logs/frontservice-realtime-info.log");
+        startWatchingFile("logs/workentryservice-entry-info.log");
+        startWatchingFile("logs/workentryservice-attendance-info.log");
+        startWatchingFile("logs/workentryservice-realtime-info.log");
     }
 
     /**

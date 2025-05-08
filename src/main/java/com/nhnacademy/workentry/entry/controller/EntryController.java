@@ -6,6 +6,7 @@ import com.nhnacademy.workentry.entry.realtime.dto.EntryRealtimeDto;
 import com.nhnacademy.workentry.entry.realtime.service.impl.EntryRealtimeServiceImpl;
 import com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import java.util.List;
 /**
  * 출입 통계 관련 API를 제공하는 컨트롤러 클래스입니다.
  */
+
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/entries")

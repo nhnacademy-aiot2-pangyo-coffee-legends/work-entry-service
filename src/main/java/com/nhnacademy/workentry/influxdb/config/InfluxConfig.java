@@ -31,6 +31,11 @@ public class InfluxConfig {
      */
     @Bean
     public InfluxDBClient influxDBClient() {
-        return InfluxDBClientFactory.create(url, token.toCharArray(), org, bucket);
+        try {
+            return InfluxDBClientFactory.create(url, token.toCharArray(), org, bucket);
+        } catch (Exception e) {
+            e.printStackTrace(); // 또는 log.error("Influx 연결 실패", e);
+            throw e;
+        }
     }
 }
