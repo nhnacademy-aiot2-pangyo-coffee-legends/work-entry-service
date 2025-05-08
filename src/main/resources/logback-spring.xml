@@ -76,14 +76,14 @@
     </appender>
 
     <!-- Entry 전용 로거 -->
-    <logger name="com.nhnacademy.workentry.influxdb.controller.EntryApiController" level="DEBUG" additivity="false">
+    <logger name="com.nhnacademy.workentry.entry.controller.EntryController" level="DEBUG" additivity="false">
         <appender-ref ref="ENTRY_DEBUG_FILE"/>
         <appender-ref ref="ENTRY_INFO_FILE"/>
         <appender-ref ref="ENTRY_WARN_FILE"/>
         <appender-ref ref="ENTRY_ERROR_FILE"/>
     </logger>
 
-    <logger name="com.nhnacademy.workentry.influxdb.service.impl.EntryServiceImpl" level="DEBUG" additivity="false">
+    <logger name="com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl" level="DEBUG" additivity="false">
         <appender-ref ref="ENTRY_DEBUG_FILE"/>
         <appender-ref ref="ENTRY_INFO_FILE"/>
         <appender-ref ref="ENTRY_WARN_FILE"/>
@@ -302,9 +302,13 @@
         </encoder>
     </appender>
 
-
     <!-- [추가] Realtime 전용 로거 -->
-    <logger name="com.nhnacademy.workentry.influxdb.realtime.service.impl" level="INFO" additivity="false">
+    <logger name="com.nhnacademy.workentry.entry.realtime.service.impl.EntryRealtimeServiceImpl" level="INFO" additivity="false">
+        <appender-ref ref="REALTIME_INFO_FILE"/>
+        <appender-ref ref="REALTIME_ERROR_FILE"/>
+        <appender-ref ref="REALTIME_WARN_FILE"/>
+    </logger>
+    <logger name="com.nhnacademy.workentry.entry.realtime.service.impl.EmailServiceImpl" level="INFO" additivity="false">
         <appender-ref ref="REALTIME_INFO_FILE"/>
         <appender-ref ref="REALTIME_ERROR_FILE"/>
         <appender-ref ref="REALTIME_WARN_FILE"/>
