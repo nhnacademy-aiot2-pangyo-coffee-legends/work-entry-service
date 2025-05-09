@@ -45,11 +45,11 @@ public interface AttendanceService {
     Page<AttendanceDto> getRecentAttendanceSummary(Pageable pageable);
 
     /**
-     * 특정 회원의 최근 30일 근무 데이터를 페이지 단위로 조회합니다.
+     * 특정 회원의 최근 30일 근무 데이터를  조회합니다.
      *
      * @param no       회원 번호
-     * @param pageable 페이지 정보
      * @return 페이지 형태의 근무 통계
      */
-    Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no, Pageable pageable);
+    List<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no);
+
 }

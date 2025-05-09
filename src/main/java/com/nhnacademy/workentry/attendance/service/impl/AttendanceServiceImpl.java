@@ -79,23 +79,27 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no, Pageable pageable) {
+    public List<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no) {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime monthAgo = now.minusDays(30);
 
-        Page<Attendance> records = attendanceRepository.findByMbNoAndWorkDateBetween(no, monthAgo, now.plusDays(1), pageable);
+        List<Attendance> records = attendanceRepository.findByMbNoAndWorkDateBetween(no, monthAgo, now.plusDays(1));
 
         if (records.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "최근 30일간 근무 기록이 존재하지 않습니다.");
         }
 
-        return records.map(att -> new AttendanceSummaryDto(
-                att.getWorkDate().toLocalDate(),
-                att.getWorkMinutes() != null ? att.getWorkMinutes() / 60 : 0,
-                att.getInTime(),
-                att.getOutTime(),
-                att.getStatus() != null ? att.getStatus().getCode() : 0
-        ));
+        return records.stream()
+                .map(att -> new AttendanceSummaryDto(
+                        att.getWorkDate().getYear(),
+                        att.getWorkDate().getMonthValue(),
+                        att.getWorkDate().getDayOfMonth(),
+                        att.getWorkMinutes() != null ? att.getWorkMinutes() / 60 : 0,
+                        att.getInTime(),
+                        att.getOutTime(),
+                        att.getStatus() != null ? att.getStatus().getCode() : 0L
+                ))
+                .collect(Collectors.toList());
     }
 
 }

@@ -61,16 +61,10 @@ public class AttendanceController {
         return attendanceService.getRecentAttendanceSummary(pageable);
     }
 
-    /**
-     * 특정 회원의 근무 통계를 페이지 단위로 조회합니다.
-     *
-     * @param no       회원 고유 번호
-     * @param pageable 페이지 및 사이즈 정보를 담은 Pageable 객체
-     * @return 페이지 형태의 근무 통계 DTO 목록
-     */
     @GetMapping("/summary/recent/{no}")
-    public Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(@PathVariable Long no,@PageableDefault(size=10) Pageable pageable) {
+    public List<AttendanceSummaryDto> getRecentWorkingHoursByMember(@PathVariable Long no) {
         log.info("📊 회원 {} 최근 30일 근무 통계 요청", no);
-        return attendanceService.getRecentWorkingHoursByMember(no, pageable);
+        return attendanceService.getRecentWorkingHoursByMember(no);
     }
+
 }
