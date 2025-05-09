@@ -26,3 +26,21 @@
 2025-05-08 21:13:55.764 [http-nio-10256-exec-1] INFO  c.n.w.e.controller.EntryController - [월간 출입 통계] 조회됨: [com.nhnacademy.workentry.entry.dto.EntryCountDto@7461d7ee, com.nhnacademy.workentry.entry.dto.EntryCountDto@76f821e8, com.nhnacademy.workentry.entry.dto.EntryCountDto@2867e8d8, com.nhnacademy.workentry.entry.dto.EntryCountDto@6fe6e83a, com.nhnacademy.workentry.entry.dto.EntryCountDto@15c29c8f, com.nhnacademy.workentry.entry.dto.EntryCountDto@220218be, com.nhnacademy.workentry.entry.dto.EntryCountDto@35b4050e, com.nhnacademy.workentry.entry.dto.EntryCountDto@6d4b9cba]
 2025-05-08 21:14:03.288 [http-nio-10256-exec-6] INFO  c.n.w.e.controller.EntryController - [실시간 출입 통계] 조회됨: com.nhnacademy.workentry.entry.realtime.dto.EntryRealtimeDto@88611ff
 2025-05-08 21:14:13.634 [http-nio-10256-exec-5] INFO  c.n.w.e.controller.EntryController - [실시간 출입 통계] 조회됨: com.nhnacademy.workentry.entry.realtime.dto.EntryRealtimeDto@648ecc91
+2025-05-08 21:56:07.726 [http-nio-10256-exec-1] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-02","count":794}
+2025-05-08 21:56:07.726 [http-nio-10256-exec-1] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-03","count":1683}
+2025-05-08 21:56:07.726 [http-nio-10256-exec-1] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-04","count":1760}
+2025-05-08 21:56:07.727 [http-nio-10256-exec-1] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-05","count":1492}
+2025-05-08 21:56:07.727 [http-nio-10256-exec-1] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-06","count":1734}
+2025-05-08 21:56:07.727 [http-nio-10256-exec-1] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-07","count":1768}
+2025-05-08 21:56:07.727 [http-nio-10256-exec-1] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-08","count":1630}
+2025-05-08 21:56:07.727 [http-nio-10256-exec-1] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-08","count":923}
+2025-05-08 21:56:07.727 [http-nio-10256-exec-1] INFO  c.n.w.e.controller.EntryController - [월간 출입 통계] 조회됨: [com.nhnacademy.workentry.entry.dto.EntryCountDto@118a7c3c, com.nhnacademy.workentry.entry.dto.EntryCountDto@1905463e, com.nhnacademy.workentry.entry.dto.EntryCountDto@5a374585, com.nhnacademy.workentry.entry.dto.EntryCountDto@bb15ac2, com.nhnacademy.workentry.entry.dto.EntryCountDto@4918ac14, com.nhnacademy.workentry.entry.dto.EntryCountDto@7a9f37bf, com.nhnacademy.workentry.entry.dto.EntryCountDto@1ae44e04, com.nhnacademy.workentry.entry.dto.EntryCountDto@1b0260d0]
+2025-05-08 22:34:34.537 [http-nio-10256-exec-2] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-02","count":743}
+2025-05-08 22:34:34.537 [http-nio-10256-exec-2] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-03","count":1683}
+2025-05-08 22:34:34.538 [http-nio-10256-exec-2] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-04","count":1760}
+2025-05-08 22:34:34.538 [http-nio-10256-exec-2] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-05","count":1492}
+2025-05-08 22:34:34.538 [http-nio-10256-exec-2] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-06","count":1734}
+2025-05-08 22:34:34.538 [http-nio-10256-exec-2] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-07","count":1768}
+2025-05-08 22:34:34.538 [http-nio-10256-exec-2] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-08","count":1630}
+2025-05-08 22:34:34.538 [http-nio-10256-exec-2] INFO  c.n.w.e.s.impl.EntryServiceImpl - [Influx Entry] {"date":"2025-05-08","count":969}
+2025-05-08 22:34:34.538 [http-nio-10256-exec-2] INFO  c.n.w.e.controller.EntryController - [월간 출입 통계] 조회됨: [com.nhnacademy.workentry.entry.dto.EntryCountDto@6376b91e, com.nhnacademy.workentry.entry.dto.EntryCountDto@3ac664a8, com.nhnacademy.workentry.entry.dto.EntryCountDto@39cffe0d, com.nhnacademy.workentry.entry.dto.EntryCountDto@5552a834, com.nhnacademy.workentry.entry.dto.EntryCountDto@3ba55c9, com.nhnacademy.workentry.entry.dto.EntryCountDto@a509232, com.nhnacademy.workentry.entry.dto.EntryCountDto@4ca93ae3, com.nhnacademy.workentry.entry.dto.EntryCountDto@c7a384a]
