@@ -50,6 +50,6 @@ public interface AttendanceService {
      * @param no       회원 번호
      * @return 페이지 형태의 근무 통계
      */
-    List<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no);
+    Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no,Pageable pageable);
 
 }

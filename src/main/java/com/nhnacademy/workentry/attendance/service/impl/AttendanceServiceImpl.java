@@ -73,33 +73,32 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public Page<AttendanceDto> getRecentAttendanceSummary(Pageable pageable) {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime monthAgo = now.minusDays(30);
+        LocalDateTime monthAgo = now.minusDays(364);
         Page<Attendance> records = attendanceRepository.findByWorkDateBetween(monthAgo, now, pageable);
         return records.map(AttendanceDto::from);
     }
 
     @Override
-    public List<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no) {
+    public Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no, Pageable pageable) {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime monthAgo = now.minusDays(30);
+        LocalDateTime monthAgo = now.minusDays(364);
 
-        List<Attendance> records = attendanceRepository.findByMbNoAndWorkDateBetween(no, monthAgo, now.plusDays(1));
+        Page<Attendance> records = attendanceRepository.findByMbNoAndWorkDateBetween(no, monthAgo, now.plusDays(1), pageable);
 
         if (records.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "최근 30일간 근무 기록이 존재하지 않습니다.");
         }
 
-        return records.stream()
-                .map(att -> new AttendanceSummaryDto(
-                        att.getWorkDate().getYear(),
-                        att.getWorkDate().getMonthValue(),
-                        att.getWorkDate().getDayOfMonth(),
-                        att.getWorkMinutes() != null ? att.getWorkMinutes() / 60 : 0,
-                        att.getInTime(),
-                        att.getOutTime(),
-                        att.getStatus() != null ? att.getStatus().getCode() : 0L
-                ))
-                .collect(Collectors.toList());
+        return records.map(att -> new AttendanceSummaryDto(
+                att.getWorkDate().getYear(),
+                att.getWorkDate().getMonthValue(),
+                att.getWorkDate().getDayOfMonth(),
+                att.getWorkMinutes() != null ? att.getWorkMinutes() / 60 : 0,
+                att.getInTime(),
+                att.getOutTime(),
+                att.getStatus() != null ? att.getStatus().getCode() : 0L
+        ));
     }
+
 
 }

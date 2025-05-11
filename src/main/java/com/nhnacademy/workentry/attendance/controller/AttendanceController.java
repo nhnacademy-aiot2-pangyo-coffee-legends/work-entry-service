@@ -12,7 +12,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * 출결 관련 REST API 요청을 처리하는 컨트롤러 클래스입니다.
@@ -42,7 +41,7 @@ public class AttendanceController {
             @PathVariable Long no,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end,
-            @PageableDefault(size = 10) Pageable pageable) {
+            @PageableDefault(size = 365) Pageable pageable) {
 
         log.info("🔍 회원 {}의 출결 조회 요청: {} ~ {}", no, start, end);
         return attendanceService.getAttendanceByNoAndDateRange(no, start, end, pageable);
@@ -56,15 +55,15 @@ public class AttendanceController {
      * @return 페이지 형태의 출결 DTO 목록
      */
     @GetMapping("/summary/recent")
-    public Page<AttendanceDto> getRecentAttendanceSummary(@PageableDefault(size=10) Pageable pageable) {
+    public Page<AttendanceDto> getRecentAttendanceSummary(@PageableDefault(size=365) Pageable pageable) {
         log.info("📊 최근 30일 출결 요약 요청");
         return attendanceService.getRecentAttendanceSummary(pageable);
     }
 
     @GetMapping("/summary/recent/{no}")
-    public List<AttendanceSummaryDto> getRecentWorkingHoursByMember(@PathVariable Long no) {
+    public Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(@PathVariable Long no,@PageableDefault(size = 365) Pageable pageable) {
         log.info("📊 회원 {} 최근 30일 근무 통계 요청", no);
-        return attendanceService.getRecentWorkingHoursByMember(no);
+        return attendanceService.getRecentWorkingHoursByMember(no,pageable);
     }
 
 }
