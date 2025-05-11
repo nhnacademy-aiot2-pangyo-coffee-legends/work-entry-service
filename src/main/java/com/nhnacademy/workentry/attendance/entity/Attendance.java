@@ -3,6 +3,7 @@ package com.nhnacademy.workentry.attendance.entity;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 /**
@@ -30,7 +31,7 @@ public class Attendance {
     @Column(name = "out_time")
     private LocalDateTime outTime;
 
-    @Column(name="work_minutes")
+    @Column(name = "work_minutes")
     private Integer workMinutes;
 
 
@@ -109,5 +110,15 @@ public class Attendance {
 
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
+    }
+
+    public void createCheckIn(LocalDateTime inTime){
+        this.inTime = inTime;
+    }
+
+    public void updateCheckOut(LocalDateTime outTime, AttendanceStatus status) {
+        this.outTime = outTime;
+        this.workMinutes = (int)Duration.between(this.inTime, outTime).toMinutes();
+        this.status = status;
     }
 }

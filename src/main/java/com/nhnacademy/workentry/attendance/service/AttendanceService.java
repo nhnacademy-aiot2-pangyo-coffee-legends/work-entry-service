@@ -1,10 +1,14 @@
 package com.nhnacademy.workentry.attendance.service;
 
 import com.nhnacademy.workentry.attendance.dto.AttendanceDto;
+import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
 import com.nhnacademy.workentry.attendance.dto.AttendanceSummaryDto;
+import com.nhnacademy.workentry.attendance.entity.Attendance;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 출결 서비스 인터페이스입니다.
@@ -46,4 +50,10 @@ public interface AttendanceService {
      * @return 날짜별 근무 시간 및 상태 요약 정보를 담은 DTO 리스트
      */
     List<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no);
+
+    void createAttendance(AttendanceRequest attendanceRequest);
+
+    void checkOut(Long mbNo, LocalDate workDate, LocalDateTime checkOutTime, String status);
+
+    Optional<Attendance> findByMbNoAndDate(Long mbNo, LocalDate today);
 }
