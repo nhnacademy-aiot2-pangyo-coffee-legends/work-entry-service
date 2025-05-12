@@ -38,7 +38,7 @@ public class Attendance {
     private Integer workMinutes;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status", nullable = false)
     private AttendanceStatus status;
 
