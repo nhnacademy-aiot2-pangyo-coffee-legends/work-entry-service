@@ -10,8 +10,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 /**
  * 출결 관련 REST API 요청을 처리하는 컨트롤러 클래스입니다.
@@ -47,7 +50,6 @@ public class AttendanceController {
         return attendanceService.getAttendanceByNoAndDateRange(no, start, end, pageable);
     }
 
-
     /**
      * 전체 출결 요약 데이터를 페이지 단위로 조회합니다.
      *
@@ -55,15 +57,32 @@ public class AttendanceController {
      * @return 페이지 형태의 출결 DTO 목록
      */
     @GetMapping("/summary/recent")
-    public Page<AttendanceDto> getRecentAttendanceSummary(@PageableDefault(size=365) Pageable pageable) {
+    public Page<AttendanceDto> getRecentAttendanceSummary(@PageableDefault(size = 365) Pageable pageable) {
         log.info("📊 최근 30일 출결 요약 요청");
         return attendanceService.getRecentAttendanceSummary(pageable);
     }
 
+    /**
+     * 특정 회원의 최근 30일 근무 통계를 조회합니다.
+     * 데이터가 존재하지 않을 경우 404 응답을 반환합니다.
+     *
+     * @param no 회원 고유 번호
+     * @param pageable 페이지 정보
+     * @return 출결 요약 페이지
+     */
     @GetMapping("/summary/recent/{no}")
-    public Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(@PathVariable Long no,@PageableDefault(size = 365) Pageable pageable) {
-        log.info("📊 회원 {} 최근 30일 근무 통계 요청", no);
-        return attendanceService.getRecentWorkingHoursByMember(no,pageable);
-    }
+    public Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(
+            @PathVariable Long no,
+            @PageableDefault(size = 365) Pageable pageable) {
 
+        log.info("📊 회원 {} 최근 30일 근무 통계 요청", no);
+        Page<AttendanceSummaryDto> result = attendanceService.getRecentWorkingHoursByMember(no, pageable);
+
+        if (result.isEmpty()) {
+            log.warn("⚠️ 회원 {}의 최근 30일 근무 통계 없음", no);
+            throw new ResponseStatusException(NOT_FOUND, "최근 30일간 근무 기록이 존재하지 않습니다.");
+        }
+
+        return result;
+    }
 }
