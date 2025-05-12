@@ -1,5 +1,6 @@
 package com.nhnacademy.workentry.attendance.service.impl;
 
+import com.nhnacademy.workentry.attendance.constant.AttendanceStatusConstants;
 import com.nhnacademy.workentry.attendance.dto.AttendanceDto;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
 import com.nhnacademy.workentry.attendance.dto.AttendanceSummaryDto;
@@ -8,12 +9,16 @@ import com.nhnacademy.workentry.attendance.entity.AttendanceStatus;
 import com.nhnacademy.workentry.attendance.repository.AttendanceRepository;
 import com.nhnacademy.workentry.attendance.repository.AttendanceStatusRepository;
 import com.nhnacademy.workentry.attendance.service.AttendanceService;
+import com.nhnacademy.workentry.common.exception.AttendanceNotFoundException;
+import com.nhnacademy.workentry.common.exception.AttendanceStatusNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -133,10 +138,11 @@ public class AttendanceServiceImpl implements AttendanceService {
     /**
      * 출근 기록 생성
      */
+    @Transactional
     public void createAttendance(AttendanceRequest request) {
         // 실제 외래 키 값(code)이 DB에 저장
         AttendanceStatus status = attendanceStatusRepository.findByDescription(request.getStatus())
-                .orElseThrow(() -> new IllegalArgumentException("해당 출결 상태 없음: " + request.getStatus()));
+                .orElseThrow(() -> new AttendanceNotFoundException(request.getMbNo()));
 
         Attendance attendance = Attendance.newAttendance(
                 request.getMbNo(),
@@ -153,20 +159,25 @@ public class AttendanceServiceImpl implements AttendanceService {
     /**
      * 퇴근 처리 (체크아웃)
      */
+    @Transactional
     public void checkOut(Long mbNo, LocalDate workDate, LocalDateTime checkOutTime, String statusDescription) {
         Attendance attendance = attendanceRepository.findByMbNoAndWorkDate(mbNo, workDate.atStartOfDay())
-                .orElseThrow(() -> new IllegalStateException("출근 기록 없음: " + mbNo));
+                .orElseThrow(() -> new AttendanceNotFoundException(mbNo));
+
+        // 상태가 "출석"일 경우에만 퇴근 가능
+        if (!attendance.getStatus().getDescription().equals(AttendanceStatusConstants.STATUS_PRESENT)) {
+            // 출석이 아닌 상태면 퇴근 처리를 하지 않음 (결석, 휴가 등)
+            log.info("mbNo={} 은 출석 상태가 아니므로 퇴근 처리 생략", mbNo);
+            return;
+        }
 
         AttendanceStatus status = attendanceStatusRepository.findByDescription(statusDescription)
-                .orElseThrow(() -> new IllegalArgumentException("출결 상태 없음: " + statusDescription));
+                .orElseThrow(() -> new AttendanceStatusNotFoundException(statusDescription));
 
-        attendance.updateCheckOut(checkOutTime, status);
+        Integer workMinutes = (int) Duration.between(attendance.getInTime(), checkOutTime).toMinutes();
 
-        attendanceRepository.save(attendance); // 변경 감지 트리거 (실제로는 생략 가능하나 명시적으로)
-    }
+        attendance.updateCheckOut(checkOutTime, workMinutes, status);
 
-    @Override
-    public Optional<Attendance> findByMbNoAndDate(Long mbNo, LocalDate date) {
-        return attendanceRepository.findByMbNoAndWorkDate(mbNo, date.atStartOfDay());
+        attendanceRepository.save(attendance);
     }
 }

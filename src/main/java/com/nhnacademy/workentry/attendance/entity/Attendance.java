@@ -112,13 +112,10 @@ public class Attendance {
         return updatedAt;
     }
 
-    public void createCheckIn(LocalDateTime inTime){
-        this.inTime = inTime;
-    }
-
-    public void updateCheckOut(LocalDateTime outTime, AttendanceStatus status) {
+    public void updateCheckOut(LocalDateTime outTime, Integer workMinutes, AttendanceStatus status) {
         this.outTime = outTime;
-        this.workMinutes = (int)Duration.between(this.inTime, outTime).toMinutes();
+        this.workMinutes = workMinutes;
         this.status = status;
+        this.updatedAt = LocalDateTime.now();
     }
 }

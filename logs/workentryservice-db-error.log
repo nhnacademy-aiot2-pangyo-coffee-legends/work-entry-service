@@ -1,0 +1,1 @@
+2025-05-12 21:43:43.528 [http-nio-10256-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Duplicate entry '95-2025-05-12' for key 'attendances.mb_no'
