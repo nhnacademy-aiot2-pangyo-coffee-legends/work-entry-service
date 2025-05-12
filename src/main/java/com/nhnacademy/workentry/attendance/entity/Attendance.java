@@ -1,6 +1,8 @@
 package com.nhnacademy.workentry.attendance.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -9,8 +11,10 @@ import java.time.LocalDateTime;
  * 출결 기록 정보를 담는 엔티티입니다.
  */
 @Entity
-@Table(name = "attendance")
+@Table(name = "attendances")
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Attendance {
 
     @Id
