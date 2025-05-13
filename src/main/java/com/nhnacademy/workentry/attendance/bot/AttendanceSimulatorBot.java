@@ -5,11 +5,11 @@ import com.nhnacademy.workentry.adaptor.client.MemberServiceClient;
 import com.nhnacademy.workentry.attendance.constant.AttendanceStatusConstants;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
 import com.nhnacademy.workentry.attendance.service.AttendanceService;
+import com.nhnacademy.workentry.common.exception.MemberNotFoundException;
 import feign.FeignException;
 import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -27,13 +27,14 @@ public class AttendanceSimulatorBot {
     private final AttendanceService attendanceService;
 
     // 매일 오전 9시에 체크인 생성
-    @Scheduled(cron = "0 0 9 * * *")
+    @Scheduled(cron = "0 0 9 * * *", zone = "Asia/Seoul")
     public void createCheckInAttendanceData() {
+        log.info("스케줄 실행: {}", LocalDateTime.now());
         List<Long> memberIds = new ArrayList<>();
         try{
             memberIds = memberServiceClient.getAllMemberIds();
         }catch(FeignException.NotFound e){
-            throw new NotFoundException("유저를 찾을 수 없습니다.");
+            throw new MemberNotFoundException("FeginClient : 멤버 정보를 찾을 수 없습니다.");
         }
 
         LocalDate today = LocalDate.now();
@@ -48,7 +49,7 @@ public class AttendanceSimulatorBot {
     }
 
     // 매일 오후 6시에 체크아웃 생성
-    @Scheduled(cron = "0 0 18 * * *")
+    @Scheduled(cron = "0 0 18 * * *", zone = "Asia/Seoul")
     public void createCheckOutAttendanceData() {
         List<Long> memberIds = memberAdaptor.getAllMemberIds();
         LocalDate today = LocalDate.now();

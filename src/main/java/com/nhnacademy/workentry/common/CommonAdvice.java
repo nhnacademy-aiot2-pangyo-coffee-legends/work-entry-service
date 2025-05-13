@@ -7,6 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/**
+ * 컨트롤러 실행할 때 나타날 수 있는 exception이라 앞으로도 controller를 사용하지 않는다면 파일 삭제
+ */
 @ControllerAdvice
 public class CommonAdvice{
 

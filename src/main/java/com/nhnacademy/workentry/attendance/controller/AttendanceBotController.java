@@ -2,7 +2,6 @@ package com.nhnacademy.workentry.attendance.controller;
 
 import com.nhnacademy.workentry.attendance.bot.AttendanceSimulatorBot;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
