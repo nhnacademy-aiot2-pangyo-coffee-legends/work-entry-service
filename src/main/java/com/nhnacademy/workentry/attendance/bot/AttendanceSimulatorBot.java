@@ -1,13 +1,12 @@
 package com.nhnacademy.workentry.attendance.bot;
 
-import com.nhnacademy.workentry.adaptor.MemberAdaptor;
-import com.nhnacademy.workentry.adaptor.client.MemberServiceClient;
+import com.nhnacademy.workentry.adaptor.member.client.MemberServiceClient;
+import com.nhnacademy.workentry.adaptor.member.dto.MemberNoResponse;
 import com.nhnacademy.workentry.attendance.constant.AttendanceStatusConstants;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
 import com.nhnacademy.workentry.attendance.service.AttendanceService;
 import com.nhnacademy.workentry.common.exception.MemberNotFoundException;
 import feign.FeignException;
-import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -22,7 +21,6 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class AttendanceSimulatorBot {
-    private final MemberAdaptor memberAdaptor;
     private final MemberServiceClient memberServiceClient;
     private final AttendanceService attendanceService;
 
@@ -30,7 +28,7 @@ public class AttendanceSimulatorBot {
     @Scheduled(cron = "0 0 9 * * *", zone = "Asia/Seoul")
     public void createCheckInAttendanceData() {
         log.info("스케줄 실행: {}", LocalDateTime.now());
-        List<Long> memberIds = new ArrayList<>();
+        List<MemberNoResponse> memberIds = new ArrayList<>();
         try{
             memberIds = memberServiceClient.getAllMemberIds();
         }catch(FeignException.NotFound e){
@@ -40,10 +38,10 @@ public class AttendanceSimulatorBot {
         LocalDate today = LocalDate.now();
         LocalDateTime checkInTime = LocalDateTime.now();
 
-        for (Long mbNo : memberIds) {
+        for (MemberNoResponse mbNo : memberIds) {
             // 새로운 출근 레코드 생성
             attendanceService.createAttendance(
-                    new AttendanceRequest(mbNo, today, checkInTime, null, null, AttendanceStatusConstants.STATUS_PRESENT)
+                    new AttendanceRequest(mbNo.getNo(), today, checkInTime, null, null, AttendanceStatusConstants.STATUS_PRESENT)
             );
         }
     }
@@ -51,12 +49,13 @@ public class AttendanceSimulatorBot {
     // 매일 오후 6시에 체크아웃 생성
     @Scheduled(cron = "0 0 18 * * *", zone = "Asia/Seoul")
     public void createCheckOutAttendanceData() {
-        List<Long> memberIds = memberAdaptor.getAllMemberIds();
+        log.info("스케줄 실행: {}", LocalDateTime.now());
+        List<MemberNoResponse> memberIds = memberServiceClient.getAllMemberIds();
         LocalDate today = LocalDate.now();
         LocalDateTime checkOutTime = LocalDateTime.now();
 
-        for (Long mbNo : memberIds) {
-            attendanceService.checkOut(mbNo, today, checkOutTime, AttendanceStatusConstants.STATUS_PRESENT);
+        for (MemberNoResponse mbNo : memberIds) {
+            attendanceService.checkOut(mbNo.getNo(), today, checkOutTime, AttendanceStatusConstants.STATUS_PRESENT);
         }
     }
 }

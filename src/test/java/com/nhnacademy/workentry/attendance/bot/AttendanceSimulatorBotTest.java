@@ -1,6 +1,7 @@
 package com.nhnacademy.workentry.attendance.bot;
 
-import com.nhnacademy.workentry.adaptor.MemberAdaptor;
+import com.nhnacademy.workentry.adaptor.member.client.MemberServiceClient;
+import com.nhnacademy.workentry.adaptor.member.dto.MemberNoResponse;
 import com.nhnacademy.workentry.attendance.constant.AttendanceStatusConstants;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
 import com.nhnacademy.workentry.attendance.service.AttendanceService;
@@ -24,7 +25,7 @@ import static org.mockito.Mockito.*;
 class AttendanceSimulatorBotTest {
 
     @Mock
-    private MemberAdaptor memberAdaptor;
+    private MemberServiceClient memberServiceClient;
 
     @Mock
     private AttendanceService attendanceService;
@@ -36,8 +37,12 @@ class AttendanceSimulatorBotTest {
     @DisplayName("정상적으로 모든 멤버에 대해 출근 기록 생성")
     void createCheckInAttendanceData_정상작동() {
         // given
-        List<Long> mockMemberIds = List.of(1L, 2L, 3L);
-        when(memberAdaptor.getAllMemberIds()).thenReturn(mockMemberIds);
+        List<MemberNoResponse> mockMemberIds = List.of(
+                MemberNoResponse.of(1L),
+                MemberNoResponse.of(2L),
+                MemberNoResponse.of(3L)
+        );
+        when(memberServiceClient.getAllMemberIds()).thenReturn(mockMemberIds);
 
         // when
         bot.createCheckInAttendanceData();
@@ -50,8 +55,10 @@ class AttendanceSimulatorBotTest {
     @DisplayName("정상적으로 모든 멤버에 대해 퇴근 기록 생성")
     void createCheckOutAttendanceData_정상작동() {
         // given
-        List<Long> mockMemberIds = List.of(1L);
-        when(memberAdaptor.getAllMemberIds()).thenReturn(mockMemberIds);
+        List<MemberNoResponse> mockMemberIds = List.of(
+                MemberNoResponse.of(1L)
+        );
+        when(memberServiceClient.getAllMemberIds()).thenReturn(mockMemberIds);
 
         // when
         bot.createCheckOutAttendanceData();
@@ -64,7 +71,7 @@ class AttendanceSimulatorBotTest {
     @DisplayName("출근 요청에 정확한 값이 포함되어야 함")
     void createCheckInAttendanceData_실제값검증() {
         // given
-        when(memberAdaptor.getAllMemberIds()).thenReturn(List.of(99L));
+        when(memberServiceClient.getAllMemberIds()).thenReturn(List.of(MemberNoResponse.of(99L)));
 
         ArgumentCaptor<AttendanceRequest> captor = ArgumentCaptor.forClass(AttendanceRequest.class);
 

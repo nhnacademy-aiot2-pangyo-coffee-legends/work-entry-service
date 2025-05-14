@@ -1,0 +1,580 @@
+2025-05-14 09:00:00.102 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.nhnacademy.workentry.attendance.service.impl.AttendanceServiceImpl.createAttendance]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-05-14 09:00:00.104 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(2100289466<open>)] for JPA transaction
+2025-05-14 09:00:00.104 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-05-14 09:00:00.104 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - begin
+2025-05-14 09:00:00.135 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@1fb2f1df]
+2025-05-14 09:00:00.138 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Created new SQL alias : as1_0
+2025-05-14 09:00:00.138 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Registration of TableGroup [StandardTableGroup(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))] with identifierForTableGroup [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] for NavigablePath [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] 
+2025-05-14 09:00:00.139 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmParameter : org.hibernate.query.sqm.tree.expression.SqmJpaCriteriaParameterWrapper@3f481ed4
+2025-05-14 09:00:00.139 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description) 
+2025-05-14 09:00:00.139 [scheduling-1] DEBUG org.hibernate.orm.results.graph.AST - DomainResult Graph:
+ \-EntityResultImpl [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)]
+ |  \-BasicFetch [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description]
+
+2025-05-14 09:00:00.139 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.tree - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (as1 : com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)) {
+          primaryTableReference : attendance_status as as1_0
+        }
+      }
+    }
+
+2025-05-14 09:00:00.140 [scheduling-1] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-05-14 09:00:00.140 [scheduling-1] DEBUG org.hibernate.SQL - 
+    select
+        as1_0.code,
+        as1_0.description 
+    from
+        attendance_status as1_0 
+    where
+        as1_0.description=?
+2025-05-14 09:00:00.155 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list:
+	  com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10) -> EntityJoinedFetchInitializer(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))@135168358 (SingleTableEntityPersister(com.nhnacademy.workentry.attendance.entity.AttendanceStatus))
+
+2025-05-14 09:00:00.158 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(2100289466<open>)] for JPA transaction
+2025-05-14 09:00:00.158 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-05-14 09:00:00.158 [scheduling-1] DEBUG o.h.j.i.PersistenceUnitUtilImpl - jakarta.persistence.PersistenceUnitUtil.getIdentifier is only intended to work with enhanced entities (although Hibernate also adapts this support to its proxies); however the passed entity was not enhanced (nor a proxy).. may not be able to read identifier
+2025-05-14 09:00:00.162 [scheduling-1] DEBUG o.hibernate.engine.spi.ActionQueue - Executing identity-insert immediately
+2025-05-14 09:00:00.165 [scheduling-1] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        attendances
+        (created_at, in_time, mb_no, out_time, status, updated_at, work_date, work_minutes) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2025-05-14 09:00:00.187 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list is empty
+2025-05-14 09:00:00.187 [scheduling-1] DEBUG o.h.id.IdentifierGeneratorHelper - Extracted generated values [com.nhnacademy.workentry.attendance.entity.Attendance]: [Ljava.lang.Object;@7f993c28
+2025-05-14 09:00:00.188 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2025-05-14 09:00:00.188 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [SessionImpl(2100289466<open>)]
+2025-05-14 09:00:00.188 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - committing
+2025-05-14 09:00:00.188 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Processing flush-time cascades
+2025-05-14 09:00:00.188 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Dirty checking collections
+2025-05-14 09:00:00.188 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects
+2025-05-14 09:00:00.188 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2025-05-14 09:00:00.188 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
+2025-05-14 09:00:00.188 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.AttendanceStatus{code=1, description=출석}
+2025-05-14 09:00:00.188 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.Attendance{inTime=2025-05-14T09:00:00.101859830, createdAt=2025-05-14T09:00:00.161247236, workDate=2025-05-14T00:00, mbNo=95, id=1723, outTime=null, workMinutes=null, status=com.nhnacademy.workentry.attendance.entity.AttendanceStatus#1, updatedAt=null}
+2025-05-14 09:00:00.218 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(2100289466<open>)] after transaction
+2025-05-14 09:00:00.218 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.nhnacademy.workentry.attendance.service.impl.AttendanceServiceImpl.createAttendance]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-05-14 09:00:00.218 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(1911285855<open>)] for JPA transaction
+2025-05-14 09:00:00.218 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-05-14 09:00:00.218 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - begin
+2025-05-14 09:00:00.234 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@26dc2819]
+2025-05-14 09:00:00.234 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Created new SQL alias : as1_0
+2025-05-14 09:00:00.234 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Registration of TableGroup [StandardTableGroup(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))] with identifierForTableGroup [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] for NavigablePath [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] 
+2025-05-14 09:00:00.235 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmParameter : org.hibernate.query.sqm.tree.expression.SqmJpaCriteriaParameterWrapper@69ba0470
+2025-05-14 09:00:00.235 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description) 
+2025-05-14 09:00:00.235 [scheduling-1] DEBUG org.hibernate.orm.results.graph.AST - DomainResult Graph:
+ \-EntityResultImpl [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)]
+ |  \-BasicFetch [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description]
+
+2025-05-14 09:00:00.235 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.tree - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (as1 : com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)) {
+          primaryTableReference : attendance_status as as1_0
+        }
+      }
+    }
+
+2025-05-14 09:00:00.235 [scheduling-1] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-05-14 09:00:00.235 [scheduling-1] DEBUG org.hibernate.SQL - 
+    select
+        as1_0.code,
+        as1_0.description 
+    from
+        attendance_status as1_0 
+    where
+        as1_0.description=?
+2025-05-14 09:00:00.251 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list:
+	  com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10) -> EntityJoinedFetchInitializer(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))@2017523669 (SingleTableEntityPersister(com.nhnacademy.workentry.attendance.entity.AttendanceStatus))
+
+2025-05-14 09:00:00.252 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1911285855<open>)] for JPA transaction
+2025-05-14 09:00:00.252 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-05-14 09:00:00.253 [scheduling-1] DEBUG o.h.j.i.PersistenceUnitUtilImpl - jakarta.persistence.PersistenceUnitUtil.getIdentifier is only intended to work with enhanced entities (although Hibernate also adapts this support to its proxies); however the passed entity was not enhanced (nor a proxy).. may not be able to read identifier
+2025-05-14 09:00:00.253 [scheduling-1] DEBUG o.hibernate.engine.spi.ActionQueue - Executing identity-insert immediately
+2025-05-14 09:00:00.254 [scheduling-1] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        attendances
+        (created_at, in_time, mb_no, out_time, status, updated_at, work_date, work_minutes) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2025-05-14 09:00:00.270 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list is empty
+2025-05-14 09:00:00.271 [scheduling-1] DEBUG o.h.id.IdentifierGeneratorHelper - Extracted generated values [com.nhnacademy.workentry.attendance.entity.Attendance]: [Ljava.lang.Object;@2a6dd70
+2025-05-14 09:00:00.271 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2025-05-14 09:00:00.271 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [SessionImpl(1911285855<open>)]
+2025-05-14 09:00:00.271 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - committing
+2025-05-14 09:00:00.271 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Processing flush-time cascades
+2025-05-14 09:00:00.271 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Dirty checking collections
+2025-05-14 09:00:00.272 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects
+2025-05-14 09:00:00.272 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2025-05-14 09:00:00.272 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
+2025-05-14 09:00:00.272 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.AttendanceStatus{code=1, description=출석}
+2025-05-14 09:00:00.272 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.Attendance{inTime=2025-05-14T09:00:00.101859830, createdAt=2025-05-14T09:00:00.253629262, workDate=2025-05-14T00:00, mbNo=96, id=1724, outTime=null, workMinutes=null, status=com.nhnacademy.workentry.attendance.entity.AttendanceStatus#1, updatedAt=null}
+2025-05-14 09:00:00.304 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(1911285855<open>)] after transaction
+2025-05-14 09:00:00.304 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.nhnacademy.workentry.attendance.service.impl.AttendanceServiceImpl.createAttendance]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-05-14 09:00:00.304 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(997057641<open>)] for JPA transaction
+2025-05-14 09:00:00.304 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-05-14 09:00:00.304 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - begin
+2025-05-14 09:00:00.322 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@ca64d29]
+2025-05-14 09:00:00.324 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Created new SQL alias : as1_0
+2025-05-14 09:00:00.324 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Registration of TableGroup [StandardTableGroup(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))] with identifierForTableGroup [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] for NavigablePath [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] 
+2025-05-14 09:00:00.324 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmParameter : org.hibernate.query.sqm.tree.expression.SqmJpaCriteriaParameterWrapper@38df5c90
+2025-05-14 09:00:00.324 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description) 
+2025-05-14 09:00:00.324 [scheduling-1] DEBUG org.hibernate.orm.results.graph.AST - DomainResult Graph:
+ \-EntityResultImpl [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)]
+ |  \-BasicFetch [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description]
+
+2025-05-14 09:00:00.325 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.tree - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (as1 : com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)) {
+          primaryTableReference : attendance_status as as1_0
+        }
+      }
+    }
+
+2025-05-14 09:00:00.325 [scheduling-1] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-05-14 09:00:00.325 [scheduling-1] DEBUG org.hibernate.SQL - 
+    select
+        as1_0.code,
+        as1_0.description 
+    from
+        attendance_status as1_0 
+    where
+        as1_0.description=?
+2025-05-14 09:00:00.342 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list:
+	  com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10) -> EntityJoinedFetchInitializer(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))@694884268 (SingleTableEntityPersister(com.nhnacademy.workentry.attendance.entity.AttendanceStatus))
+
+2025-05-14 09:00:00.344 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(997057641<open>)] for JPA transaction
+2025-05-14 09:00:00.344 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-05-14 09:00:00.344 [scheduling-1] DEBUG o.h.j.i.PersistenceUnitUtilImpl - jakarta.persistence.PersistenceUnitUtil.getIdentifier is only intended to work with enhanced entities (although Hibernate also adapts this support to its proxies); however the passed entity was not enhanced (nor a proxy).. may not be able to read identifier
+2025-05-14 09:00:00.344 [scheduling-1] DEBUG o.hibernate.engine.spi.ActionQueue - Executing identity-insert immediately
+2025-05-14 09:00:00.345 [scheduling-1] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        attendances
+        (created_at, in_time, mb_no, out_time, status, updated_at, work_date, work_minutes) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2025-05-14 09:00:00.364 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list is empty
+2025-05-14 09:00:00.364 [scheduling-1] DEBUG o.h.id.IdentifierGeneratorHelper - Extracted generated values [com.nhnacademy.workentry.attendance.entity.Attendance]: [Ljava.lang.Object;@1c325b2
+2025-05-14 09:00:00.365 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2025-05-14 09:00:00.365 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [SessionImpl(997057641<open>)]
+2025-05-14 09:00:00.365 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - committing
+2025-05-14 09:00:00.365 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Processing flush-time cascades
+2025-05-14 09:00:00.365 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Dirty checking collections
+2025-05-14 09:00:00.366 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects
+2025-05-14 09:00:00.366 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2025-05-14 09:00:00.366 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
+2025-05-14 09:00:00.366 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.AttendanceStatus{code=1, description=출석}
+2025-05-14 09:00:00.366 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.Attendance{inTime=2025-05-14T09:00:00.101859830, createdAt=2025-05-14T09:00:00.344459258, workDate=2025-05-14T00:00, mbNo=97, id=1725, outTime=null, workMinutes=null, status=com.nhnacademy.workentry.attendance.entity.AttendanceStatus#1, updatedAt=null}
+2025-05-14 09:00:00.398 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(997057641<open>)] after transaction
+2025-05-14 09:00:00.398 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.nhnacademy.workentry.attendance.service.impl.AttendanceServiceImpl.createAttendance]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-05-14 09:00:00.399 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(2041271760<open>)] for JPA transaction
+2025-05-14 09:00:00.399 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-05-14 09:00:00.399 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - begin
+2025-05-14 09:00:00.415 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@ff36d78]
+2025-05-14 09:00:00.417 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Created new SQL alias : as1_0
+2025-05-14 09:00:00.418 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Registration of TableGroup [StandardTableGroup(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))] with identifierForTableGroup [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] for NavigablePath [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] 
+2025-05-14 09:00:00.419 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmParameter : org.hibernate.query.sqm.tree.expression.SqmJpaCriteriaParameterWrapper@17052781
+2025-05-14 09:00:00.419 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description) 
+2025-05-14 09:00:00.419 [scheduling-1] DEBUG org.hibernate.orm.results.graph.AST - DomainResult Graph:
+ \-EntityResultImpl [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)]
+ |  \-BasicFetch [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description]
+
+2025-05-14 09:00:00.419 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.tree - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (as1 : com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)) {
+          primaryTableReference : attendance_status as as1_0
+        }
+      }
+    }
+
+2025-05-14 09:00:00.420 [scheduling-1] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-05-14 09:00:00.421 [scheduling-1] DEBUG org.hibernate.SQL - 
+    select
+        as1_0.code,
+        as1_0.description 
+    from
+        attendance_status as1_0 
+    where
+        as1_0.description=?
+2025-05-14 09:00:00.437 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list:
+	  com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10) -> EntityJoinedFetchInitializer(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))@1238066580 (SingleTableEntityPersister(com.nhnacademy.workentry.attendance.entity.AttendanceStatus))
+
+2025-05-14 09:00:00.438 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(2041271760<open>)] for JPA transaction
+2025-05-14 09:00:00.438 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-05-14 09:00:00.439 [scheduling-1] DEBUG o.h.j.i.PersistenceUnitUtilImpl - jakarta.persistence.PersistenceUnitUtil.getIdentifier is only intended to work with enhanced entities (although Hibernate also adapts this support to its proxies); however the passed entity was not enhanced (nor a proxy).. may not be able to read identifier
+2025-05-14 09:00:00.439 [scheduling-1] DEBUG o.hibernate.engine.spi.ActionQueue - Executing identity-insert immediately
+2025-05-14 09:00:00.440 [scheduling-1] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        attendances
+        (created_at, in_time, mb_no, out_time, status, updated_at, work_date, work_minutes) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2025-05-14 09:00:00.458 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list is empty
+2025-05-14 09:00:00.459 [scheduling-1] DEBUG o.h.id.IdentifierGeneratorHelper - Extracted generated values [com.nhnacademy.workentry.attendance.entity.Attendance]: [Ljava.lang.Object;@4a4e197
+2025-05-14 09:00:00.460 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2025-05-14 09:00:00.460 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [SessionImpl(2041271760<open>)]
+2025-05-14 09:00:00.460 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - committing
+2025-05-14 09:00:00.460 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Processing flush-time cascades
+2025-05-14 09:00:00.460 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Dirty checking collections
+2025-05-14 09:00:00.460 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects
+2025-05-14 09:00:00.460 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2025-05-14 09:00:00.460 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
+2025-05-14 09:00:00.460 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.AttendanceStatus{code=1, description=출석}
+2025-05-14 09:00:00.460 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.Attendance{inTime=2025-05-14T09:00:00.101859830, createdAt=2025-05-14T09:00:00.439326204, workDate=2025-05-14T00:00, mbNo=98, id=1726, outTime=null, workMinutes=null, status=com.nhnacademy.workentry.attendance.entity.AttendanceStatus#1, updatedAt=null}
+2025-05-14 09:00:00.492 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(2041271760<open>)] after transaction
+2025-05-14 09:00:00.492 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.nhnacademy.workentry.attendance.service.impl.AttendanceServiceImpl.createAttendance]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-05-14 09:00:00.492 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(762176401<open>)] for JPA transaction
+2025-05-14 09:00:00.492 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-05-14 09:00:00.492 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - begin
+2025-05-14 09:00:00.508 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@77472663]
+2025-05-14 09:00:00.508 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Created new SQL alias : as1_0
+2025-05-14 09:00:00.509 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Registration of TableGroup [StandardTableGroup(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))] with identifierForTableGroup [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] for NavigablePath [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] 
+2025-05-14 09:00:00.509 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmParameter : org.hibernate.query.sqm.tree.expression.SqmJpaCriteriaParameterWrapper@54ccc945
+2025-05-14 09:00:00.509 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description) 
+2025-05-14 09:00:00.509 [scheduling-1] DEBUG org.hibernate.orm.results.graph.AST - DomainResult Graph:
+ \-EntityResultImpl [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)]
+ |  \-BasicFetch [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description]
+
+2025-05-14 09:00:00.509 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.tree - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (as1 : com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)) {
+          primaryTableReference : attendance_status as as1_0
+        }
+      }
+    }
+
+2025-05-14 09:00:00.509 [scheduling-1] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-05-14 09:00:00.510 [scheduling-1] DEBUG org.hibernate.SQL - 
+    select
+        as1_0.code,
+        as1_0.description 
+    from
+        attendance_status as1_0 
+    where
+        as1_0.description=?
+2025-05-14 09:00:00.525 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list:
+	  com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10) -> EntityJoinedFetchInitializer(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))@748393876 (SingleTableEntityPersister(com.nhnacademy.workentry.attendance.entity.AttendanceStatus))
+
+2025-05-14 09:00:00.526 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(762176401<open>)] for JPA transaction
+2025-05-14 09:00:00.526 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-05-14 09:00:00.526 [scheduling-1] DEBUG o.h.j.i.PersistenceUnitUtilImpl - jakarta.persistence.PersistenceUnitUtil.getIdentifier is only intended to work with enhanced entities (although Hibernate also adapts this support to its proxies); however the passed entity was not enhanced (nor a proxy).. may not be able to read identifier
+2025-05-14 09:00:00.527 [scheduling-1] DEBUG o.hibernate.engine.spi.ActionQueue - Executing identity-insert immediately
+2025-05-14 09:00:00.527 [scheduling-1] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        attendances
+        (created_at, in_time, mb_no, out_time, status, updated_at, work_date, work_minutes) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2025-05-14 09:00:00.544 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list is empty
+2025-05-14 09:00:00.545 [scheduling-1] DEBUG o.h.id.IdentifierGeneratorHelper - Extracted generated values [com.nhnacademy.workentry.attendance.entity.Attendance]: [Ljava.lang.Object;@77cc0c1a
+2025-05-14 09:00:00.545 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2025-05-14 09:00:00.545 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [SessionImpl(762176401<open>)]
+2025-05-14 09:00:00.545 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - committing
+2025-05-14 09:00:00.545 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Processing flush-time cascades
+2025-05-14 09:00:00.545 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Dirty checking collections
+2025-05-14 09:00:00.546 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects
+2025-05-14 09:00:00.546 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2025-05-14 09:00:00.546 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
+2025-05-14 09:00:00.546 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.AttendanceStatus{code=1, description=출석}
+2025-05-14 09:00:00.546 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.Attendance{inTime=2025-05-14T09:00:00.101859830, createdAt=2025-05-14T09:00:00.526983481, workDate=2025-05-14T00:00, mbNo=99, id=1727, outTime=null, workMinutes=null, status=com.nhnacademy.workentry.attendance.entity.AttendanceStatus#1, updatedAt=null}
+2025-05-14 09:00:00.578 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(762176401<open>)] after transaction
+2025-05-14 09:00:00.579 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.nhnacademy.workentry.attendance.service.impl.AttendanceServiceImpl.createAttendance]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-05-14 09:00:00.579 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(564139480<open>)] for JPA transaction
+2025-05-14 09:00:00.579 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-05-14 09:00:00.579 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - begin
+2025-05-14 09:00:00.595 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@29de9929]
+2025-05-14 09:00:00.597 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Created new SQL alias : as1_0
+2025-05-14 09:00:00.597 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Registration of TableGroup [StandardTableGroup(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))] with identifierForTableGroup [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] for NavigablePath [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] 
+2025-05-14 09:00:00.598 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmParameter : org.hibernate.query.sqm.tree.expression.SqmJpaCriteriaParameterWrapper@3ee5ecd4
+2025-05-14 09:00:00.598 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description) 
+2025-05-14 09:00:00.598 [scheduling-1] DEBUG org.hibernate.orm.results.graph.AST - DomainResult Graph:
+ \-EntityResultImpl [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)]
+ |  \-BasicFetch [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description]
+
+2025-05-14 09:00:00.599 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.tree - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (as1 : com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)) {
+          primaryTableReference : attendance_status as as1_0
+        }
+      }
+    }
+
+2025-05-14 09:00:00.599 [scheduling-1] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-05-14 09:00:00.600 [scheduling-1] DEBUG org.hibernate.SQL - 
+    select
+        as1_0.code,
+        as1_0.description 
+    from
+        attendance_status as1_0 
+    where
+        as1_0.description=?
+2025-05-14 09:00:00.616 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list:
+	  com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10) -> EntityJoinedFetchInitializer(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))@180425015 (SingleTableEntityPersister(com.nhnacademy.workentry.attendance.entity.AttendanceStatus))
+
+2025-05-14 09:00:00.618 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(564139480<open>)] for JPA transaction
+2025-05-14 09:00:00.618 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-05-14 09:00:00.618 [scheduling-1] DEBUG o.h.j.i.PersistenceUnitUtilImpl - jakarta.persistence.PersistenceUnitUtil.getIdentifier is only intended to work with enhanced entities (although Hibernate also adapts this support to its proxies); however the passed entity was not enhanced (nor a proxy).. may not be able to read identifier
+2025-05-14 09:00:00.618 [scheduling-1] DEBUG o.hibernate.engine.spi.ActionQueue - Executing identity-insert immediately
+2025-05-14 09:00:00.619 [scheduling-1] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        attendances
+        (created_at, in_time, mb_no, out_time, status, updated_at, work_date, work_minutes) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2025-05-14 09:00:00.636 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list is empty
+2025-05-14 09:00:00.637 [scheduling-1] DEBUG o.h.id.IdentifierGeneratorHelper - Extracted generated values [com.nhnacademy.workentry.attendance.entity.Attendance]: [Ljava.lang.Object;@7bfd4a48
+2025-05-14 09:00:00.638 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2025-05-14 09:00:00.638 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [SessionImpl(564139480<open>)]
+2025-05-14 09:00:00.638 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - committing
+2025-05-14 09:00:00.638 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Processing flush-time cascades
+2025-05-14 09:00:00.638 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Dirty checking collections
+2025-05-14 09:00:00.639 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects
+2025-05-14 09:00:00.639 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2025-05-14 09:00:00.639 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
+2025-05-14 09:00:00.640 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.AttendanceStatus{code=1, description=출석}
+2025-05-14 09:00:00.640 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.Attendance{inTime=2025-05-14T09:00:00.101859830, createdAt=2025-05-14T09:00:00.618720570, workDate=2025-05-14T00:00, mbNo=100, id=1728, outTime=null, workMinutes=null, status=com.nhnacademy.workentry.attendance.entity.AttendanceStatus#1, updatedAt=null}
+2025-05-14 09:00:00.671 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(564139480<open>)] after transaction
+2025-05-14 09:00:00.671 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.nhnacademy.workentry.attendance.service.impl.AttendanceServiceImpl.createAttendance]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-05-14 09:00:00.672 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(1975352196<open>)] for JPA transaction
+2025-05-14 09:00:00.672 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-05-14 09:00:00.672 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - begin
+2025-05-14 09:00:00.686 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@57f9f0b]
+2025-05-14 09:00:00.687 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Created new SQL alias : as1_0
+2025-05-14 09:00:00.687 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Registration of TableGroup [StandardTableGroup(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))] with identifierForTableGroup [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] for NavigablePath [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] 
+2025-05-14 09:00:00.688 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmParameter : org.hibernate.query.sqm.tree.expression.SqmJpaCriteriaParameterWrapper@14413ae6
+2025-05-14 09:00:00.688 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description) 
+2025-05-14 09:00:00.688 [scheduling-1] DEBUG org.hibernate.orm.results.graph.AST - DomainResult Graph:
+ \-EntityResultImpl [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)]
+ |  \-BasicFetch [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description]
+
+2025-05-14 09:00:00.688 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.tree - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (as1 : com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)) {
+          primaryTableReference : attendance_status as as1_0
+        }
+      }
+    }
+
+2025-05-14 09:00:00.688 [scheduling-1] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-05-14 09:00:00.688 [scheduling-1] DEBUG org.hibernate.SQL - 
+    select
+        as1_0.code,
+        as1_0.description 
+    from
+        attendance_status as1_0 
+    where
+        as1_0.description=?
+2025-05-14 09:00:00.703 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list:
+	  com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10) -> EntityJoinedFetchInitializer(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))@1741128143 (SingleTableEntityPersister(com.nhnacademy.workentry.attendance.entity.AttendanceStatus))
+
+2025-05-14 09:00:00.704 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1975352196<open>)] for JPA transaction
+2025-05-14 09:00:00.704 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-05-14 09:00:00.704 [scheduling-1] DEBUG o.h.j.i.PersistenceUnitUtilImpl - jakarta.persistence.PersistenceUnitUtil.getIdentifier is only intended to work with enhanced entities (although Hibernate also adapts this support to its proxies); however the passed entity was not enhanced (nor a proxy).. may not be able to read identifier
+2025-05-14 09:00:00.704 [scheduling-1] DEBUG o.hibernate.engine.spi.ActionQueue - Executing identity-insert immediately
+2025-05-14 09:00:00.704 [scheduling-1] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        attendances
+        (created_at, in_time, mb_no, out_time, status, updated_at, work_date, work_minutes) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2025-05-14 09:00:00.720 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list is empty
+2025-05-14 09:00:00.720 [scheduling-1] DEBUG o.h.id.IdentifierGeneratorHelper - Extracted generated values [com.nhnacademy.workentry.attendance.entity.Attendance]: [Ljava.lang.Object;@2f2deeb9
+2025-05-14 09:00:00.720 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2025-05-14 09:00:00.720 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [SessionImpl(1975352196<open>)]
+2025-05-14 09:00:00.720 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - committing
+2025-05-14 09:00:00.720 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Processing flush-time cascades
+2025-05-14 09:00:00.720 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Dirty checking collections
+2025-05-14 09:00:00.720 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects
+2025-05-14 09:00:00.720 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2025-05-14 09:00:00.720 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
+2025-05-14 09:00:00.721 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.AttendanceStatus{code=1, description=출석}
+2025-05-14 09:00:00.721 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.Attendance{inTime=2025-05-14T09:00:00.101859830, createdAt=2025-05-14T09:00:00.704426184, workDate=2025-05-14T00:00, mbNo=76, id=1729, outTime=null, workMinutes=null, status=com.nhnacademy.workentry.attendance.entity.AttendanceStatus#1, updatedAt=null}
+2025-05-14 09:00:00.751 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(1975352196<open>)] after transaction
+2025-05-14 09:00:00.752 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.nhnacademy.workentry.attendance.service.impl.AttendanceServiceImpl.createAttendance]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-05-14 09:00:00.752 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(842419954<open>)] for JPA transaction
+2025-05-14 09:00:00.752 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-05-14 09:00:00.752 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - begin
+2025-05-14 09:00:00.768 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@10271337]
+2025-05-14 09:00:00.770 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Created new SQL alias : as1_0
+2025-05-14 09:00:00.770 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Registration of TableGroup [StandardTableGroup(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))] with identifierForTableGroup [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] for NavigablePath [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] 
+2025-05-14 09:00:00.771 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmParameter : org.hibernate.query.sqm.tree.expression.SqmJpaCriteriaParameterWrapper@50bf6fac
+2025-05-14 09:00:00.771 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description) 
+2025-05-14 09:00:00.771 [scheduling-1] DEBUG org.hibernate.orm.results.graph.AST - DomainResult Graph:
+ \-EntityResultImpl [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)]
+ |  \-BasicFetch [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description]
+
+2025-05-14 09:00:00.771 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.tree - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (as1 : com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)) {
+          primaryTableReference : attendance_status as as1_0
+        }
+      }
+    }
+
+2025-05-14 09:00:00.772 [scheduling-1] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-05-14 09:00:00.772 [scheduling-1] DEBUG org.hibernate.SQL - 
+    select
+        as1_0.code,
+        as1_0.description 
+    from
+        attendance_status as1_0 
+    where
+        as1_0.description=?
+2025-05-14 09:00:00.789 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list:
+	  com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10) -> EntityJoinedFetchInitializer(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))@272672696 (SingleTableEntityPersister(com.nhnacademy.workentry.attendance.entity.AttendanceStatus))
+
+2025-05-14 09:00:00.791 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(842419954<open>)] for JPA transaction
+2025-05-14 09:00:00.791 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-05-14 09:00:00.791 [scheduling-1] DEBUG o.h.j.i.PersistenceUnitUtilImpl - jakarta.persistence.PersistenceUnitUtil.getIdentifier is only intended to work with enhanced entities (although Hibernate also adapts this support to its proxies); however the passed entity was not enhanced (nor a proxy).. may not be able to read identifier
+2025-05-14 09:00:00.792 [scheduling-1] DEBUG o.hibernate.engine.spi.ActionQueue - Executing identity-insert immediately
+2025-05-14 09:00:00.792 [scheduling-1] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        attendances
+        (created_at, in_time, mb_no, out_time, status, updated_at, work_date, work_minutes) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2025-05-14 09:00:00.811 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list is empty
+2025-05-14 09:00:00.811 [scheduling-1] DEBUG o.h.id.IdentifierGeneratorHelper - Extracted generated values [com.nhnacademy.workentry.attendance.entity.Attendance]: [Ljava.lang.Object;@7b449064
+2025-05-14 09:00:00.812 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2025-05-14 09:00:00.813 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [SessionImpl(842419954<open>)]
+2025-05-14 09:00:00.813 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - committing
+2025-05-14 09:00:00.813 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Processing flush-time cascades
+2025-05-14 09:00:00.813 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Dirty checking collections
+2025-05-14 09:00:00.813 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects
+2025-05-14 09:00:00.813 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2025-05-14 09:00:00.813 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
+2025-05-14 09:00:00.813 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.AttendanceStatus{code=1, description=출석}
+2025-05-14 09:00:00.813 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.Attendance{inTime=2025-05-14T09:00:00.101859830, createdAt=2025-05-14T09:00:00.791969168, workDate=2025-05-14T00:00, mbNo=101, id=1730, outTime=null, workMinutes=null, status=com.nhnacademy.workentry.attendance.entity.AttendanceStatus#1, updatedAt=null}
+2025-05-14 09:00:00.846 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(842419954<open>)] after transaction
+2025-05-14 09:00:00.847 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.nhnacademy.workentry.attendance.service.impl.AttendanceServiceImpl.createAttendance]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-05-14 09:00:00.847 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(1147773464<open>)] for JPA transaction
+2025-05-14 09:00:00.847 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-05-14 09:00:00.847 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - begin
+2025-05-14 09:00:00.863 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@4c2cf50a]
+2025-05-14 09:00:00.865 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Created new SQL alias : as1_0
+2025-05-14 09:00:00.866 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Registration of TableGroup [StandardTableGroup(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))] with identifierForTableGroup [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] for NavigablePath [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] 
+2025-05-14 09:00:00.866 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmParameter : org.hibernate.query.sqm.tree.expression.SqmJpaCriteriaParameterWrapper@13349b5b
+2025-05-14 09:00:00.867 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description) 
+2025-05-14 09:00:00.867 [scheduling-1] DEBUG org.hibernate.orm.results.graph.AST - DomainResult Graph:
+ \-EntityResultImpl [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)]
+ |  \-BasicFetch [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description]
+
+2025-05-14 09:00:00.867 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.tree - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (as1 : com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)) {
+          primaryTableReference : attendance_status as as1_0
+        }
+      }
+    }
+
+2025-05-14 09:00:00.868 [scheduling-1] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-05-14 09:00:00.868 [scheduling-1] DEBUG org.hibernate.SQL - 
+    select
+        as1_0.code,
+        as1_0.description 
+    from
+        attendance_status as1_0 
+    where
+        as1_0.description=?
+2025-05-14 09:00:00.885 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list:
+	  com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10) -> EntityJoinedFetchInitializer(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))@1565478658 (SingleTableEntityPersister(com.nhnacademy.workentry.attendance.entity.AttendanceStatus))
+
+2025-05-14 09:00:00.886 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1147773464<open>)] for JPA transaction
+2025-05-14 09:00:00.886 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-05-14 09:00:00.886 [scheduling-1] DEBUG o.h.j.i.PersistenceUnitUtilImpl - jakarta.persistence.PersistenceUnitUtil.getIdentifier is only intended to work with enhanced entities (although Hibernate also adapts this support to its proxies); however the passed entity was not enhanced (nor a proxy).. may not be able to read identifier
+2025-05-14 09:00:00.887 [scheduling-1] DEBUG o.hibernate.engine.spi.ActionQueue - Executing identity-insert immediately
+2025-05-14 09:00:00.887 [scheduling-1] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        attendances
+        (created_at, in_time, mb_no, out_time, status, updated_at, work_date, work_minutes) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2025-05-14 09:00:00.904 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list is empty
+2025-05-14 09:00:00.904 [scheduling-1] DEBUG o.h.id.IdentifierGeneratorHelper - Extracted generated values [com.nhnacademy.workentry.attendance.entity.Attendance]: [Ljava.lang.Object;@265b33a5
+2025-05-14 09:00:00.905 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2025-05-14 09:00:00.905 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [SessionImpl(1147773464<open>)]
+2025-05-14 09:00:00.905 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - committing
+2025-05-14 09:00:00.905 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Processing flush-time cascades
+2025-05-14 09:00:00.905 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Dirty checking collections
+2025-05-14 09:00:00.905 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects
+2025-05-14 09:00:00.905 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2025-05-14 09:00:00.905 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
+2025-05-14 09:00:00.905 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.AttendanceStatus{code=1, description=출석}
+2025-05-14 09:00:00.905 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.Attendance{inTime=2025-05-14T09:00:00.101859830, createdAt=2025-05-14T09:00:00.887006125, workDate=2025-05-14T00:00, mbNo=221, id=1731, outTime=null, workMinutes=null, status=com.nhnacademy.workentry.attendance.entity.AttendanceStatus#1, updatedAt=null}
+2025-05-14 09:00:00.936 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(1147773464<open>)] after transaction
+2025-05-14 09:00:00.936 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.nhnacademy.workentry.attendance.service.impl.AttendanceServiceImpl.createAttendance]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-05-14 09:00:00.936 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(1212255216<open>)] for JPA transaction
+2025-05-14 09:00:00.936 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-05-14 09:00:00.936 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - begin
+2025-05-14 09:00:00.952 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@66abe1d1]
+2025-05-14 09:00:00.953 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Created new SQL alias : as1_0
+2025-05-14 09:00:00.953 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.create - Registration of TableGroup [StandardTableGroup(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))] with identifierForTableGroup [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] for NavigablePath [com.nhnacademy.workentry.attendance.entity.AttendanceStatus] 
+2025-05-14 09:00:00.953 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmParameter : org.hibernate.query.sqm.tree.expression.SqmJpaCriteriaParameterWrapper@199220ba
+2025-05-14 09:00:00.953 [scheduling-1] DEBUG o.h.q.s.sql.BaseSqmToSqlAstConverter - Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description) 
+2025-05-14 09:00:00.954 [scheduling-1] DEBUG org.hibernate.orm.results.graph.AST - DomainResult Graph:
+ \-EntityResultImpl [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)]
+ |  \-BasicFetch [com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10).description]
+
+2025-05-14 09:00:00.954 [scheduling-1] DEBUG org.hibernate.orm.sql.ast.tree - SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (as1 : com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10)) {
+          primaryTableReference : attendance_status as as1_0
+        }
+      }
+    }
+
+2025-05-14 09:00:00.954 [scheduling-1] DEBUG org.hibernate.orm.sql.exec - Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-05-14 09:00:00.954 [scheduling-1] DEBUG org.hibernate.SQL - 
+    select
+        as1_0.code,
+        as1_0.description 
+    from
+        attendance_status as1_0 
+    where
+        as1_0.description=?
+2025-05-14 09:00:00.969 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list:
+	  com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10) -> EntityJoinedFetchInitializer(com.nhnacademy.workentry.attendance.entity.AttendanceStatus(10))@718408497 (SingleTableEntityPersister(com.nhnacademy.workentry.attendance.entity.AttendanceStatus))
+
+2025-05-14 09:00:00.970 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1212255216<open>)] for JPA transaction
+2025-05-14 09:00:00.970 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-05-14 09:00:00.970 [scheduling-1] DEBUG o.h.j.i.PersistenceUnitUtilImpl - jakarta.persistence.PersistenceUnitUtil.getIdentifier is only intended to work with enhanced entities (although Hibernate also adapts this support to its proxies); however the passed entity was not enhanced (nor a proxy).. may not be able to read identifier
+2025-05-14 09:00:00.970 [scheduling-1] DEBUG o.hibernate.engine.spi.ActionQueue - Executing identity-insert immediately
+2025-05-14 09:00:00.971 [scheduling-1] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        attendances
+        (created_at, in_time, mb_no, out_time, status, updated_at, work_date, work_minutes) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2025-05-14 09:00:00.987 [scheduling-1] DEBUG org.hibernate.orm.results - Initializer list is empty
+2025-05-14 09:00:00.987 [scheduling-1] DEBUG o.h.id.IdentifierGeneratorHelper - Extracted generated values [com.nhnacademy.workentry.attendance.entity.Attendance]: [Ljava.lang.Object;@62b9096e
+2025-05-14 09:00:00.987 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2025-05-14 09:00:00.987 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [SessionImpl(1212255216<open>)]
+2025-05-14 09:00:00.987 [scheduling-1] DEBUG o.h.e.t.internal.TransactionImpl - committing
+2025-05-14 09:00:00.987 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Processing flush-time cascades
+2025-05-14 09:00:00.988 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Dirty checking collections
+2025-05-14 09:00:00.988 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 insertions, 0 updates, 0 deletions to 2 objects
+2025-05-14 09:00:00.988 [scheduling-1] DEBUG o.h.e.i.AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 0 collections
+2025-05-14 09:00:00.988 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - Listing entities:
+2025-05-14 09:00:00.988 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.AttendanceStatus{code=1, description=출석}
+2025-05-14 09:00:00.988 [scheduling-1] DEBUG o.h.internal.util.EntityPrinter - com.nhnacademy.workentry.attendance.entity.Attendance{inTime=2025-05-14T09:00:00.101859830, createdAt=2025-05-14T09:00:00.970814318, workDate=2025-05-14T00:00, mbNo=224, id=1732, outTime=null, workMinutes=null, status=com.nhnacademy.workentry.attendance.entity.AttendanceStatus#1, updatedAt=null}
+2025-05-14 09:00:01.020 [scheduling-1] DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(1212255216<open>)] after transaction
