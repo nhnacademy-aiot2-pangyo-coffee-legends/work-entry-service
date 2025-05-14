@@ -34,9 +34,6 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
     private final ObjectMapper objectMapper;
     private final EmailService emailService;
 
-    @Value("${admin.email}")
-    private String adminEmail;
-
     public EntryRealtimeServiceImpl(InfluxDBClient influxDBClient, LogWebSocketHandler logWebSocketHandler, ObjectMapper objectMapper, EmailService emailService) {
         this.influxDBClient = influxDBClient;
         this.logWebSocketHandler = logWebSocketHandler;
@@ -71,7 +68,7 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
             for (FluxRecord record : table.getRecords()) {
                 LocalDateTime entryTime = Objects.requireNonNull(record.getTime()).atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();
 
-                String time = Objects.requireNonNull(record.getTime()).toString().replace("T", " ").substring(0, 16);
+                String time = entryTime.toString().replace("T", " ").substring(0, 16);
 
                 int count = ((Number) Objects.requireNonNull(record.getValue())).intValue();
 
@@ -127,10 +124,19 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
             String json = objectMapper.writeValueAsString(dto);
 
             boolean isNight = isInTargetTime(entryTime);
+            boolean hasEntry = dto.getCount() > 0;
 
             // 메시지 라벨 및 내용 분리
-            String logLevel = isNight ? "ALERT" : "INFO";
-            String messagePrefix = isNight ? "이상 출입자 발생" : "실시간 출입 데이터";
+            String logLevel;
+            String messagePrefix;
+
+            if (isNight && hasEntry) {
+                logLevel = "ALERT";
+                messagePrefix = "이상 출입자 발생";
+            } else {
+                logLevel = "INFO";
+                messagePrefix = "실시간 출입 데이터";
+            }
 
             String message = String.format("[%s] %s | 시간: %s | 출입자 수: %d",
                     logLevel, messagePrefix, dto.getTime(), dto.getCount());
@@ -138,9 +144,9 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
             String fullMessage = message + " | 데이터: " + json;
 
             // 로그 출력
-            if (isNight) {
+            if (isNight && hasEntry) {
                 emailService.sendIntrusionAlertToAdmin(
-                        adminEmail,
+                        "admin@test.com",
                         "⚠️ 이상 출입 감지 알림",
                         dto.getTime()+"\n이상 출입자 발생.\n관리자 확인 바랍니다."
                 );
