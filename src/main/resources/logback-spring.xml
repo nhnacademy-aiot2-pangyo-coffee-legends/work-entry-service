@@ -60,7 +60,7 @@
     </appender>
 
     <appender name="ENTRY_ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${APP_NAME}-entry-error.log</file>
+        <file>${LOG_PATH}/${APP_NAME}-entry-error-app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${APP_NAME}-entry-error-app.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
@@ -74,7 +74,7 @@
 
     <!-- Attendance 로그 Appenders -->
     <appender name="ATTENDANCE_DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${APP_NAME}-attendance-debug.log</file>
+        <file>${LOG_PATH}/${APP_NAME}-attendance-debug-app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${APP_NAME}-attendance-debug-app.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
@@ -89,7 +89,7 @@
     </appender>
 
     <appender name="ATTENDANCE_INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${APP_NAME}-attendance-info.log</file>
+        <file>${LOG_PATH}/${APP_NAME}-attendance-info-app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${APP_NAME}-attendance-info-app.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
@@ -104,7 +104,7 @@
     </appender>
 
     <appender name="ATTENDANCE_WARN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${APP_NAME}-attendance-warn.log</file>
+        <file>${LOG_PATH}/${APP_NAME}-attendance-warn-app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${APP_NAME}-attendance-warn-app.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
@@ -119,7 +119,7 @@
     </appender>
 
     <appender name="ATTENDANCE_ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${APP_NAME}-attendance-error.log</file>
+        <file>${LOG_PATH}/${APP_NAME}-attendance-error-app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${APP_NAME}-attendance-error-app.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
@@ -133,7 +133,7 @@
 
     <!-- DB 로그 Appenders 및 로거 -->
     <appender name="DB_DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${APP_NAME}-db-debug.log</file>
+        <file>${LOG_PATH}/${APP_NAME}-db-debug-app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${APP_NAME}-db-debug-app.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
@@ -148,7 +148,7 @@
     </appender>
 
     <appender name="DB_INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${APP_NAME}-db-info.log</file>
+        <file>${LOG_PATH}/${APP_NAME}-db-info-app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${APP_NAME}-db-info-app.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
@@ -163,7 +163,7 @@
     </appender>
 
     <appender name="DB_WARN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${APP_NAME}-db-warn.log</file>
+        <file>${LOG_PATH}/${APP_NAME}-db-warn-app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${APP_NAME}-db-warn-app.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
@@ -178,7 +178,7 @@
     </appender>
 
     <appender name="DB_ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${APP_NAME}-db-error.log</file>
+        <file>${LOG_PATH}/${APP_NAME}-db-error-app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${APP_NAME}-db-error-app.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
@@ -192,7 +192,7 @@
 
     <!-- [추가] Realtime 로그 Appenders -->
     <appender name="REALTIME_INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${APP_NAME}-realtime-info.log</file>
+        <file>${LOG_PATH}/${APP_NAME}-realtime-info-app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${APP_NAME}-realtime-info-app.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>

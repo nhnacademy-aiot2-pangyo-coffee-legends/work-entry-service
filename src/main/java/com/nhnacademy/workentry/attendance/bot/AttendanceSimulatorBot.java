@@ -27,7 +27,7 @@ public class AttendanceSimulatorBot {
     // 매일 오전 9시에 체크인 생성
     @Scheduled(cron = "0 0 9 * * *", zone = "Asia/Seoul")
     public void createCheckInAttendanceData() {
-        log.info("스케줄 실행: {}", LocalDateTime.now());
+        log.info("오전 스케줄 실행: {}", LocalDateTime.now());
         List<MemberNoResponse> memberIds = new ArrayList<>();
         try{
             memberIds = memberServiceClient.getAllMemberIds();
@@ -49,7 +49,7 @@ public class AttendanceSimulatorBot {
     // 매일 오후 6시에 체크아웃 생성
     @Scheduled(cron = "0 0 18 * * *", zone = "Asia/Seoul")
     public void createCheckOutAttendanceData() {
-        log.info("스케줄 실행: {}", LocalDateTime.now());
+        log.info("오후 스케줄 실행: {}", LocalDateTime.now());
         List<MemberNoResponse> memberIds = memberServiceClient.getAllMemberIds();
         LocalDate today = LocalDate.now();
         LocalDateTime checkOutTime = LocalDateTime.now();
