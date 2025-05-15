@@ -1,0 +1,6 @@
+2025-05-14 14:40:37.409 [http-nio-10256-exec-5] INFO  c.n.w.a.c.AttendanceController - 📊 회원 96 최근 30일 근무 통계 조회 요청
+2025-05-14 14:40:37.409 [http-nio-10256-exec-5] INFO  c.n.w.a.s.impl.AttendanceServiceImpl - 회원 96의 최근 30일 근무 통계 조회: 2024-05-15 ~ 2025-05-14
+2025-05-14 14:41:11.683 [http-nio-10256-exec-6] INFO  c.n.w.a.c.AttendanceController - 📊 회원 98 최근 30일 근무 통계 조회 요청
+2025-05-14 14:41:11.683 [http-nio-10256-exec-6] INFO  c.n.w.a.s.impl.AttendanceServiceImpl - 회원 98의 최근 30일 근무 통계 조회: 2024-05-15 ~ 2025-05-14
+2025-05-14 14:41:14.342 [http-nio-10256-exec-8] INFO  c.n.w.a.c.AttendanceController - 📊 회원 98 최근 30일 근무 통계 조회 요청
+2025-05-14 14:41:14.343 [http-nio-10256-exec-8] INFO  c.n.w.a.s.impl.AttendanceServiceImpl - 회원 98의 최근 30일 근무 통계 조회: 2024-05-15 ~ 2025-05-14

@@ -8,6 +8,7 @@ import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
 import com.nhnacademy.workentry.entry.dto.EntryCountDto;
 import com.nhnacademy.workentry.entry.service.EntryService;
+import com.nhnacademy.workentry.log.realtime.LogWebSocketHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +27,12 @@ import java.util.Objects;
 @Service
 public class EntryServiceImpl implements EntryService {
     private final InfluxDBClient influxDBClient;
+    private final LogWebSocketHandler logWebSocketHandler;
     private final ObjectMapper objectMapper;
 
-    public EntryServiceImpl(InfluxDBClient influxDBClient, ObjectMapper objectMapper) {
+    public EntryServiceImpl(InfluxDBClient influxDBClient, LogWebSocketHandler logWebSocketHandler, ObjectMapper objectMapper) {
         this.influxDBClient = influxDBClient;
+        this.logWebSocketHandler = logWebSocketHandler;
         this.objectMapper = objectMapper;
     }
 
@@ -45,14 +48,17 @@ public class EntryServiceImpl implements EntryService {
      */
     @Override
     public List<EntryCountDto> getMonthlyEntryCounts() {
-        String flux = "from(bucket: \"coffee-mqtt\")\n" +
-                "  |> range(start: -7d)\n" +
-                "  |> filter(fn: (r) => r[\"_measurement\"] == \"sensor\")\n" +
-                "  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n" +
-                "  |> filter(fn: (r) => r[\"location\"] == \"입구\")\n" +
-                "  |> filter(fn: (r) => r[\"type\"] == \"activity\")\n" +
-                "  |> aggregateWindow(every: 24h, fn: count, createEmpty: true)\n" +
-                "  |> yield(name: \"mean\")";
+        String flux = """
+                        from(bucket: "coffee-mqtt")
+                          |> range(start: -30d)
+                          |> filter(fn: (r) => r["_measurement"] == "sensor")
+                          |> filter(fn: (r) => r["_field"] == "value")
+                          |> filter(fn: (r) => r["location"] == "입구")
+                          |> filter(fn: (r) => r["type"] == "activity")
+                          |> aggregateWindow(every: 1d, fn: count, createEmpty: false)
+                          |> yield(name: "entryCount")
+                        """;
+
 
         QueryApi queryApi = influxDBClient.getQueryApi();
         List<FluxTable> tables = queryApi.query(flux);
@@ -66,7 +72,10 @@ public class EntryServiceImpl implements EntryService {
 
                 try {
                     String json = objectMapper.writeValueAsString(dto);
-                    log.info("[Influx Entry] {}", json);
+                    String fallbackMessage = "[Influx Entry] " + json;
+                    log.info(fallbackMessage);
+
+                    logWebSocketHandler.broadcast(fallbackMessage);
                 } catch (JsonProcessingException e) {
                     log.error("[Influx Entry] JSON 직렬화 실패", e);
                 }

@@ -34,6 +34,9 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
     private final ObjectMapper objectMapper;
     private final EmailService emailService;
 
+    @Value("${admin.email}")
+    private String adminEmail;
+
     public EntryRealtimeServiceImpl(InfluxDBClient influxDBClient, LogWebSocketHandler logWebSocketHandler, ObjectMapper objectMapper, EmailService emailService) {
         this.influxDBClient = influxDBClient;
         this.logWebSocketHandler = logWebSocketHandler;
@@ -46,7 +49,6 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
      *
      * @return EntryRealtimeDto 객체 (가장 최근 시간의 데이터)
      */
-    @Scheduled(fixedRate = 30000) // 30초마다 실행
     @Override
     public EntryRealtimeDto getLatestEntry() {
         String flux = """
@@ -146,7 +148,7 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
             // 로그 출력
             if (isNight && hasEntry) {
                 emailService.sendIntrusionAlertToAdmin(
-                        "admin@test.com",
+                        adminEmail,
                         "⚠️ 이상 출입 감지 알림",
                         dto.getTime()+"\n이상 출입자 발생.\n관리자 확인 바랍니다."
                 );

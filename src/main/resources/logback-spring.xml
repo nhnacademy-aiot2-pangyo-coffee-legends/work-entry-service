@@ -314,8 +314,16 @@
         <appender-ref ref="REALTIME_WARN_FILE"/>
     </logger>
 
+    <appender name="WS" class="com.nhnacademy.workentry.log.realtime.WebSocketLogAppender" />
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
     <!-- 루트 로거 -->
     <root level="INFO">
+        <appender-ref ref="WS" />
         <appender-ref ref="CONSOLE"/>
     </root>
 </configuration>

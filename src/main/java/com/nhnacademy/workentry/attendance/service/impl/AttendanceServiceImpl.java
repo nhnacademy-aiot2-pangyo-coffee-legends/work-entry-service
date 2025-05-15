@@ -22,8 +22,6 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * 출결 정보 처리 서비스 구현 클래스입니다.
@@ -52,11 +50,11 @@ public class AttendanceServiceImpl implements AttendanceService {
         log.info("전체 출결 조회 요청: no={}", mbNo);
 
         List<Attendance> attendanceList = attendanceRepository.findAllByMbNo(mbNo);
-        log.debug("조회된 출결 수: {}", attendanceList.size());
+        log.debug("조회된 전체 출결 수: {}", attendanceList.size());
 
         return attendanceList.stream()
                 .map(AttendanceDto::from)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**
@@ -72,15 +70,15 @@ public class AttendanceServiceImpl implements AttendanceService {
         log.info("기간별 출결 조회 요청: no={}, from={} to={}", no, start, end);
 
         List<Attendance> records = attendanceRepository.findByMbNoAndWorkDateBetween(no, start, end);
-        log.debug("조회된 출결 수: {}", records.size());
+        log.debug("조회된 기간별 출결 수: {}", records.size());
 
         return records.stream()
                 .map(AttendanceDto::from)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**
-     * 최근 7일간 전체 출결 요약 정보를 조회합니다.
+     * 최근 7일간 전체 출결 요약 정보를 조회 합니다.
      *
      * @return 최근 일주일간의 출결 정보 DTO 리스트
      */
@@ -96,7 +94,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
         return records.stream()
                 .map(AttendanceDto::from)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**
@@ -132,7 +130,7 @@ public class AttendanceServiceImpl implements AttendanceService {
                         att.getOutTime(),
                         att.getStatus().getCode()
                 ))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**
