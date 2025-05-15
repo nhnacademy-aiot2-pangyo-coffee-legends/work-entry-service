@@ -1,0 +1,1 @@
+{"@timestamp":"2025-05-15T20:56:57.319650414+09:00","@version":"1","message":"조회된 통계 수: 35","logger_name":"com.nhnacademy.workentry.attendance.controller.AttendanceController","thread_name":"http-nio-10256-exec-3","level":"DEBUG","level_value":10000}
