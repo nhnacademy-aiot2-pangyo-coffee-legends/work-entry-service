@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true">
 
-    <!--    <property name="LOG_PATH" value="logs"/>-->
     <property name="APP_NAME" value="workentryservice"/>
-    <!--    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>-->
 
     <!-- 로그를 ./logs 폴더에 남기도록 기본값 설정 -->
     <springProperty name="LOG_PATH" source="logging.file.path" defaultValue="./logs"/>
@@ -72,6 +70,21 @@
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
 
+    <!-- Entry 전용 로거 -->
+    <logger name="com.nhnacademy.workentry.entry.controller.EntryController" level="DEBUG" additivity="false">
+        <appender-ref ref="ENTRY_DEBUG_FILE"/>
+        <appender-ref ref="ENTRY_INFO_FILE"/>
+        <appender-ref ref="ENTRY_WARN_FILE"/>
+        <appender-ref ref="ENTRY_ERROR_FILE"/>
+    </logger>
+
+    <logger name="com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl" level="DEBUG" additivity="false">
+        <appender-ref ref="ENTRY_DEBUG_FILE"/>
+        <appender-ref ref="ENTRY_INFO_FILE"/>
+        <appender-ref ref="ENTRY_WARN_FILE"/>
+        <appender-ref ref="ENTRY_ERROR_FILE"/>
+    </logger>
+
     <!-- Attendance 로그 Appenders -->
     <appender name="ATTENDANCE_DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/${APP_NAME}-attendance-debug-app.log</file>
@@ -130,6 +143,21 @@
         <!-- LogstashEncoder로 JSON 구조화 -->
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
+
+    <!-- Attendance 전용 로거 -->
+    <logger name="com.nhnacademy.workentry.attendance.controller.AttendanceController" level="DEBUG" additivity="false">
+        <appender-ref ref="ATTENDANCE_DEBUG_FILE"/>
+        <appender-ref ref="ATTENDANCE_INFO_FILE"/>
+        <appender-ref ref="ATTENDANCE_WARN_FILE"/>
+        <appender-ref ref="ATTENDANCE_ERROR_FILE"/>
+    </logger>
+
+    <logger name="com.nhnacademy.workentry.attendance.service.impl.AttendanceServiceImpl" level="DEBUG" additivity="false">
+        <appender-ref ref="ATTENDANCE_DEBUG_FILE"/>
+        <appender-ref ref="ATTENDANCE_INFO_FILE"/>
+        <appender-ref ref="ATTENDANCE_WARN_FILE"/>
+        <appender-ref ref="ATTENDANCE_ERROR_FILE"/>
+    </logger>
 
     <!-- DB 로그 Appenders 및 로거 -->
     <appender name="DB_DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -190,7 +218,32 @@
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
 
-    <!-- [추가] Realtime 로그 Appenders -->
+    <logger name="org.hibernate" level="DEBUG" additivity="false">
+        <appender-ref ref="DB_DEBUG_FILE"/>
+        <appender-ref ref="DB_INFO_FILE"/>
+        <appender-ref ref="DB_WARN_FILE"/>
+        <appender-ref ref="DB_ERROR_FILE"/>
+    </logger>
+
+    <logger name="org.springframework.orm.jpa" level="DEBUG" additivity="false">
+        <appender-ref ref="DB_DEBUG_FILE"/>
+        <appender-ref ref="DB_INFO_FILE"/>
+        <appender-ref ref="DB_WARN_FILE"/>
+        <appender-ref ref="DB_ERROR_FILE"/>
+    </logger>
+
+    <logger name="org.springframework.data.jpa" level="DEBUG" additivity="false">
+        <appender-ref ref="DB_DEBUG_FILE"/>
+        <appender-ref ref="DB_INFO_FILE"/>
+        <appender-ref ref="DB_WARN_FILE"/>
+        <appender-ref ref="DB_ERROR_FILE"/>
+    </logger>
+
+    <logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
+        <appender-ref ref="DB_DEBUG_FILE"/>
+    </logger>
+
+    <!-- Realtime 로그 Appenders -->
     <appender name="REALTIME_INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/${APP_NAME}-realtime-info-app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -207,7 +260,7 @@
     </appender>
 
     <appender name="REALTIME_ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${APP_NAME}-realtime-error.log</file>
+        <file>${LOG_PATH}/${APP_NAME}-realtime-error-app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${APP_NAME}-realtime-error-app.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
@@ -220,7 +273,7 @@
     </appender>
 
     <appender name="REALTIME_WARN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${APP_NAME}-realtime-warn.log</file>
+        <file>${LOG_PATH}/${APP_NAME}-realtime-warn-app.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_PATH}/${APP_NAME}-realtime-warn-app.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
@@ -234,22 +287,22 @@
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
 
+    <!-- [추가] Realtime 전용 로거 -->
+    <logger name="com.nhnacademy.workentry.entry.realtime.service.impl.EntryRealtimeServiceImpl" level="INFO" additivity="false">
+        <appender-ref ref="REALTIME_INFO_FILE"/>
+        <appender-ref ref="REALTIME_ERROR_FILE"/>
+        <appender-ref ref="REALTIME_WARN_FILE"/>
+    </logger>
+    <logger name="com.nhnacademy.workentry.entry.realtime.service.impl.EmailServiceImpl" level="INFO" additivity="false">
+        <appender-ref ref="REALTIME_INFO_FILE"/>
+        <appender-ref ref="REALTIME_ERROR_FILE"/>
+        <appender-ref ref="REALTIME_WARN_FILE"/>
+    </logger>
+
     <appender name="WS" class="com.nhnacademy.workentry.log.realtime.WebSocketLogAppender" />
 
     <!-- 루트 로거 -->
     <root level="INFO">
-        <appender-ref ref="ENTRY_INFO_FILE"/>
-        <appender-ref ref="ENTRY_WARN_FILE"/>
-        <appender-ref ref="ENTRY_INFO_FILE"/>
-        <appender-ref ref="ATTENDANCE_INFO_FILE"/>
-        <appender-ref ref="ATTENDANCE_WARN_FILE"/>
-        <appender-ref ref="ATTENDANCE_ERROR_FILE"/>
-        <appender-ref ref="DB_INFO_FILE"/>
-        <appender-ref ref="DB_ERROR_FILE"/>
-        <appender-ref ref="DB_WARN_FILE"/>
-        <appender-ref ref="REALTIME_INFO_FILE"/>
-        <appender-ref ref="REALTIME_ERROR_FILE"/>
-        <appender-ref ref="REALTIME_WARN_FILE"/>
         <appender-ref ref="WS"/>
         <appender-ref ref="CONSOLE"/>
     </root>
