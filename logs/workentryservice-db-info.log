@@ -1,432 +1,152 @@
-2025-05-15 09:37:43.642 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:13:24.715 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:13:26.194 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:13:26.210 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:13:26.360 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:13:26.444 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:13:26.899 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 10:13:26.901 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:34:15.944 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:34:21.822 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:34:23.164 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:34:23.180 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:34:23.334 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:34:23.427 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:34:23.917 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 10:34:23.921 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:39:21.861 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:39:27.484 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:39:29.016 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:39:29.033 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:39:29.174 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:39:29.258 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:39:29.709 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 10:39:29.710 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:40:38.307 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:40:43.834 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:40:45.929 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:40:45.949 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:40:46.115 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:40:46.210 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:40:46.734 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 10:40:46.736 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:43:10.385 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:43:15.432 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:43:16.924 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:43:16.945 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:43:17.100 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:43:17.186 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:43:17.692 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 10:43:17.694 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:43:52.484 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:43:57.417 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:43:59.024 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:43:59.047 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:43:59.198 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:43:59.306 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:44:00.037 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 10:44:00.043 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:44:02.615 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:44:07.914 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:44:09.485 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:44:09.504 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:44:09.644 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:44:09.737 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:44:13.019 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:44:14.567 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:44:14.587 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:44:14.749 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:44:14.901 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:44:15.421 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 10:44:15.423 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:45:27.090 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:45:32.503 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:45:33.821 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:45:33.840 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:45:33.987 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:45:34.070 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:45:34.485 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 10:45:34.486 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:49:29.860 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:49:35.628 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:49:37.429 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:49:37.450 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:49:37.602 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:49:37.708 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:49:38.245 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 10:49:38.247 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:50:02.917 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:50:07.947 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:50:09.467 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:50:09.489 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:50:09.650 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:50:09.748 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:50:10.262 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 10:50:10.264 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:50:37.460 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:50:42.486 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:50:44.026 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:50:44.047 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:50:44.274 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:50:44.419 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:50:45.027 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 10:50:45.031 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:51:11.357 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:51:16.501 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:51:18.085 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:51:18.105 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:51:18.258 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:51:18.406 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:51:18.902 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 10:51:18.904 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:52:15.665 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 10:52:20.608 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 10:52:22.150 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 10:52:22.170 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 10:52:22.327 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 10:52:22.413 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 10:52:22.916 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 10:52:22.918 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:00:41.570 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:00:49.090 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 11:00:50.824 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 11:00:50.853 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 11:00:51.025 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 11:00:51.140 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 11:00:51.651 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 11:00:51.653 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:01:23.424 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:01:28.635 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 11:01:30.182 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 11:01:30.204 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 11:01:30.387 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 11:01:30.491 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 11:01:31.026 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 11:01:31.028 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:03:55.314 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:04:01.710 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 11:04:03.233 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 11:04:03.255 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 11:04:03.431 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 11:04:03.516 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 11:04:04.016 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 11:04:04.018 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:04:21.000 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:04:26.062 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 11:04:27.628 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 11:04:27.648 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 11:04:27.813 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 11:04:27.914 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 11:04:28.449 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 11:04:28.451 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:05:24.048 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:05:32.283 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 11:05:33.611 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 11:05:33.627 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 11:05:33.769 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 11:05:33.861 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 11:05:34.283 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 11:05:34.285 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:05:50.355 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:05:55.904 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 11:05:57.244 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 11:05:57.259 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 11:05:57.393 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 11:05:57.479 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 11:05:57.889 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 11:05:57.890 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:07:57.892 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:08:03.496 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 11:08:04.863 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 11:08:04.880 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 11:08:05.028 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 11:08:05.133 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 11:08:05.581 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 11:08:05.583 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:08:33.118 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:08:38.540 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 11:08:39.861 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 11:08:39.876 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 11:08:40.018 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 11:08:40.110 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 11:08:40.547 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 11:08:40.549 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:09:19.124 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:09:24.556 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 11:09:25.855 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 11:09:25.871 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 11:09:26.026 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 11:09:26.111 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 11:09:26.539 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 11:09:26.541 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:23:37.632 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:23:42.502 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 11:23:44.036 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 11:23:44.056 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 11:23:44.214 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 11:23:44.380 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 11:23:44.886 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 11:23:44.888 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:26:07.942 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 11:26:14.004 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 11:26:15.405 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 11:26:15.421 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 11:26:15.561 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 11:26:15.668 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 11:26:16.093 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 11:26:16.095 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 14:00:17.223 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 14:00:22.759 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 14:00:24.061 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 14:00:24.076 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 14:00:24.205 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 14:00:24.303 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 14:00:24.707 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 14:00:24.708 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 14:10:51.104 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 14:10:56.499 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 14:10:57.793 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 14:10:57.808 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 14:10:57.933 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 14:10:58.024 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 14:10:58.437 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 14:10:58.438 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 16:01:46.048 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 16:01:51.655 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 16:01:53.065 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 16:01:53.082 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 16:01:53.214 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 16:01:53.302 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 16:01:53.782 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 16:01:53.783 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 16:05:43.348 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-05-15 16:05:48.905 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.2.Final
-2025-05-15 16:05:50.272 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.11.Final
-2025-05-15 16:05:50.295 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
-2025-05-15 16:05:50.454 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-05-15 16:05:50.566 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
-	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
-	Database driver: undefined/unknown
-	Database version: 8.0.41
-	Autocommit mode: undefined/unknown
-	Isolation level: undefined/unknown
-	Minimum pool size: undefined/unknown
-	Maximum pool size: undefined/unknown
-2025-05-15 16:05:51.129 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-05-15 16:05:51.131 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+{"@timestamp":"2025-05-15T17:36:13.172848236+09:00","@version":"1","message":"HV000001: Hibernate Validator 8.0.2.Final","logger_name":"org.hibernate.validator.internal.util.Version","thread_name":"background-preinit","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:13.207281199+09:00","@version":"1","message":"Starting WorkEntryApplication using Java 21.0.7 with PID 34158 (/home/nhnacademy/Desktop/bootcamp/final/work-entry/target/classes started by nhnacademy in /home/nhnacademy/Desktop/bootcamp/final/work-entry)","logger_name":"com.nhnacademy.workentry.WorkEntryApplication","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:13.208450853+09:00","@version":"1","message":"The following 1 profile is active: \"prod\"","logger_name":"com.nhnacademy.workentry.WorkEntryApplication","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:13.490943801+09:00","@version":"1","message":"Bootstrapping Spring Data JPA repositories in DEFAULT mode.","logger_name":"org.springframework.data.repository.config.RepositoryConfigurationDelegate","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:13.592838706+09:00","@version":"1","message":"Finished Spring Data repository scanning in 97 ms. Found 2 JPA repository interfaces.","logger_name":"org.springframework.data.repository.config.RepositoryConfigurationDelegate","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:13.796644592+09:00","@version":"1","message":"BeanFactory id=8a2ff451-b8a5-33b2-b65c-7da2225a5d85","logger_name":"org.springframework.cloud.context.scope.GenericScope","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.058557623+09:00","@version":"1","message":"Tomcat initialized with port 10256 (http)","logger_name":"org.springframework.boot.web.embedded.tomcat.TomcatWebServer","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.066821466+09:00","@version":"1","message":"Initializing ProtocolHandler [\"http-nio-10256\"]","logger_name":"org.apache.coyote.http11.Http11NioProtocol","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.067897692+09:00","@version":"1","message":"Starting service [Tomcat]","logger_name":"org.apache.catalina.core.StandardService","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.068139368+09:00","@version":"1","message":"Starting Servlet engine: [Apache Tomcat/10.1.39]","logger_name":"org.apache.catalina.core.StandardEngine","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.093098437+09:00","@version":"1","message":"Initializing Spring embedded WebApplicationContext","logger_name":"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.093398594+09:00","@version":"1","message":"Root WebApplicationContext: initialization completed in 862 ms","logger_name":"org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.144753586+09:00","@version":"1","message":"HikariPool-1 - Starting...","logger_name":"com.zaxxer.hikari.HikariDataSource","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.528260447+09:00","@version":"1","message":"HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1ff81b0d","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.532222204+09:00","@version":"1","message":"HikariPool-1 - Start completed.","logger_name":"com.zaxxer.hikari.HikariDataSource","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.582199103+09:00","@version":"1","message":"HHH000204: Processing PersistenceUnitInfo [name: default]","logger_name":"org.hibernate.jpa.internal.util.LogHelper","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.604725357+09:00","@version":"1","message":"HHH000412: Hibernate ORM core version 6.6.11.Final","logger_name":"org.hibernate.Version","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.619466186+09:00","@version":"1","message":"HHH000026: Second-level cache disabled","logger_name":"org.hibernate.cache.internal.RegionFactoryInitiator","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.742217469+09:00","@version":"1","message":"No LoadTimeWeaver setup: ignoring JPA class transformer","logger_name":"org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:14.83574635+09:00","@version":"1","message":"HHH10001005: Database info:\n\tDatabase JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']\n\tDatabase driver: undefined/unknown\n\tDatabase version: 8.0.41\n\tAutocommit mode: undefined/unknown\n\tIsolation level: undefined/unknown\n\tMinimum pool size: undefined/unknown\n\tMaximum pool size: undefined/unknown","logger_name":"org.hibernate.orm.connections.pooling","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:15.431349289+09:00","@version":"1","message":"HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)","logger_name":"org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:15.432843366+09:00","@version":"1","message":"Initialized JPA EntityManagerFactory for persistence unit 'default'","logger_name":"org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:15.863920875+09:00","@version":"1","message":"[WebSocketContextHolder] 핸들러 설정됨","logger_name":"com.nhnacademy.workentry.log.realtime.WebSocketContextHolder","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:15.864178914+09:00","@version":"1","message":"[WebSocketConfig] WebSocket 핸들러 설정 완료","logger_name":"com.nhnacademy.workentry.log.config.WebSocketConfig","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:15.867599348+09:00","@version":"1","message":"[WebSocketConfig] WebSocket 경로 등록 완료: /ws/logs","logger_name":"com.nhnacademy.workentry.log.config.WebSocketConfig","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:15.867834874+09:00","@version":"1","message":"[WebSocketConfig] WebSocket 경로 등록 완료: /ws/stranger","logger_name":"com.nhnacademy.workentry.log.config.WebSocketConfig","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.064480631+09:00","@version":"1","message":"Eureka HTTP Client uses RestTemplate.","logger_name":"org.springframework.cloud.netflix.eureka.config.DiscoveryClientOptionalArgsConfiguration","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.118246915+09:00","@version":"1","message":"Setting initial instance status as: STARTING","logger_name":"org.springframework.cloud.netflix.eureka.InstanceInfoFactory","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.130789862+09:00","@version":"1","message":"Initializing Eureka in region us-east-1","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.133211494+09:00","@version":"1","message":"Resolving eureka endpoints via configuration","logger_name":"com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.137273101+09:00","@version":"1","message":"Disable delta property : false","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.137422667+09:00","@version":"1","message":"Single vip registry refresh property : null","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.137493604+09:00","@version":"1","message":"Force full registry fetch : false","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.137578922+09:00","@version":"1","message":"Application is null : false","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.137651321+09:00","@version":"1","message":"Registered Applications size is zero : true","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.137744162+09:00","@version":"1","message":"Application version is -1: true","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.137820288+09:00","@version":"1","message":"Getting all instance registry info from the eureka server","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.30622928+09:00","@version":"1","message":"The response status is 200","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.307621711+09:00","@version":"1","message":"Starting heartbeat executor: renew interval is: 30","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.3087182+09:00","@version":"1","message":"InstanceInfoReplicator onDemand update allowed rate per min is 4","logger_name":"com.netflix.discovery.InstanceInfoReplicator","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.309734472+09:00","@version":"1","message":"Discovery Client initialized at timestamp 1747298176309 with initial instances count: 4","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.312163384+09:00","@version":"1","message":"Registering application WORK-ENTRY-SERVICE with eureka with status UP","logger_name":"org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.312583597+09:00","@version":"1","message":"Saw local status change event StatusChangeEvent [timestamp=1747298176312, current=UP, previous=STARTING]","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.313608618+09:00","@version":"1","message":"Starting ProtocolHandler [\"http-nio-10256\"]","logger_name":"org.apache.coyote.http11.Http11NioProtocol","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.313647466+09:00","@version":"1","message":"DiscoveryClient_WORK-ENTRY-SERVICE/work-entry-service:${spring.application.instance_id}:6daf33577c9ac472fcd2574dd32be00e: registering service...","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"DiscoveryClient-InstanceInfoReplicator-%d","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.322722835+09:00","@version":"1","message":"Tomcat started on port 10256 (http) with context path '/'","logger_name":"org.springframework.boot.web.embedded.tomcat.TomcatWebServer","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.323480777+09:00","@version":"1","message":"Updating port to 10256","logger_name":"org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.343458957+09:00","@version":"1","message":"DiscoveryClient_WORK-ENTRY-SERVICE/work-entry-service:${spring.application.instance_id}:6daf33577c9ac472fcd2574dd32be00e - registration status: 204","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"DiscoveryClient-InstanceInfoReplicator-%d","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:16.354152794+09:00","@version":"1","message":"Started WorkEntryApplication in 3.615 seconds (process running for 4.085)","logger_name":"com.nhnacademy.workentry.WorkEntryApplication","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:20.791380207+09:00","@version":"1","message":"Initializing Spring DispatcherServlet 'dispatcherServlet'","logger_name":"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:20.79180115+09:00","@version":"1","message":"Initializing Servlet 'dispatcherServlet'","logger_name":"org.springframework.web.servlet.DispatcherServlet","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:20.792749277+09:00","@version":"1","message":"Completed initialization in 1 ms","logger_name":"org.springframework.web.servlet.DispatcherServlet","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:21.363250936+09:00","@version":"1","message":"[INFO] 실시간 출입 데이터 | 시간: 2025-05-15 17:36 | 출입자 수: 0 | 데이터: {\"time\":\"2025-05-15 17:36\",\"count\":0}","logger_name":"com.nhnacademy.workentry.entry.realtime.service.impl.EntryRealtimeServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:21.363570768+09:00","@version":"1","message":"[실시간 출입 통계] 조회됨: com.nhnacademy.workentry.entry.realtime.dto.EntryRealtimeDto@618a3af1","logger_name":"com.nhnacademy.workentry.entry.controller.EntryController","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:29.196718124+09:00","@version":"1","message":"Unregistering application WORK-ENTRY-SERVICE with eureka with status DOWN","logger_name":"org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry","thread_name":"SpringApplicationShutdownHook","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:29.197094625+09:00","@version":"1","message":"Saw local status change event StatusChangeEvent [timestamp=1747298189197, current=DOWN, previous=UP]","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"SpringApplicationShutdownHook","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:29.197336372+09:00","@version":"1","message":"DiscoveryClient_WORK-ENTRY-SERVICE/work-entry-service:${spring.application.instance_id}:6daf33577c9ac472fcd2574dd32be00e: registering service...","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"DiscoveryClient-InstanceInfoReplicator-%d","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:29.198972008+09:00","@version":"1","message":"Commencing graceful shutdown. Waiting for active requests to complete","logger_name":"org.springframework.boot.web.embedded.tomcat.GracefulShutdown","thread_name":"SpringApplicationShutdownHook","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:29.200560004+09:00","@version":"1","message":"Graceful shutdown complete","logger_name":"org.springframework.boot.web.embedded.tomcat.GracefulShutdown","thread_name":"tomcat-shutdown","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:29.201713481+09:00","@version":"1","message":"DiscoveryClient_WORK-ENTRY-SERVICE/work-entry-service:${spring.application.instance_id}:6daf33577c9ac472fcd2574dd32be00e - registration status: 204","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"DiscoveryClient-InstanceInfoReplicator-%d","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:29.257643362+09:00","@version":"1","message":"Closing JPA EntityManagerFactory for persistence unit 'default'","logger_name":"org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean","thread_name":"SpringApplicationShutdownHook","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:29.26022025+09:00","@version":"1","message":"HikariPool-1 - Shutdown initiated...","logger_name":"com.zaxxer.hikari.HikariDataSource","thread_name":"SpringApplicationShutdownHook","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:29.400846773+09:00","@version":"1","message":"HikariPool-1 - Shutdown completed.","logger_name":"com.zaxxer.hikari.HikariDataSource","thread_name":"SpringApplicationShutdownHook","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:29.401918731+09:00","@version":"1","message":"Shutting down DiscoveryClient ...","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"SpringApplicationShutdownHook","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:32.40321693+09:00","@version":"1","message":"Unregistering ...","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"SpringApplicationShutdownHook","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:32.411872366+09:00","@version":"1","message":"DiscoveryClient_WORK-ENTRY-SERVICE/work-entry-service:${spring.application.instance_id}:6daf33577c9ac472fcd2574dd32be00e - deregister  status: 200","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"SpringApplicationShutdownHook","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:32.412576683+09:00","@version":"1","message":"Completed shut down of DiscoveryClient","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"SpringApplicationShutdownHook","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:34.089559389+09:00","@version":"1","message":"HV000001: Hibernate Validator 8.0.2.Final","logger_name":"org.hibernate.validator.internal.util.Version","thread_name":"background-preinit","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:34.119554769+09:00","@version":"1","message":"Starting WorkEntryApplication using Java 21.0.7 with PID 34363 (/home/nhnacademy/Desktop/bootcamp/final/work-entry/target/classes started by nhnacademy in /home/nhnacademy/Desktop/bootcamp/final/work-entry)","logger_name":"com.nhnacademy.workentry.WorkEntryApplication","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:34.120533132+09:00","@version":"1","message":"The following 1 profile is active: \"prod\"","logger_name":"com.nhnacademy.workentry.WorkEntryApplication","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:34.401725247+09:00","@version":"1","message":"Bootstrapping Spring Data JPA repositories in DEFAULT mode.","logger_name":"org.springframework.data.repository.config.RepositoryConfigurationDelegate","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:34.503412284+09:00","@version":"1","message":"Finished Spring Data repository scanning in 94 ms. Found 2 JPA repository interfaces.","logger_name":"org.springframework.data.repository.config.RepositoryConfigurationDelegate","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:34.72016255+09:00","@version":"1","message":"BeanFactory id=8a2ff451-b8a5-33b2-b65c-7da2225a5d85","logger_name":"org.springframework.cloud.context.scope.GenericScope","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:34.92707552+09:00","@version":"1","message":"Tomcat initialized with port 10256 (http)","logger_name":"org.springframework.boot.web.embedded.tomcat.TomcatWebServer","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:34.935860295+09:00","@version":"1","message":"Initializing ProtocolHandler [\"http-nio-10256\"]","logger_name":"org.apache.coyote.http11.Http11NioProtocol","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:34.937164896+09:00","@version":"1","message":"Starting service [Tomcat]","logger_name":"org.apache.catalina.core.StandardService","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:34.937485933+09:00","@version":"1","message":"Starting Servlet engine: [Apache Tomcat/10.1.39]","logger_name":"org.apache.catalina.core.StandardEngine","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:34.961952808+09:00","@version":"1","message":"Initializing Spring embedded WebApplicationContext","logger_name":"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:34.962332018+09:00","@version":"1","message":"Root WebApplicationContext: initialization completed in 820 ms","logger_name":"org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:35.014264157+09:00","@version":"1","message":"HikariPool-1 - Starting...","logger_name":"com.zaxxer.hikari.HikariDataSource","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:35.344388236+09:00","@version":"1","message":"HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7296fe0b","logger_name":"com.zaxxer.hikari.pool.HikariPool","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:35.348988376+09:00","@version":"1","message":"HikariPool-1 - Start completed.","logger_name":"com.zaxxer.hikari.HikariDataSource","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:35.392662213+09:00","@version":"1","message":"HHH000204: Processing PersistenceUnitInfo [name: default]","logger_name":"org.hibernate.jpa.internal.util.LogHelper","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:35.41554586+09:00","@version":"1","message":"HHH000412: Hibernate ORM core version 6.6.11.Final","logger_name":"org.hibernate.Version","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:35.430872291+09:00","@version":"1","message":"HHH000026: Second-level cache disabled","logger_name":"org.hibernate.cache.internal.RegionFactoryInitiator","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:35.56415643+09:00","@version":"1","message":"No LoadTimeWeaver setup: ignoring JPA class transformer","logger_name":"org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:35.666146904+09:00","@version":"1","message":"HHH10001005: Database info:\n\tDatabase JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']\n\tDatabase driver: undefined/unknown\n\tDatabase version: 8.0.41\n\tAutocommit mode: undefined/unknown\n\tIsolation level: undefined/unknown\n\tMinimum pool size: undefined/unknown\n\tMaximum pool size: undefined/unknown","logger_name":"org.hibernate.orm.connections.pooling","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.091644887+09:00","@version":"1","message":"HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)","logger_name":"org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.093323778+09:00","@version":"1","message":"Initialized JPA EntityManagerFactory for persistence unit 'default'","logger_name":"org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.551037099+09:00","@version":"1","message":"[WebSocketContextHolder] 핸들러 설정됨","logger_name":"com.nhnacademy.workentry.log.realtime.WebSocketContextHolder","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.551279161+09:00","@version":"1","message":"[WebSocketConfig] WebSocket 핸들러 설정 완료","logger_name":"com.nhnacademy.workentry.log.config.WebSocketConfig","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.555279162+09:00","@version":"1","message":"[WebSocketConfig] WebSocket 경로 등록 완료: /ws/logs","logger_name":"com.nhnacademy.workentry.log.config.WebSocketConfig","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.555641778+09:00","@version":"1","message":"[WebSocketConfig] WebSocket 경로 등록 완료: /ws/stranger","logger_name":"com.nhnacademy.workentry.log.config.WebSocketConfig","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.753626491+09:00","@version":"1","message":"Eureka HTTP Client uses RestTemplate.","logger_name":"org.springframework.cloud.netflix.eureka.config.DiscoveryClientOptionalArgsConfiguration","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.809780414+09:00","@version":"1","message":"Setting initial instance status as: STARTING","logger_name":"org.springframework.cloud.netflix.eureka.InstanceInfoFactory","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.823578118+09:00","@version":"1","message":"Initializing Eureka in region us-east-1","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.826311704+09:00","@version":"1","message":"Resolving eureka endpoints via configuration","logger_name":"com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.831034702+09:00","@version":"1","message":"Disable delta property : false","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.831474345+09:00","@version":"1","message":"Single vip registry refresh property : null","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.831563623+09:00","@version":"1","message":"Force full registry fetch : false","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.831668865+09:00","@version":"1","message":"Application is null : false","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.831760167+09:00","@version":"1","message":"Registered Applications size is zero : true","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.831852834+09:00","@version":"1","message":"Application version is -1: true","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.831934999+09:00","@version":"1","message":"Getting all instance registry info from the eureka server","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.977277012+09:00","@version":"1","message":"The response status is 200","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.978713958+09:00","@version":"1","message":"Starting heartbeat executor: renew interval is: 30","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.97983402+09:00","@version":"1","message":"InstanceInfoReplicator onDemand update allowed rate per min is 4","logger_name":"com.netflix.discovery.InstanceInfoReplicator","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.98076627+09:00","@version":"1","message":"Discovery Client initialized at timestamp 1747298196980 with initial instances count: 3","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.982893544+09:00","@version":"1","message":"Registering application WORK-ENTRY-SERVICE with eureka with status UP","logger_name":"org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.983237181+09:00","@version":"1","message":"Saw local status change event StatusChangeEvent [timestamp=1747298196983, current=UP, previous=STARTING]","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.984178846+09:00","@version":"1","message":"Starting ProtocolHandler [\"http-nio-10256\"]","logger_name":"org.apache.coyote.http11.Http11NioProtocol","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.984249735+09:00","@version":"1","message":"DiscoveryClient_WORK-ENTRY-SERVICE/work-entry-service:${spring.application.instance_id}:32d838b40055b94e43745dc8c79ed14d: registering service...","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"DiscoveryClient-InstanceInfoReplicator-%d","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.998134032+09:00","@version":"1","message":"Tomcat started on port 10256 (http) with context path '/'","logger_name":"org.springframework.boot.web.embedded.tomcat.TomcatWebServer","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:36.999091261+09:00","@version":"1","message":"Updating port to 10256","logger_name":"org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:37.0138221+09:00","@version":"1","message":"DiscoveryClient_WORK-ENTRY-SERVICE/work-entry-service:${spring.application.instance_id}:32d838b40055b94e43745dc8c79ed14d - registration status: 204","logger_name":"com.netflix.discovery.DiscoveryClient","thread_name":"DiscoveryClient-InstanceInfoReplicator-%d","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:36:37.020798929+09:00","@version":"1","message":"Started WorkEntryApplication in 3.342 seconds (process running for 3.834)","logger_name":"com.nhnacademy.workentry.WorkEntryApplication","thread_name":"main","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:02.439054416+09:00","@version":"1","message":"Initializing Spring DispatcherServlet 'dispatcherServlet'","logger_name":"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:02.440836789+09:00","@version":"1","message":"Initializing Servlet 'dispatcherServlet'","logger_name":"org.springframework.web.servlet.DispatcherServlet","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:02.443199111+09:00","@version":"1","message":"Completed initialization in 2 ms","logger_name":"org.springframework.web.servlet.DispatcherServlet","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:02.496623841+09:00","@version":"1","message":"[LogWebSocketHandler] 클라이언트 연결됨: 7aba566f-26d2-0540-59f9-d5ad41280ab1","logger_name":"com.nhnacademy.workentry.log.realtime.LogWebSocketHandler","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:02.502194556+09:00","@version":"1","message":"[LogWebSocketHandler] 클라이언트 연결됨: fed0def1-9134-6b50-e2e5-75d5a6ce8ada","logger_name":"com.nhnacademy.workentry.log.realtime.LogWebSocketHandler","thread_name":"http-nio-10256-exec-2","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:08.345729555+09:00","@version":"1","message":"[LogWebSocketHandler] 연결 종료: fed0def1-9134-6b50-e2e5-75d5a6ce8ada (CloseStatus[code=1001, reason=null])","logger_name":"com.nhnacademy.workentry.log.realtime.LogWebSocketHandler","thread_name":"http-nio-10256-exec-4","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:08.345754296+09:00","@version":"1","message":"[LogWebSocketHandler] 연결 종료: 7aba566f-26d2-0540-59f9-d5ad41280ab1 (CloseStatus[code=1001, reason=null])","logger_name":"com.nhnacademy.workentry.log.realtime.LogWebSocketHandler","thread_name":"http-nio-10256-exec-3","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:08.405507219+09:00","@version":"1","message":"[LogWebSocketHandler] 클라이언트 연결됨: 5411bf16-8fd9-83bd-9eb2-fa25dd91d3a3","logger_name":"com.nhnacademy.workentry.log.realtime.LogWebSocketHandler","thread_name":"http-nio-10256-exec-5","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:08.441809598+09:00","@version":"1","message":"[LogWebSocketHandler] 클라이언트 연결됨: e9746384-135e-b21b-a558-8b3ebedce1de","logger_name":"com.nhnacademy.workentry.log.realtime.LogWebSocketHandler","thread_name":"http-nio-10256-exec-6","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:13.044276586+09:00","@version":"1","message":"[LogWebSocketHandler] 연결 종료: e9746384-135e-b21b-a558-8b3ebedce1de (CloseStatus[code=1001, reason=null])","logger_name":"com.nhnacademy.workentry.log.realtime.LogWebSocketHandler","thread_name":"http-nio-10256-exec-8","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:13.044277421+09:00","@version":"1","message":"[LogWebSocketHandler] 연결 종료: 5411bf16-8fd9-83bd-9eb2-fa25dd91d3a3 (CloseStatus[code=1001, reason=null])","logger_name":"com.nhnacademy.workentry.log.realtime.LogWebSocketHandler","thread_name":"http-nio-10256-exec-7","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:13.099774874+09:00","@version":"1","message":"[LogWebSocketHandler] 클라이언트 연결됨: 80a06e7c-9283-59cf-2c95-e48c3b15478c","logger_name":"com.nhnacademy.workentry.log.realtime.LogWebSocketHandler","thread_name":"http-nio-10256-exec-9","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:13.12334027+09:00","@version":"1","message":"[LogWebSocketHandler] 클라이언트 연결됨: 8ab8d188-c40f-35be-f547-eae9c40bdaca","logger_name":"com.nhnacademy.workentry.log.realtime.LogWebSocketHandler","thread_name":"http-nio-10256-exec-10","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.042336416+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-04-25\",\"count\":1273}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.042866527+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-04-26\",\"count\":1544}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.043143812+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-04-27\",\"count\":1546}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.043361213+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-04-28\",\"count\":1549}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.04362904+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-04-29\",\"count\":1452}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.043878851+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-04-30\",\"count\":1492}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.044135037+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-01\",\"count\":631}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.044385359+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-02\",\"count\":1479}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.044655796+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-03\",\"count\":1683}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.044901407+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-04\",\"count\":1760}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.045143275+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-05\",\"count\":1492}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.045378186+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-06\",\"count\":1734}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.045651554+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-07\",\"count\":1768}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.045904593+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-08\",\"count\":1630}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.046169458+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-09\",\"count\":1662}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.046409184+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-10\",\"count\":1645}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.046654745+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-11\",\"count\":1880}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.046883645+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-12\",\"count\":1934}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.047112917+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-13\",\"count\":1670}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.047335669+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-14\",\"count\":1698}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.047553185+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-15\",\"count\":1664}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.047773279+09:00","@version":"1","message":"[Influx Entry] {\"date\":\"2025-05-15\",\"count\":390}","logger_name":"com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}
+{"@timestamp":"2025-05-15T17:37:14.047962387+09:00","@version":"1","message":"[월간 출입 통계] 조회됨: [com.nhnacademy.workentry.entry.dto.EntryCountDto@232e4a18, com.nhnacademy.workentry.entry.dto.EntryCountDto@31a1ba88, com.nhnacademy.workentry.entry.dto.EntryCountDto@4c9a6171, com.nhnacademy.workentry.entry.dto.EntryCountDto@42e35e08, com.nhnacademy.workentry.entry.dto.EntryCountDto@134ca2c6, com.nhnacademy.workentry.entry.dto.EntryCountDto@2f053fdd, com.nhnacademy.workentry.entry.dto.EntryCountDto@308b52a5, com.nhnacademy.workentry.entry.dto.EntryCountDto@68c049a2, com.nhnacademy.workentry.entry.dto.EntryCountDto@1e6c9cee, com.nhnacademy.workentry.entry.dto.EntryCountDto@1811b329, com.nhnacademy.workentry.entry.dto.EntryCountDto@72e5c4f4, com.nhnacademy.workentry.entry.dto.EntryCountDto@18821e53, com.nhnacademy.workentry.entry.dto.EntryCountDto@62736a41, com.nhnacademy.workentry.entry.dto.EntryCountDto@77ee05dd, com.nhnacademy.workentry.entry.dto.EntryCountDto@2b70bdb0, com.nhnacademy.workentry.entry.dto.EntryCountDto@23885e0b, com.nhnacademy.workentry.entry.dto.EntryCountDto@5ad01959, com.nhnacademy.workentry.entry.dto.EntryCountDto@5d973f33, com.nhnacademy.workentry.entry.dto.EntryCountDto@7324840c, com.nhnacademy.workentry.entry.dto.EntryCountDto@123de465, com.nhnacademy.workentry.entry.dto.EntryCountDto@48fd3daa, com.nhnacademy.workentry.entry.dto.EntryCountDto@2cf7fd21]","logger_name":"com.nhnacademy.workentry.entry.controller.EntryController","thread_name":"http-nio-10256-exec-1","level":"INFO","level_value":20000}

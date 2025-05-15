@@ -1,1 +1,0 @@
-2025-05-15 02:22:37.707 [scheduling-1] ERROR c.n.w.e.r.s.i.EntryRealtimeServiceImpl - [ALERT] 이상 출입자 발생 | 시간: 2025-05-15 02:22 | 출입자 수: 1 | 데이터: {"time":"2025-05-15 02:22","count":1}
