@@ -10,6 +10,7 @@ import com.nhnacademy.workentry.entry.dto.EntryCountDto;
 import com.nhnacademy.workentry.entry.service.EntryService;
 import com.nhnacademy.workentry.log.realtime.LogWebSocketHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -48,20 +49,7 @@ public class EntryServiceImpl implements EntryService {
      */
     @Override
     public List<EntryCountDto> getMonthlyEntryCounts() {
-        String flux = """
-                        from(bucket: "coffee-mqtt")
-                          |> range(start: -30d)
-                          |> filter(fn: (r) => r["_measurement"] == "sensor")
-                          |> filter(fn: (r) => r["_field"] == "value")
-                          |> filter(fn: (r) => r["location"] == "입구")
-                          |> filter(fn: (r) => r["type"] == "activity")
-                          |> aggregateWindow(every: 1d, fn: count, createEmpty: false)
-                          |> yield(name: "entryCount")
-                        """;
-
-
-        QueryApi queryApi = influxDBClient.getQueryApi();
-        List<FluxTable> tables = queryApi.query(flux);
+        List<FluxTable> tables = getFluxTables();
         List<EntryCountDto> result = new ArrayList<>();
 
         for (FluxTable table : tables) {
@@ -85,5 +73,23 @@ public class EntryServiceImpl implements EntryService {
         }
 
         return result;
+    }
+
+    @NotNull
+    private List<FluxTable> getFluxTables() {
+        String flux = """
+                        from(bucket: "coffee-mqtt")
+                          |> range(start: -1d)
+                          |> filter(fn: (r) => r["_measurement"] == "sensor")
+                          |> filter(fn: (r) => r["_field"] == "value")
+                          |> filter(fn: (r) => r["location"] == "입구")
+                          |> filter(fn: (r) => r["type"] == "activity")
+                          |> aggregateWindow(every: 1m, fn: count, createEmpty: true)
+                          |> sort(columns: ["_time"], desc: true)
+                          |> limit(n: 1)
+                      """;
+
+        QueryApi queryApi = influxDBClient.getQueryApi();
+        return queryApi.query(flux);
     }
 }

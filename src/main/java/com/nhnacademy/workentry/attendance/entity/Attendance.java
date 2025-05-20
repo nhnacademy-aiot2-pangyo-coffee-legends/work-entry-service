@@ -1,6 +1,8 @@
 package com.nhnacademy.workentry.attendance.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
@@ -12,6 +14,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "attendances")
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Attendance {
 
     @Id
@@ -35,7 +39,7 @@ public class Attendance {
     private Integer workMinutes;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status", nullable = false)
     private AttendanceStatus status;
 

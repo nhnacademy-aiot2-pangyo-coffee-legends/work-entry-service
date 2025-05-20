@@ -12,6 +12,7 @@ import com.nhnacademy.workentry.entry.realtime.service.EmailService;
 import com.nhnacademy.workentry.entry.realtime.service.EntryRealtimeService;
 import com.nhnacademy.workentry.log.realtime.LogWebSocketHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -51,20 +52,7 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
      */
     @Override
     public EntryRealtimeDto getLatestEntry() {
-        String flux = """
-                        from(bucket: "coffee-mqtt")
-                          |> range(start: -1d)
-                          |> filter(fn: (r) => r["_measurement"] == "sensor")
-                          |> filter(fn: (r) => r["_field"] == "value")
-                          |> filter(fn: (r) => r["location"] == "입구")
-                          |> filter(fn: (r) => r["type"] == "activity")
-                          |> aggregateWindow(every: 1m, fn: count, createEmpty: true)
-                          |> sort(columns: ["_time"], desc: true)
-                          |> limit(n: 1)
-                      """;
-
-        QueryApi queryApi = influxDBClient.getQueryApi();
-        List<FluxTable> tables = queryApi.query(flux);
+        List<FluxTable> tables = getFluxTables();
 
         for (FluxTable table : tables) {
             for (FluxRecord record : table.getRecords()) {
@@ -87,6 +75,24 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
         logWebSocketHandler.broadcast(fallbackMessage);
 
         return new EntryRealtimeDto("N/A", 0);
+    }
+
+    @NotNull
+    private List<FluxTable> getFluxTables() {
+        String flux = """
+                        from(bucket: "coffee-mqtt")
+                          |> range(start: -1d)
+                          |> filter(fn: (r) => r["_measurement"] == "sensor")
+                          |> filter(fn: (r) => r["_field"] == "value")
+                          |> filter(fn: (r) => r["location"] == "입구")
+                          |> filter(fn: (r) => r["type"] == "activity")
+                          |> aggregateWindow(every: 1m, fn: count, createEmpty: true)
+                          |> sort(columns: ["_time"], desc: true)
+                          |> limit(n: 1)
+                      """;
+
+        QueryApi queryApi = influxDBClient.getQueryApi();
+        return queryApi.query(flux);
     }
 
     /**
