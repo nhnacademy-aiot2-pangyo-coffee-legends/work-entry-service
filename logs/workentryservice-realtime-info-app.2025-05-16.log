@@ -1,0 +1,1 @@
+{"@timestamp":"2025-05-16T17:52:28.292480992+09:00","@version":"1","message":"[INFO] 실시간 출입 데이터 | 시간: 2025-05-16 17:52 | 출입자 수: 0 | 데이터: {\"time\":\"2025-05-16 17:52\",\"count\":0}","logger_name":"com.nhnacademy.workentry.entry.realtime.service.impl.EntryRealtimeServiceImpl","thread_name":"http-nio-10256-exec-5","level":"INFO","level_value":20000}

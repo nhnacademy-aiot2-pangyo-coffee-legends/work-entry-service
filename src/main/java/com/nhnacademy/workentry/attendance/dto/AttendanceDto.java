@@ -3,6 +3,7 @@ package com.nhnacademy.workentry.attendance.dto;
 import com.nhnacademy.workentry.attendance.entity.Attendance;
 import lombok.Value;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 public class AttendanceDto {
      Long id;
      Long no;
-     LocalDateTime workDate;
+     LocalDate workDate;
      LocalDateTime inTime;
      LocalDateTime outTime;
      String statusDescription;

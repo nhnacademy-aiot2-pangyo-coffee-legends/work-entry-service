@@ -12,15 +12,14 @@ package com.nhnacademy.workentry.attendance.constant;
  */
 public final class AttendanceStatusConstants {
 
-    public static final String STATUS_PRESENT = "출석";
+    public static final String STATUS_PRESENT = "출근";
     public static final String STATUS_LATE = "지각";
-    public static final String STATUS_ABSENT = "결석";
-    public static final String STATUS_OUTING = "외출";
-    public static final String STATUS_VACATION = "휴가";
+    public static final String STATUS_ABSENT = "결근";
+    public static final String STATUS_OUTING = "외근";
+    public static final String STATUS_VACATION = "연차";
     public static final String STATUS_SICK = "질병/입원";
-    public static final String STATUS_EARLY_LEAVE = "조퇴";
-    public static final String STATUS_OTHER = "기타";
-
+    public static final String STATUS_EARLY_LEAVE = "반차";
+    public static final String STATUS_BEREAVEMENT = "상(喪)";
 
     /**
      * 이 클래스는 인스턴스를 생성할 수 없습니다.

@@ -18,10 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 출결 정보 처리 서비스 구현 클래스입니다.
@@ -124,7 +123,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
         return attendances.stream()
                 .map(att -> new AttendanceSummaryDto(
-                        att.getWorkDate().toLocalDate(),
+                        att.getWorkDate(),
                         att.getWorkMinutes() != null ? att.getWorkMinutes() / 60 : 0,
                         att.getInTime(),
                         att.getOutTime(),
@@ -144,7 +143,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
         Attendance attendance = Attendance.newAttendance(
                 request.getMbNo(),
-                request.getWorkDate().atStartOfDay(),
+                request.getWorkDate(),
                 request.getCheckIn(),
                 request.getCheckOut(),
                 request.getWorkMinutes(),
@@ -158,16 +157,26 @@ public class AttendanceServiceImpl implements AttendanceService {
      * 퇴근 처리 (체크아웃)
      */
     @Transactional
-    public void checkOut(Long mbNo, LocalDate workDate, LocalDateTime checkOutTime, String statusDescription) {
-        Attendance attendance = attendanceRepository.findByMbNoAndWorkDate(mbNo, workDate.atStartOfDay())
-                .orElseThrow(() -> new AttendanceNotFoundException(mbNo));
+    public void checkOut(Long no, LocalDate workDate) {
+        Attendance attendance = attendanceRepository.findByMbNoAndWorkDate(no, workDate)
+                .orElseThrow(() -> new AttendanceNotFoundException(no));
 
-        // 상태가 "출석"일 경우에만 퇴근 가능
-        if (!attendance.getStatus().getDescription().equals(AttendanceStatusConstants.STATUS_PRESENT)) {
-            // 출석이 아닌 상태면 퇴근 처리를 하지 않음 (결석, 휴가 등)
-            log.info("mbNo={} 은 출석 상태가 아니므로 퇴근 처리 생략", mbNo);
+        String statusDescription = attendance.getStatus().getDescription();
+
+        // 퇴근 처리가 필요한 상태 목록
+        List<String> validStatuses = List.of(
+                AttendanceStatusConstants.STATUS_PRESENT,
+                AttendanceStatusConstants.STATUS_LATE,
+                AttendanceStatusConstants.STATUS_EARLY_LEAVE,
+                AttendanceStatusConstants.STATUS_OUTING
+        );
+
+        if (!validStatuses.contains(statusDescription)) {
+            log.info("no={} 은 퇴근 처리 대상이 아닌 상태({})입니다. 퇴근 생략", no, statusDescription);
             return;
         }
+
+        LocalDateTime checkOutTime = generateCheckOutTimeForStatus(statusDescription);
 
         AttendanceStatus status = attendanceStatusRepository.findByDescription(statusDescription)
                 .orElseThrow(() -> new AttendanceStatusNotFoundException(statusDescription));
@@ -177,5 +186,39 @@ public class AttendanceServiceImpl implements AttendanceService {
         attendance.updateCheckOut(checkOutTime, workMinutes, status);
 
         attendanceRepository.save(attendance);
+    }
+
+    /**
+     * 출결 상태에 따른 체크아웃 시간 생성
+     *
+     * @param status 출결 상태
+     * @return 해당 상태에 맞는 체크아웃 시간, 없으면 null
+     */
+    private LocalDateTime generateCheckOutTimeForStatus(String status) {
+        ZoneId zoneId = ZoneId.of("Asia/Seoul");
+        LocalDate today = LocalDate.now(zoneId);
+        LocalTime baseTime;
+        Random random = new Random();
+
+        switch (status) {
+            case AttendanceStatusConstants.STATUS_PRESENT,
+                 AttendanceStatusConstants.STATUS_LATE,
+                 AttendanceStatusConstants.STATUS_OUTING:
+                // 정상 퇴근: 18:00 ~ 18:30
+                baseTime = LocalTime.of(18, 0).plusMinutes(random.nextInt(31));
+                break;
+            case AttendanceStatusConstants.STATUS_EARLY_LEAVE:
+                // 반차 조퇴: 14:00 ~ 15:30
+                baseTime = LocalTime.of(14, 0).plusMinutes(random.nextInt(91));
+                break;
+            case AttendanceStatusConstants.STATUS_VACATION,
+                 AttendanceStatusConstants.STATUS_SICK,
+                 AttendanceStatusConstants.STATUS_ABSENT,
+                 AttendanceStatusConstants.STATUS_BEREAVEMENT:
+            default:
+                return null; // 퇴근 기록 없음
+        }
+
+        return LocalDateTime.of(today, baseTime);
     }
 }

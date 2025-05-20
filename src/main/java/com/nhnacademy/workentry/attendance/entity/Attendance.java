@@ -3,7 +3,7 @@ package com.nhnacademy.workentry.attendance.entity;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
-import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -23,7 +23,7 @@ public class Attendance {
     private Long mbNo;
 
     @Column(name = "work_date")
-    private LocalDateTime workDate;
+    private LocalDate workDate;
 
     @Column(name = "in_time")
     private LocalDateTime inTime;
@@ -49,7 +49,7 @@ public class Attendance {
 
     private Attendance(
             Long mbNo,
-            LocalDateTime workDate,
+            LocalDate workDate,
             LocalDateTime inTime,
             LocalDateTime outTime,
             Integer workMinutes,
@@ -62,7 +62,7 @@ public class Attendance {
         this.status = status;
     }
 
-    public static Attendance newAttendance(Long mbNo, LocalDateTime workDate, LocalDateTime inTime, LocalDateTime outTime, Integer workMinutes, AttendanceStatus status) {
+    public static Attendance newAttendance(Long mbNo, LocalDate workDate, LocalDateTime inTime, LocalDateTime outTime, Integer workMinutes, AttendanceStatus status) {
         return new Attendance(mbNo, workDate, inTime, outTime, workMinutes, status);
     }
 
@@ -84,7 +84,7 @@ public class Attendance {
         return mbNo;
     }
 
-    public LocalDateTime getWorkDate() {
+    public LocalDate getWorkDate() {
         return workDate;
     }
 

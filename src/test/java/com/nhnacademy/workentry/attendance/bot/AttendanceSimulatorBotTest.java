@@ -5,7 +5,6 @@ import com.nhnacademy.workentry.adaptor.member.dto.MemberNoResponse;
 import com.nhnacademy.workentry.attendance.constant.AttendanceStatusConstants;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
 import com.nhnacademy.workentry.attendance.service.AttendanceService;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -64,7 +62,7 @@ class AttendanceSimulatorBotTest {
         bot.createCheckOutAttendanceData();
 
         // then
-        verify(attendanceService).checkOut(eq(1L), eq(LocalDate.now()), any(LocalDateTime.class), eq(AttendanceStatusConstants.STATUS_PRESENT));
+        verify(attendanceService).checkOut(eq(1L), eq(LocalDate.now()));
     }
 
     @Test

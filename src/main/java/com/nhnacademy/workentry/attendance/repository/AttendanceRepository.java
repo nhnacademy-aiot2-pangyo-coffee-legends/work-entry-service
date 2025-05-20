@@ -1,8 +1,10 @@
 package com.nhnacademy.workentry.attendance.repository;
 
 import com.nhnacademy.workentry.attendance.entity.Attendance;
+import com.nhnacademy.workentry.attendance.entity.AttendanceStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -22,5 +24,6 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     List<Attendance> findByWorkDateBetween(LocalDateTime start, LocalDateTime end);
 
     // 회원 정보, 출근 날짜 조회
-    Optional<Attendance> findByMbNoAndWorkDate(Long mbNo, LocalDateTime workDate);
+    Optional<Attendance> findByMbNoAndWorkDate(Long mbNo, LocalDate workDate);
+
 }

@@ -53,5 +53,5 @@ public interface AttendanceService {
 
     void createAttendance(AttendanceRequest attendanceRequest);
 
-    void checkOut(Long mbNo, LocalDate workDate, LocalDateTime checkOutTime, String status);
+    void checkOut(Long mbNo, LocalDate workDate);
 }
