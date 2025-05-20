@@ -21,7 +21,7 @@ public class AttendanceDto {
      * Attendance 엔티티와 MemberInfoResponse DTO를 기반으로 AttendanceDto를 생성합니다.
      *
      * @param attendance Attendance 엔티티
-     * @return AttendanceDto 인스턴스
+     * @return AttendanceDto 인스턴스.
      */
     public static AttendanceDto from(Attendance attendance) {
         return new AttendanceDto(
