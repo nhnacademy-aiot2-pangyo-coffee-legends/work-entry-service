@@ -1,9 +1,0 @@
-2025-05-15 16:36:08.853 [http-nio-10256-exec-7] INFO  c.n.w.e.r.s.i.EntryRealtimeServiceImpl - [INFO] 실시간 출입 데이터 | 시간: 2025-05-15 07:36 | 출입자 수: 0 | 데이터: {"time":"2025-05-15 07:36","count":0}
-2025-05-15 16:51:51.785 [http-nio-10256-exec-2] INFO  c.n.w.e.r.s.i.EntryRealtimeServiceImpl - [INFO] 실시간 출입 데이터 | 시간: 2025-05-15 07:51 | 출입자 수: 1 | 데이터: {"time":"2025-05-15 07:51","count":1}
-2025-05-15 17:11:08.486 [http-nio-10256-exec-3] INFO  c.n.w.e.r.s.i.EntryRealtimeServiceImpl - [INFO] 실시간 출입 데이터 | 시간: 2025-05-15 08:11 | 출입자 수: 0 | 데이터: {"time":"2025-05-15 08:11","count":0}
-2025-05-15 17:14:41.088 [http-nio-10256-exec-2] INFO  c.n.w.e.r.s.i.EntryRealtimeServiceImpl - [INFO] 실시간 출입 데이터 | 시간: 2025-05-15 08:14 | 출입자 수: 0 | 데이터: {"time":"2025-05-15 08:14","count":0}
-2025-05-15 17:41:47.603 [http-nio-10256-exec-5] INFO  c.n.w.e.r.s.i.EntryRealtimeServiceImpl - [INFO] 실시간 출입 데이터 | 시간: 2025-05-15 08:41 | 출입자 수: 0 | 데이터: {"time":"2025-05-15 08:41","count":0}
-2025-05-15 17:51:55.008 [http-nio-10256-exec-3] INFO  c.n.w.e.r.s.i.EntryRealtimeServiceImpl - [INFO] 실시간 출입 데이터 | 시간: 2025-05-15 08:51 | 출입자 수: 1 | 데이터: {"time":"2025-05-15 08:51","count":1}
-2025-05-15 18:17:35.583 [http-nio-10256-exec-1] INFO  c.n.w.e.r.s.i.EntryRealtimeServiceImpl - [INFO] 실시간 출입 데이터 | 시간: 2025-05-15 09:17 | 출입자 수: 0 | 데이터: {"time":"2025-05-15 09:17","count":0}
-2025-05-15 18:24:52.050 [http-nio-10256-exec-10] INFO  c.n.w.e.r.s.i.EntryRealtimeServiceImpl - [INFO] 실시간 출입 데이터 | 시간: 2025-05-15 09:24 | 출입자 수: 1 | 데이터: {"time":"2025-05-15 09:24","count":1}
-2025-05-15 18:44:50.624 [http-nio-10256-exec-6] INFO  c.n.w.e.r.s.i.EntryRealtimeServiceImpl - [INFO] 실시간 출입 데이터 | 시간: 2025-05-15 09:44 | 출입자 수: 1 | 데이터: {"time":"2025-05-15 09:44","count":1}
