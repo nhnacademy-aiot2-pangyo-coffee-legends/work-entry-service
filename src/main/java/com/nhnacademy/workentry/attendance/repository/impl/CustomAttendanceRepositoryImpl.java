@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,8 +23,9 @@ import java.util.Optional;
  *
  * <p>이 구현은 JPAQueryFactory를 사용하여 직접 SQL을 생성함으로써, 복잡한 조건의 효율적인 조회가 가능합니다.</p>
  */
+@Repository
 @RequiredArgsConstructor
-public class CustomAttendanceRepositoyImpl implements CustomAttendanceRepository {
+public class CustomAttendanceRepositoryImpl implements CustomAttendanceRepository {
 
     private final JPAQueryFactory queryFactory;
 

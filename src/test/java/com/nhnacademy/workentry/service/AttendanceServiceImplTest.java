@@ -79,13 +79,23 @@ class AttendanceServiceImplTest {
     @DisplayName("2. 회원 기간별 출결 조회 성공")
     void testGetAttendanceByNoAndDateRange() {
         Pageable pageable = PageRequest.of(0, 10);
-        when(attendanceRepository.findByMbNoAndWorkDateBetween(any(), any(), any(), any()))
-                .thenReturn(new PageImpl<>(List.of(sampleAttendance), pageable, 1));
+        AttendanceDto dto = new AttendanceDto(
+                1L,
+                99L,
+                LocalDate.of(2024, 4, 15),
+                LocalDateTime.of(2024, 4, 15, 9, 0),
+                LocalDateTime.of(2024, 4, 15, 18, 0),
+                "출근"
+        );
+        Page<AttendanceDto> mockPage = new PageImpl<>(List.of(dto), pageable, 1);
+
+        when(attendanceRepository.getAttendanceByNoAndDateRange(any(), any(), any(), any()))
+                .thenReturn(mockPage);
 
         Page<AttendanceDto> result = attendanceService.getAttendanceByNoAndDateRange(
                 99L,
-                LocalDateTime.of(2024, 4, 1, 0, 0),
-                LocalDateTime.of(2024, 4, 30, 23, 59),
+                LocalDate.of(2024, 4, 1).atStartOfDay(),
+                LocalDate.of(2024, 4, 30).atStartOfDay(),
                 pageable
         );
 
