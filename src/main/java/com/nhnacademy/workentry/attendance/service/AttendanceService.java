@@ -35,8 +35,7 @@ public interface AttendanceService {
      * @param pageable  페이지 번호, 크기 등 페이징 정보
      * @return {@link AttendanceDto} 객체를 담은 페이지 객체
      */
-    Page<AttendanceDto> getAttendanceByNoAndDateRange(Long no, LocalDateTime start, LocalDateTime end, Pageable pageable);
-
+    Page<AttendanceDto> getAttendanceByNoAndDateRange(Long no, LocalDate start, LocalDate end, Pageable pageable);
 
     /**
      * 최근 30일 전체 출결 데이터를 페이지 단위로 조회합니다.

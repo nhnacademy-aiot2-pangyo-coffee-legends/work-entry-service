@@ -21,10 +21,10 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long>, C
     List<Attendance> findAllByMbNo(Long mbNo);
 
     // 날짜 범위 기반 전체 출결 데이터 조회 (페이지네이션)
-    Page<Attendance> findByWorkDateBetween(LocalDateTime start, LocalDateTime end, Pageable pageable);
+    Page<Attendance> findByWorkDateBetween(LocalDate start, LocalDate end, Pageable pageable);
 
     //특정 회원의 날짜 범위 출결 데이터 조회 (페이지네이션)
-    Page<Attendance> findByMbNoAndWorkDateBetween(Long mbNo, LocalDateTime start, LocalDateTime end, Pageable pageable);
+    Page<Attendance> findByMbNoAndWorkDateBetween(Long mbNo, LocalDate start, LocalDate end, Pageable pageable);
 
     // 회원 정보, 출근 날짜 조회
     Optional<Attendance> findByMbNoAndWorkDate(Long mbNo, LocalDate workDate);

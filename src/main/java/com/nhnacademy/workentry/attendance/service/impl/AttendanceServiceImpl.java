@@ -69,7 +69,7 @@ public class AttendanceServiceImpl implements AttendanceService {
      */
     //TODO : dev에 병합 후 LocalDateTime start, end -> LocalDate로 타입 수정
     @Override
-    public Page<AttendanceDto> getAttendanceByNoAndDateRange(Long no, LocalDateTime start, LocalDateTime end, Pageable pageable) {
+    public Page<AttendanceDto> getAttendanceByNoAndDateRange(Long no, LocalDate start, LocalDate end, Pageable pageable) {
         log.info("기간별 출결 조회 요청: no={}, from={} to={}", no, start, end);
 
         return attendanceRepository.getAttendanceByNoAndDateRange(no, start, end, pageable);
@@ -82,8 +82,8 @@ public class AttendanceServiceImpl implements AttendanceService {
      */
     @Override
     public Page<AttendanceDto> getRecentAttendanceSummary(Pageable pageable) {
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime monthAgo = now.minusDays(364);
+        LocalDate now = LocalDate.now();
+        LocalDate monthAgo = now.minusDays(364);
         Page<Attendance> records = attendanceRepository.findByWorkDateBetween(monthAgo, now, pageable);
         return records.map(AttendanceDto::from);
     }
@@ -97,8 +97,8 @@ public class AttendanceServiceImpl implements AttendanceService {
      */
     @Override
     public Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no, Pageable pageable) {
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime monthAgo = now.minusDays(364);
+        LocalDate now = LocalDate.now();
+        LocalDate monthAgo = now.minusDays(364);
 
         Page<Attendance> records = attendanceRepository.findByMbNoAndWorkDateBetween(no, monthAgo, now.plusDays(1), pageable);
 

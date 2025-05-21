@@ -55,8 +55,8 @@ class AttendanceServiceImplTest {
     void testGetAttendanceByNoAndDateRange() {
         Long mbNo = 1L;
         Pageable pageable = PageRequest.of(0, 10);
-        LocalDateTime start = LocalDateTime.now().minusDays(5);
-        LocalDateTime end = LocalDateTime.now();
+        LocalDate start = LocalDate.now().minusDays(5);
+        LocalDate end = LocalDate.now();
 
         AttendanceDto mockDto = new AttendanceDto(
                 1L, mbNo,

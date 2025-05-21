@@ -94,8 +94,8 @@ class AttendanceServiceImplTest {
 
         Page<AttendanceDto> result = attendanceService.getAttendanceByNoAndDateRange(
                 99L,
-                LocalDate.of(2024, 4, 1).atStartOfDay(),
-                LocalDate.of(2024, 4, 30).atStartOfDay(),
+                LocalDate.now(),
+                LocalDate.now(),
                 pageable
         );
 

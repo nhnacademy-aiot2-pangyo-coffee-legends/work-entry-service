@@ -11,7 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,17 +32,17 @@ public class CustomAttendanceRepositoryImpl implements CustomAttendanceRepositor
     /**
      * 지정된 회원 번호와 기간에 해당하는 출결 내역을 조회합니다.
      *
-     * <p>출결 기준은 출근일(workDate)이며, 시간대(LocalDateTime)의 날짜 부분만 비교하여
+     * <p>출결 기준은 출근일(workDate)이며, 시간대(LocalDate)의 날짜 부분만 비교하여
      * 해당 날짜 범위에 포함된 출결 정보만 조회합니다.</p>
      *
      * @param no 회원 고유 번호
-     * @param start 조회 시작 일시 (LocalDateTime, 날짜 기준 비교)
-     * @param end 조회 종료 일시 (LocalDateTime, 날짜 기준 비교)
+     * @param start 조회 시작 일시 (LocalDate, 날짜 기준 비교)
+     * @param end 조회 종료 일시 (LocalDate, 날짜 기준 비교)
      * @param pageable 페이징 정보
      * @return 지정된 조건에 맞는 출결 정보 DTO의 페이지 객체
      */
     @Override
-    public Page<AttendanceDto> getAttendanceByNoAndDateRange(Long no, LocalDateTime start, LocalDateTime end, Pageable pageable) {
+    public Page<AttendanceDto> getAttendanceByNoAndDateRange(Long no, LocalDate start, LocalDate end, Pageable pageable) {
         QAttendance attendance = QAttendance.attendance;
 
         List<AttendanceDto> content = queryFactory
@@ -67,8 +67,8 @@ public class CustomAttendanceRepositoryImpl implements CustomAttendanceRepositor
                         .from(attendance)
                         .where(
                                 attendance.mbNo.eq(no),
-                                //TODO : dev에 병합 후 LocalDateTime start, end -> LocalDate로 타입 수정2
-                                attendance.workDate.between(start.toLocalDate(), end.toLocalDate())
+                                //TODO : dev에 병합 후 LocalDate start, end -> LocalDate로 타입 수정2
+                                attendance.workDate.between(start, end)
                         )
                         .fetchOne()
         ).orElse(0L);

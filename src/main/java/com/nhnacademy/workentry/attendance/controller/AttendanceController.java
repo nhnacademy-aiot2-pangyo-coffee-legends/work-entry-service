@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -43,8 +44,8 @@ public class AttendanceController {
     @GetMapping("/{no}")
     public Page<AttendanceDto> getAttendanceByNo(
             @PathVariable Long no,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end,
             @PageableDefault(size = 365) Pageable pageable) {
 
         log.info("🔍 회원 {}의 출결 조회 요청: {} ~ {}", no, start, end);

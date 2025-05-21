@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +19,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -55,8 +55,8 @@ class AttendanceControllerTest {
 
         when(attendanceService.getAttendanceByNoAndDateRange(
                 eq(1L),
-                any(LocalDateTime.class),
-                any(LocalDateTime.class),
+                any(LocalDate.class),
+                any(LocalDate.class),
                 any(Pageable.class)
         )).thenReturn(mockPage);
 

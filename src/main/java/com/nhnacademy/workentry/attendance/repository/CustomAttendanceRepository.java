@@ -4,6 +4,7 @@ import com.nhnacademy.workentry.attendance.dto.AttendanceDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -16,6 +17,6 @@ public interface CustomAttendanceRepository {
      *
      * @return 페이지 형태의 출결 DTO 목록
      */
-    Page<AttendanceDto> getAttendanceByNoAndDateRange(Long no, LocalDateTime start, LocalDateTime end, Pageable pageable);
+    Page<AttendanceDto> getAttendanceByNoAndDateRange(Long no, LocalDate start, LocalDate end, Pageable pageable);
 
 }
