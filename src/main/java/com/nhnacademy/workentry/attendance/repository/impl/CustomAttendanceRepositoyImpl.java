@@ -1,0 +1,76 @@
+package com.nhnacademy.workentry.attendance.repository.impl;
+
+import com.nhnacademy.workentry.attendance.dto.AttendanceDto;
+import com.nhnacademy.workentry.attendance.dto.QAttendanceDto;
+import com.nhnacademy.workentry.attendance.entity.QAttendance;
+import com.nhnacademy.workentry.attendance.repository.CustomAttendanceRepository;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * {@link CustomAttendanceRepository}의 QueryDSL 기반 사용자 정의 구현체입니다.
+ *
+ * <p>회원의 출결 내역을 기간별로 조회하며, 출결 날짜(workDate)는 {@link java.time.LocalDate} 기준입니다.
+ * {@link com.nhnacademy.workentry.attendance.dto.AttendanceDto} 형태로 페이징된 데이터를 반환합니다.</p>
+ *
+ * <p>이 구현은 JPAQueryFactory를 사용하여 직접 SQL을 생성함으로써, 복잡한 조건의 효율적인 조회가 가능합니다.</p>
+ */
+@RequiredArgsConstructor
+public class CustomAttendanceRepositoyImpl implements CustomAttendanceRepository {
+
+    private final JPAQueryFactory queryFactory;
+
+    /**
+     * 지정된 회원 번호와 기간에 해당하는 출결 내역을 조회합니다.
+     *
+     * <p>출결 기준은 출근일(workDate)이며, 시간대(LocalDateTime)의 날짜 부분만 비교하여
+     * 해당 날짜 범위에 포함된 출결 정보만 조회합니다.</p>
+     *
+     * @param no 회원 고유 번호
+     * @param start 조회 시작 일시 (LocalDateTime, 날짜 기준 비교)
+     * @param end 조회 종료 일시 (LocalDateTime, 날짜 기준 비교)
+     * @param pageable 페이징 정보
+     * @return 지정된 조건에 맞는 출결 정보 DTO의 페이지 객체
+     */
+    @Override
+    public Page<AttendanceDto> getAttendanceByNoAndDateRange(Long no, LocalDateTime start, LocalDateTime end, Pageable pageable) {
+        QAttendance attendance = QAttendance.attendance;
+
+        List<AttendanceDto> content = queryFactory
+                .select(
+                        new QAttendanceDto(
+                            attendance.id,
+                            attendance.mbNo,
+                            attendance.workDate,
+                            attendance.inTime,
+                            attendance.outTime,
+                            attendance.status.description
+                        )
+                )
+                .from(attendance)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        long total = Optional.ofNullable(
+                queryFactory
+                        .select(attendance.count())
+                        .from(attendance)
+                        .where(
+                                attendance.mbNo.eq(no),
+                                //TODO : dev에 병합 후 LocalDateTime start, end -> LocalDate로 타입 수정2
+                                attendance.workDate.between(start.toLocalDate(), end.toLocalDate())
+                        )
+                        .fetchOne()
+        ).orElse(0L);
+
+        return new PageImpl<>(content, pageable, total);
+    }
+}

@@ -38,15 +38,12 @@ public class Attendance {
     @Column(name = "work_minutes")
     private Integer workMinutes;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status", nullable = false)
     private AttendanceStatus status;
 
-
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
-
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;

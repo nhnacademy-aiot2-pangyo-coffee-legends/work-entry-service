@@ -54,8 +54,6 @@ public interface AttendanceService {
      */
     Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no,Pageable pageable);
 
-    List<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no);
-
     void createAttendance(AttendanceRequest attendanceRequest);
 
     void checkOut(Long mbNo, LocalDate workDate);

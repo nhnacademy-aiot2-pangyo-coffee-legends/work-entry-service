@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +49,7 @@ class AttendanceServiceImplTest {
         sampleAttendance = Attendance.builder()
                 .id(1L)
                 .mbNo(99L)
-                .workDate(LocalDateTime.of(2024, 4, 10, 0, 0))
+                .workDate(LocalDate.now())
                 .inTime(LocalDateTime.of(2024, 4, 10, 9, 0))
                 .outTime(LocalDateTime.of(2024, 4, 10, 18, 0))
                 .status(new AttendanceStatus(1L,"출석"))

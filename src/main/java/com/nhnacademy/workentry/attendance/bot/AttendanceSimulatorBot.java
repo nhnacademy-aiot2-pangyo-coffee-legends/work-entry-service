@@ -4,8 +4,6 @@ import com.nhnacademy.workentry.adaptor.member.client.MemberServiceClient;
 import com.nhnacademy.workentry.adaptor.member.dto.MemberNoResponse;
 import com.nhnacademy.workentry.attendance.constant.AttendanceStatusConstants;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
-import com.nhnacademy.workentry.attendance.entity.Attendance;
-import com.nhnacademy.workentry.attendance.entity.AttendanceStatus;
 import com.nhnacademy.workentry.attendance.service.AttendanceService;
 import com.nhnacademy.workentry.common.exception.AttendanceNotFoundException;
 import com.nhnacademy.workentry.common.exception.MemberNotFoundException;
@@ -21,7 +19,6 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 @Slf4j
@@ -51,7 +48,7 @@ public class AttendanceSimulatorBot {
 
             // 새로운 출근 레코드 생성
             attendanceService.createAttendance(
-                    new AttendanceRequest(mbNo.getNo(), today, generateCheckInTimeForStatus(status), null, null, status)
+                    new AttendanceRequest(mbNo.no(), today, generateCheckInTimeForStatus(status), null, null, status)
             );
         }
     }
@@ -65,9 +62,9 @@ public class AttendanceSimulatorBot {
 
         for (MemberNoResponse mbNo : memberIds) {
             try{
-                attendanceService.checkOut(mbNo.getNo(), today);
+                attendanceService.checkOut(mbNo.no(), today);
             }catch (AttendanceNotFoundException e){
-                log.warn("체크인 기록 없음: memberNo={}, date={}", mbNo.getNo(), today);
+                log.warn("체크인 기록 없음: memberNo={}, date={}", mbNo.no(), today);
             }
         }
     }

@@ -15,20 +15,17 @@ import java.util.Optional;
  * <p>
  * 페이지네이션 지원을 위해 {@link Pageable} 기반 메서드를 정의합니다.
  */
-public interface AttendanceRepository extends JpaRepository<Attendance, Long>{
+public interface AttendanceRepository extends JpaRepository<Attendance, Long>, CustomAttendanceRepository{
 
     // 회원 번호로 전체 출결 기록 조회
     List<Attendance> findAllByMbNo(Long mbNo);
 
-    /**
-     * 날짜 범위 기반 전체 출결 데이터 조회 (페이지네이션)
-     */
+    // 날짜 범위 기반 전체 출결 데이터 조회 (페이지네이션)
     Page<Attendance> findByWorkDateBetween(LocalDateTime start, LocalDateTime end, Pageable pageable);
 
-    /**
-     * 특정 회원의 날짜 범위 출결 데이터 조회 (페이지네이션)
-     */
+    //특정 회원의 날짜 범위 출결 데이터 조회 (페이지네이션)
     Page<Attendance> findByMbNoAndWorkDateBetween(Long mbNo, LocalDateTime start, LocalDateTime end, Pageable pageable);
+
     // 최근 30일 전체 출결 기록 조회
     List<Attendance> findByWorkDateBetween(LocalDateTime start, LocalDateTime end);
 

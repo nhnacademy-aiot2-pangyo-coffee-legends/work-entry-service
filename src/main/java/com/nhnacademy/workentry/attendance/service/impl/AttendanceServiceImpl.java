@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     private final AttendanceRepository attendanceRepository;
     private final AttendanceStatusRepository attendanceStatusRepository;
-
+    private static final Random random = new Random();
 
     /**
      * 특정 회원의 전체 출결 기록을 조회합니다.
@@ -66,14 +67,12 @@ public class AttendanceServiceImpl implements AttendanceService {
      * @param pageable 페이지 정보
      * @return 페이지 형태의 출결 DTO 목록
      */
+    //TODO : dev에 병합 후 LocalDateTime start, end -> LocalDate로 타입 수정
     @Override
     public Page<AttendanceDto> getAttendanceByNoAndDateRange(Long no, LocalDateTime start, LocalDateTime end, Pageable pageable) {
         log.info("기간별 출결 조회 요청: no={}, from={} to={}", no, start, end);
 
-        Page<Attendance> records = attendanceRepository.findByMbNoAndWorkDateBetween(no, start, end, pageable);
-        log.debug("조회된 출결 수: {}", records.getTotalElements());
-
-        return records.map(AttendanceDto::from);
+        return attendanceRepository.getAttendanceByNoAndDateRange(no, start, end, pageable);
     }
 
     /**
@@ -184,7 +183,6 @@ public class AttendanceServiceImpl implements AttendanceService {
         ZoneId zoneId = ZoneId.of("Asia/Seoul");
         LocalDate today = LocalDate.now(zoneId);
         LocalTime baseTime;
-        Random random = new Random();
 
         switch (status) {
             case AttendanceStatusConstants.STATUS_PRESENT,

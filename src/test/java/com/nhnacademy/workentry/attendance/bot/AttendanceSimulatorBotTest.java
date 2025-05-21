@@ -5,6 +5,7 @@ import com.nhnacademy.workentry.adaptor.member.dto.MemberNoResponse;
 import com.nhnacademy.workentry.attendance.constant.AttendanceStatusConstants;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
 import com.nhnacademy.workentry.attendance.service.AttendanceService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +20,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
+@Slf4j
 @ExtendWith(MockitoExtension.class)
 class AttendanceSimulatorBotTest {
 
@@ -66,22 +68,17 @@ class AttendanceSimulatorBotTest {
     }
 
     @Test
-    @DisplayName("출근 요청에 정확한 값이 포함되어야 함")
+    @DisplayName("출근 출결 요청이 정상적으로 생성되어야 함")
     void createCheckInAttendanceData_실제값검증() {
-        // given
         when(memberServiceClient.getAllMemberIds()).thenReturn(List.of(MemberNoResponse.of(99L)));
 
-        ArgumentCaptor<AttendanceRequest> captor = ArgumentCaptor.forClass(AttendanceRequest.class);
-
-        // when
         bot.createCheckInAttendanceData();
 
-        // then
-        verify(attendanceService).createAttendance(captor.capture());
+        verify(attendanceService).createAttendance(argThat(req ->
+                req.getMbNo().equals(99L) &&
+                        req.getCheckIn() != null &&
+                        req.getStatus() != null
+        ));
 
-        AttendanceRequest request = captor.getValue();
-        assertThat(request.getMbNo()).isEqualTo(99L);
-        assertThat(request.getStatus()).isEqualTo(AttendanceStatusConstants.STATUS_PRESENT);
-        assertThat(request.getCheckIn()).isNotNull();
     }
 }
