@@ -1,9 +1,0 @@
-2025-05-11 17:28:42.391 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1452, SQLState: 23000
-2025-05-11 17:28:42.569 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1452, SQLState: 23000
-2025-05-11 17:28:42.733 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1452, SQLState: 23000
-2025-05-11 17:42:01.248 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1452, SQLState: 23000
-2025-05-11 17:42:01.403 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1452, SQLState: 23000
-2025-05-11 17:42:01.598 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1452, SQLState: 23000
-2025-05-11 17:42:12.458 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1452, SQLState: 23000
-2025-05-11 17:42:12.617 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1452, SQLState: 23000
-2025-05-11 17:42:12.768 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1452, SQLState: 23000

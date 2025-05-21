@@ -14,8 +14,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableJpaRepositories
 @EnableScheduling
 @EnableAspectJAutoProxy(proxyTargetClass = true)
-
-
 public class WorkEntryApplication {
 
     public static void main(String[] args) {

@@ -6,6 +6,7 @@ import com.nhnacademy.workentry.attendance.entity.AttendanceStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,7 +27,7 @@ class AttendanceDtoTest {
         // given
         Long id = 100L;
         Long mbNo = 1L;
-        LocalDateTime workDate = LocalDateTime.of(2024, 4, 30, 0, 0);
+        LocalDate workDate = LocalDate.now();
         LocalDateTime inTime = LocalDateTime.of(2024, 4, 30, 9, 0);
         LocalDateTime outTime = LocalDateTime.of(2024, 4, 30, 18, 0);
         AttendanceStatus status = new AttendanceStatus(1L, "출석");

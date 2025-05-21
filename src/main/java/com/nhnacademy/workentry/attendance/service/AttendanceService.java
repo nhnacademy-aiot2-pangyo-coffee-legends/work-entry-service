@@ -1,10 +1,12 @@
 package com.nhnacademy.workentry.attendance.service;
 
 import com.nhnacademy.workentry.attendance.dto.AttendanceDto;
+import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
 import com.nhnacademy.workentry.attendance.dto.AttendanceSummaryDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -52,4 +54,7 @@ public interface AttendanceService {
      */
     Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no,Pageable pageable);
 
+    void createAttendance(AttendanceRequest attendanceRequest);
+
+    void checkOut(Long mbNo, LocalDate workDate);
 }

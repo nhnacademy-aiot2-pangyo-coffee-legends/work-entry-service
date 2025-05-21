@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -26,7 +27,7 @@ public class Attendance {
     private Long mbNo;
 
     @Column(name = "work_date")
-    private LocalDateTime workDate;
+    private LocalDate workDate;
 
     @Column(name = "in_time")
     private LocalDateTime inTime;
@@ -34,25 +35,22 @@ public class Attendance {
     @Column(name = "out_time")
     private LocalDateTime outTime;
 
-    @Column(name="work_minutes")
+    @Column(name = "work_minutes")
     private Integer workMinutes;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status", nullable = false)
     private AttendanceStatus status;
 
-
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
-
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     private Attendance(
             Long mbNo,
-            LocalDateTime workDate,
+            LocalDate workDate,
             LocalDateTime inTime,
             LocalDateTime outTime,
             Integer workMinutes,
@@ -65,7 +63,7 @@ public class Attendance {
         this.status = status;
     }
 
-    public static Attendance newAttendance(Long mbNo, LocalDateTime workDate, LocalDateTime inTime, LocalDateTime outTime, Integer workMinutes, AttendanceStatus status) {
+    public static Attendance newAttendance(Long mbNo, LocalDate workDate, LocalDateTime inTime, LocalDateTime outTime, Integer workMinutes, AttendanceStatus status) {
         return new Attendance(mbNo, workDate, inTime, outTime, workMinutes, status);
     }
 
@@ -87,7 +85,7 @@ public class Attendance {
         return mbNo;
     }
 
-    public LocalDateTime getWorkDate() {
+    public LocalDate getWorkDate() {
         return workDate;
     }
 
@@ -113,5 +111,12 @@ public class Attendance {
 
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
+    }
+
+    public void updateCheckOut(LocalDateTime outTime, Integer workMinutes, AttendanceStatus status) {
+        this.outTime = outTime;
+        this.workMinutes = workMinutes;
+        this.status = status;
+        this.updatedAt = LocalDateTime.now();
     }
 }

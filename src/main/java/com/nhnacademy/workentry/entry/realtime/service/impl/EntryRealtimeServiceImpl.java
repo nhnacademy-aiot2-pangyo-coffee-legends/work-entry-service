@@ -50,7 +50,6 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
      *
      * @return EntryRealtimeDto 객체 (가장 최근 시간의 데이터)
      */
-    @Scheduled(fixedRate = 30000) // 30초마다 실행
     @Override
     public EntryRealtimeDto getLatestEntry() {
         List<FluxTable> tables = getFluxTables();
@@ -59,7 +58,7 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
             for (FluxRecord record : table.getRecords()) {
                 LocalDateTime entryTime = Objects.requireNonNull(record.getTime()).atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();
 
-                String time = Objects.requireNonNull(record.getTime()).toString().replace("T", " ").substring(0, 16);
+                String time = entryTime.toString().replace("T", " ").substring(0, 16);
 
                 int count = ((Number) Objects.requireNonNull(record.getValue())).intValue();
 
@@ -133,10 +132,19 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
             String json = objectMapper.writeValueAsString(dto);
 
             boolean isNight = isInTargetTime(entryTime);
+            boolean hasEntry = dto.getCount() > 0;
 
             // 메시지 라벨 및 내용 분리
-            String logLevel = isNight ? "ALERT" : "INFO";
-            String messagePrefix = isNight ? "이상 출입자 발생" : "실시간 출입 데이터";
+            String logLevel;
+            String messagePrefix;
+
+            if (isNight && hasEntry) {
+                logLevel = "ALERT";
+                messagePrefix = "이상 출입자 발생";
+            } else {
+                logLevel = "INFO";
+                messagePrefix = "실시간 출입 데이터";
+            }
 
             String message = String.format("[%s] %s | 시간: %s | 출입자 수: %d",
                     logLevel, messagePrefix, dto.getTime(), dto.getCount());
@@ -144,7 +152,7 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
             String fullMessage = message + " | 데이터: " + json;
 
             // 로그 출력
-            if (isNight) {
+            if (isNight && hasEntry) {
                 emailService.sendIntrusionAlertToAdmin(
                         adminEmail,
                         "⚠️ 이상 출입 감지 알림",
