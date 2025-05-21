@@ -50,10 +50,14 @@ public class EntryServiceImpl implements EntryService {
     @Override
     public List<EntryCountDto> getMonthlyEntryCounts() {
         List<FluxTable> tables = getFluxTables();
+        log.info("FluxTable 수: {}", tables.size());
         List<EntryCountDto> result = new ArrayList<>();
 
         for (FluxTable table : tables) {
+            log.info("Record 수: {}", table.getRecords().size());
             for (FluxRecord record : table.getRecords()) {
+                log.info("Record: time={}, value={}", record.getTime(), record.getValue());
+
                 String date = Objects.requireNonNull(record.getTime()).toString().substring(0, 10);
                 int count = ((Number) Objects.requireNonNull(record.getValue())).intValue();
                 EntryCountDto dto = new EntryCountDto(date, count);
@@ -79,14 +83,13 @@ public class EntryServiceImpl implements EntryService {
     private List<FluxTable> getFluxTables() {
         String flux = """
                         from(bucket: "coffee-mqtt")
-                          |> range(start: -1d)
+                          |> range(start: -7d) // 최근 7일간
                           |> filter(fn: (r) => r["_measurement"] == "sensor")
                           |> filter(fn: (r) => r["_field"] == "value")
                           |> filter(fn: (r) => r["location"] == "입구")
                           |> filter(fn: (r) => r["type"] == "activity")
-                          |> aggregateWindow(every: 1m, fn: count, createEmpty: true)
-                          |> sort(columns: ["_time"], desc: true)
-                          |> limit(n: 1)
+                          |> aggregateWindow(every: 1d, fn: count, createEmpty: false)
+                          |> yield(name: "daily_entry")
                       """;
 
         QueryApi queryApi = influxDBClient.getQueryApi();

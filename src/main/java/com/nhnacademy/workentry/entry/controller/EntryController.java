@@ -30,17 +30,17 @@ public class EntryController {
     }
 
     /**
-     * 월간 출입 통계를 조회합니다.
+     * 주간 출입 통계를 조회합니다.
      * @return 날짜별 출입 횟수를 담은 EntryCountDto 리스트
      */
     @GetMapping("/weekly")
     public List<EntryCountDto> getMonthlyEntryCounts() {
         try {
             List<EntryCountDto> result = entryServiceImpl.getMonthlyEntryCounts();
-            log.info("[월간 출입 통계] 조회됨: {}", result);
+            log.info("[주간 출입 통계] 조회됨: {}", result);
             return result;
         } catch (Exception e) {
-            log.error("[월간 출입 통계] 조회 실패", e);
+            log.error("[주간 출입 통계] 조회 실패", e);
             return Collections.emptyList(); // 실패 시 빈 리스트 반환
         }
     }
