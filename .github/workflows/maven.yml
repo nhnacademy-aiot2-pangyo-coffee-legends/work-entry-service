@@ -30,7 +30,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            mkdir -p ~/work-entry-service/target
+            mkdir -p ~/work-entry/target
             rm -f ~/work-entry/target/*.jar
 
       # 2. JAR 파일 업로드
