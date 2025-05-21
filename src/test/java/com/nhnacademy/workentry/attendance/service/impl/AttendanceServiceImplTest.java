@@ -55,8 +55,8 @@ class AttendanceServiceImplTest {
     void testGetAttendanceByNoAndDateRange() {
         Long mbNo = 1L;
         Pageable pageable = PageRequest.of(0, 10);
-        LocalDate start = LocalDate.now().minusDays(5);
-        LocalDate end = LocalDate.now();
+        LocalDateTime start = LocalDate.now().minusDays(5).atStartOfDay();
+        LocalDateTime end = LocalDate.now().atStartOfDay();
 
         AttendanceDto mockDto = new AttendanceDto(
                 1L, mbNo,
@@ -67,14 +67,14 @@ class AttendanceServiceImplTest {
 
         Page<AttendanceDto> expectedPage = new PageImpl<>(List.of(mockDto));
 
-        when(attendanceRepository.getAttendanceByNoAndDateRange(mbNo, start, end, pageable))
+        when(attendanceRepository.getAttendanceByNoAndDateRange(mbNo, start.toLocalDate(), end.toLocalDate(), pageable))
                 .thenReturn(expectedPage);
 
-        Page<AttendanceDto> result = attendanceService.getAttendanceByNoAndDateRange(mbNo, start, end, pageable);
+        Page<AttendanceDto> result = attendanceService.getAttendanceByNoAndDateRange(mbNo, start.toLocalDate(), end.toLocalDate(), pageable);
 
         assertThat(result.getTotalElements()).isEqualTo(1);
         assertThat(result.getContent().get(0).getNo()).isEqualTo(mbNo);
-        verify(attendanceRepository).getAttendanceByNoAndDateRange(mbNo, start, end, pageable);
+        verify(attendanceRepository).getAttendanceByNoAndDateRange(mbNo, start.toLocalDate(), end.toLocalDate(), pageable);
     }
 
     @Test

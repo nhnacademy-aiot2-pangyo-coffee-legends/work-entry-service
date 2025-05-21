@@ -2,6 +2,9 @@ package com.nhnacademy.workentry.attendance.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.Value;
 
 import java.time.LocalDate;
@@ -10,7 +13,9 @@ import java.time.LocalDateTime;
 /**
  * 최근 30일 근무시간 요약 DTO
  */
-@Value
+@Getter
+@AllArgsConstructor
+@Builder
 public class AttendanceSummaryDto {
      @JsonProperty("year")
      int year;
