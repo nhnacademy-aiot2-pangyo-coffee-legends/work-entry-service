@@ -22,6 +22,20 @@
 
         <!-- LogstashEncoder로 JSON 구조화 -->
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+
+        <!-- Feign Client 호출 traceId 전파 -->
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>Asia/Seoul</timeZone>
+                </timestamp>
+                <mdc/>
+                <arguments/>
+                <loggerName/>
+                <threadName/>
+                <message/>
+            </providers>
+        </encoder>
     </appender>
 
     <!-- ③ 루트 로거: INFO 이상 로그를 JSON_FILE로 남김 -->
