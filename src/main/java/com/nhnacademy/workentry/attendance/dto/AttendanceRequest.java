@@ -1,9 +1,6 @@
 package com.nhnacademy.workentry.attendance.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,8 +8,7 @@ import java.time.LocalDateTime;
 /**
  * 출결정보 생성하는 Dto입니다.
  */
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class AttendanceRequest {

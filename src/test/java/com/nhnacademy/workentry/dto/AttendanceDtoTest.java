@@ -24,7 +24,6 @@ class AttendanceDtoTest {
     @Test
     @DisplayName("1. Attendance 엔티티 → AttendanceDto 변환 테스트")
     void testFrom() {
-        // given
         Long id = 100L;
         Long mbNo = 1L;
         LocalDate workDate = LocalDate.now();
@@ -41,10 +40,8 @@ class AttendanceDtoTest {
                 .status(status)
                 .build();
 
-        // when
         AttendanceDto dto = AttendanceDto.from(attendance);
 
-        // then
         assertThat(dto.getId()).isEqualTo(id);
         assertThat(dto.getNo()).isEqualTo(mbNo);
         assertThat(dto.getWorkDate()).isEqualTo(workDate);

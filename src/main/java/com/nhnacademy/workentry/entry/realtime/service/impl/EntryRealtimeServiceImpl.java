@@ -6,15 +6,14 @@ import com.influxdb.client.InfluxDBClient;
 import com.influxdb.client.QueryApi;
 import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
-
+import com.nhnacademy.workentry.adapter.notify.NotifyAdapter;
+import com.nhnacademy.workentry.entry.email.dto.EmailRequest;
 import com.nhnacademy.workentry.entry.realtime.dto.EntryRealtimeDto;
-import com.nhnacademy.workentry.entry.realtime.service.EmailService;
 import com.nhnacademy.workentry.entry.realtime.service.EntryRealtimeService;
 import com.nhnacademy.workentry.log.realtime.LogWebSocketHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,16 +32,16 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
     private final InfluxDBClient influxDBClient;
     private final LogWebSocketHandler logWebSocketHandler;
     private final ObjectMapper objectMapper;
-    private final EmailService emailService;
+    private final NotifyAdapter notifyAdapter;
 
     @Value("${admin.email}")
     private String adminEmail;
 
-    public EntryRealtimeServiceImpl(InfluxDBClient influxDBClient, LogWebSocketHandler logWebSocketHandler, ObjectMapper objectMapper, EmailService emailService) {
+    public EntryRealtimeServiceImpl(InfluxDBClient influxDBClient, LogWebSocketHandler logWebSocketHandler, ObjectMapper objectMapper, NotifyAdapter notifyAdapter) {
         this.influxDBClient = influxDBClient;
         this.logWebSocketHandler = logWebSocketHandler;
         this.objectMapper = objectMapper;
-        this.emailService = emailService;
+        this.notifyAdapter = notifyAdapter;
     }
 
     /**
@@ -55,12 +54,12 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
         List<FluxTable> tables = getFluxTables();
 
         for (FluxTable table : tables) {
-            for (FluxRecord record : table.getRecords()) {
-                LocalDateTime entryTime = Objects.requireNonNull(record.getTime()).atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();
+            for (FluxRecord fRecord : table.getRecords()) {
+                LocalDateTime entryTime = Objects.requireNonNull(fRecord.getTime()).atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();
 
                 String time = entryTime.toString().replace("T", " ").substring(0, 16);
 
-                int count = ((Number) Objects.requireNonNull(record.getValue())).intValue();
+                int count = ((Number) Objects.requireNonNull(fRecord.getValue())).intValue();
 
                 EntryRealtimeDto dto = new EntryRealtimeDto(time, count);
 
@@ -138,7 +137,7 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
             String logLevel;
             String messagePrefix;
 
-            if (isNight && hasEntry) {
+            if (true) {
                 logLevel = "ALERT";
                 messagePrefix = "이상 출입자 발생";
             } else {
@@ -153,11 +152,13 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
 
             // 로그 출력
             if (isNight && hasEntry) {
-                emailService.sendIntrusionAlertToAdmin(
+                EmailRequest notifyEntry = new EmailRequest(
                         adminEmail,
                         "⚠️ 이상 출입 감지 알림",
                         dto.getTime()+"\n이상 출입자 발생.\n관리자 확인 바랍니다."
                 );
+                notifyAdapter.sendTextEmail(notifyEntry);
+
                 log.error(fullMessage);
             } else {
                 log.info(fullMessage);

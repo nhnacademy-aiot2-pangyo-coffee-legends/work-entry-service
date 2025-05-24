@@ -1,7 +1,7 @@
 package com.nhnacademy.workentry.attendance.bot;
 
-import com.nhnacademy.workentry.adaptor.member.client.MemberServiceClient;
-import com.nhnacademy.workentry.adaptor.member.dto.MemberNoResponse;
+import com.nhnacademy.workentry.adapter.member.client.MemberServiceClient;
+import com.nhnacademy.workentry.adapter.member.dto.MemberNoResponse;
 import com.nhnacademy.workentry.attendance.constant.AttendanceStatusConstants;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
 import com.nhnacademy.workentry.attendance.service.AttendanceService;

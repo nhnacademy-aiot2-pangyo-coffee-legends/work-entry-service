@@ -55,11 +55,11 @@ public class EntryServiceImpl implements EntryService {
 
         for (FluxTable table : tables) {
             log.info("Record 수: {}", table.getRecords().size());
-            for (FluxRecord record : table.getRecords()) {
-                log.info("Record: time={}, value={}", record.getTime(), record.getValue());
+            for (FluxRecord fRecord : table.getRecords()) {
+                log.info("Record: time={}, value={}", fRecord.getTime(), fRecord.getValue());
 
-                String date = Objects.requireNonNull(record.getTime()).toString().substring(0, 10);
-                int count = ((Number) Objects.requireNonNull(record.getValue())).intValue();
+                String date = Objects.requireNonNull(fRecord.getTime()).toString().substring(0, 10);
+                int count = ((Number) Objects.requireNonNull(fRecord.getValue())).intValue();
                 EntryCountDto dto = new EntryCountDto(date, count);
 
                 try {

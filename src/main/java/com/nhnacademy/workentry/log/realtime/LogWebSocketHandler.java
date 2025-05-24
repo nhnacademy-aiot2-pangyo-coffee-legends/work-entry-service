@@ -1,6 +1,7 @@
 package com.nhnacademy.workentry.log.realtime;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.*;
 
@@ -28,7 +29,7 @@ public class LogWebSocketHandler implements WebSocketHandler {
      * @param session WebSocket 세션 객체
      */
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) {
+    public void afterConnectionEstablished(@NotNull WebSocketSession session) {
         sessions.add(session);
         log.info("[LogWebSocketHandler] 클라이언트 연결됨: {}", session.getId());
     }
@@ -40,7 +41,7 @@ public class LogWebSocketHandler implements WebSocketHandler {
      * @param message 수신된 메시지
      */
     @Override
-    public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) {
+    public void handleMessage(@NotNull WebSocketSession session, WebSocketMessage<?> message) {
         log.debug("[LogWebSocketHandler] 메시지 수신 (미사용): {}", message.getPayload());
     }
 
@@ -51,7 +52,7 @@ public class LogWebSocketHandler implements WebSocketHandler {
      * @param exception 발생한 예외
      */
     @Override
-    public void handleTransportError(WebSocketSession session, Throwable exception) {
+    public void handleTransportError(@NotNull WebSocketSession session, @NotNull Throwable exception) {
         sessions.remove(session);
         log.error("[LogWebSocketHandler] 전송 오류 발생: {}", session.getId(), exception);
     }
@@ -63,7 +64,7 @@ public class LogWebSocketHandler implements WebSocketHandler {
      * @param closeStatus 종료 상태 정보
      */
     @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) {
+    public void afterConnectionClosed(@NotNull WebSocketSession session, @NotNull CloseStatus closeStatus) {
         sessions.remove(session);
         log.info("[LogWebSocketHandler] 연결 종료: {} ({})", session.getId(), closeStatus);
     }

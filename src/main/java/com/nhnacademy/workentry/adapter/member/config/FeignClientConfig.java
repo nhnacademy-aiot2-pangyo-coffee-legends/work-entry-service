@@ -1,4 +1,4 @@
-package com.nhnacademy.workentry.adaptor.member.config;
+package com.nhnacademy.workentry.adapter.member.config;
 
 
 import com.nhnacademy.traceloggermodule.config.FeignTraceInterceptor;
