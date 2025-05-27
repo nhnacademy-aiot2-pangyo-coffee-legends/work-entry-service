@@ -4,7 +4,8 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,14 +13,18 @@ import org.springframework.context.annotation.Configuration;
  * RabbitMQ 관련 설정을 담당하는 Configuration 클래스입니다.
  */
 @Configuration
-public class RabbitConfig {
+public class RabbitMQConfig {
 
-    @Value("${email.queue}")
-    private String emailQueue;
+    public static final String QUEUE_NAME = "email-queue";
 
     @Bean
     public Queue emailQueue() {
-        return new Queue(emailQueue, true);
+        return new Queue(QUEUE_NAME, true);
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory){
+        return new RabbitTemplate(connectionFactory);
     }
 
     @Bean

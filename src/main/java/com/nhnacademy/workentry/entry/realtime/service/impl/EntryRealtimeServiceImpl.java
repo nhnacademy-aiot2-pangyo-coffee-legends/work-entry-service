@@ -7,6 +7,7 @@ import com.influxdb.client.QueryApi;
 import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
 import com.nhnacademy.workentry.adapter.notify.NotifyAdapter;
+import com.nhnacademy.workentry.adapter.notify.controller.EmailController;
 import com.nhnacademy.workentry.entry.email.dto.EmailRequest;
 import com.nhnacademy.workentry.entry.realtime.dto.EntryRealtimeDto;
 import com.nhnacademy.workentry.entry.realtime.service.EntryRealtimeService;
@@ -32,16 +33,15 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
     private final InfluxDBClient influxDBClient;
     private final LogWebSocketHandler logWebSocketHandler;
     private final ObjectMapper objectMapper;
-    private final NotifyAdapter notifyAdapter;
-
+    private final EmailController emailController;
     @Value("${admin.email}")
     private String adminEmail;
 
-    public EntryRealtimeServiceImpl(InfluxDBClient influxDBClient, LogWebSocketHandler logWebSocketHandler, ObjectMapper objectMapper, NotifyAdapter notifyAdapter) {
+    public EntryRealtimeServiceImpl(InfluxDBClient influxDBClient, LogWebSocketHandler logWebSocketHandler, ObjectMapper objectMapper, EmailController emailController) {
         this.influxDBClient = influxDBClient;
         this.logWebSocketHandler = logWebSocketHandler;
         this.objectMapper = objectMapper;
-        this.notifyAdapter = notifyAdapter;
+        this.emailController = emailController;
     }
 
     /**
@@ -157,7 +157,7 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
                         "⚠️ 이상 출입 감지 알림",
                         dto.getTime()+"\n이상 출입자 발생.\n관리자 확인 바랍니다."
                 );
-                notifyAdapter.sendTextEmail(notifyEntry);
+                emailController.sendEmail(notifyEntry);
 
                 log.error(fullMessage);
             } else {
