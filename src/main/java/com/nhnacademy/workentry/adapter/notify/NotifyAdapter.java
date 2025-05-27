@@ -1,6 +1,6 @@
 package com.nhnacademy.workentry.adapter.notify;
 
-import com.nhnacademy.workentry.entry.email.dto.EmailRequest;
+import com.nhnacademy.workentry.notify.dto.EmailRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

@@ -1,7 +1,6 @@
-package com.nhnacademy.workentry.adapter.notify.dto;
+package com.nhnacademy.workentry.notify.dto;
 
-import com.nhnacademy.workentry.adapter.notify.config.RabbitMQConfig;
-import com.nhnacademy.workentry.entry.email.dto.EmailRequest;
+import com.nhnacademy.workentry.notify.config.RabbitMQConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
@@ -16,6 +15,7 @@ public class EmailSender {
     }
 
     public void sendEmail(EmailRequest emailRequest){
+        emailRequest.setType("TEXT");
         rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_NAME, emailRequest);
         log.info("[#] Sent Email : {}", emailRequest);
     }

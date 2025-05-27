@@ -1,4 +1,4 @@
-package com.nhnacademy.workentry.adapter.notify.config;
+package com.nhnacademy.workentry.notify.config;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

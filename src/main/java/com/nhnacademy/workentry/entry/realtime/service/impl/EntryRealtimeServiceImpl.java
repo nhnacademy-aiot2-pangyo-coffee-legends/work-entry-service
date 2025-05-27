@@ -7,11 +7,12 @@ import com.influxdb.client.QueryApi;
 import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
 import com.nhnacademy.workentry.adapter.notify.NotifyAdapter;
-import com.nhnacademy.workentry.adapter.notify.controller.EmailController;
-import com.nhnacademy.workentry.entry.email.dto.EmailRequest;
+import com.nhnacademy.workentry.notify.dto.EmailRequest;
 import com.nhnacademy.workentry.entry.realtime.dto.EntryRealtimeDto;
 import com.nhnacademy.workentry.entry.realtime.service.EntryRealtimeService;
 import com.nhnacademy.workentry.log.realtime.LogWebSocketHandler;
+import com.nhnacademy.workentry.notify.dto.EmailSender;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,21 +29,16 @@ import java.util.Objects;
  */
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class EntryRealtimeServiceImpl implements EntryRealtimeService {
 
     private final InfluxDBClient influxDBClient;
     private final LogWebSocketHandler logWebSocketHandler;
     private final ObjectMapper objectMapper;
-    private final EmailController emailController;
+    private final NotifyAdapter notifyAdapter;
+//    private final EmailSender emailSender;
     @Value("${admin.email}")
     private String adminEmail;
-
-    public EntryRealtimeServiceImpl(InfluxDBClient influxDBClient, LogWebSocketHandler logWebSocketHandler, ObjectMapper objectMapper, EmailController emailController) {
-        this.influxDBClient = influxDBClient;
-        this.logWebSocketHandler = logWebSocketHandler;
-        this.objectMapper = objectMapper;
-        this.emailController = emailController;
-    }
 
     /**
      * 최근 24시간 이내의 출입 데이터를 1분 간격으로 집계합니다.
@@ -130,8 +126,8 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
         try {
             String json = objectMapper.writeValueAsString(dto);
 
-            boolean isNight = isInTargetTime(entryTime);
-            boolean hasEntry = dto.getCount() > 0;
+            boolean isNight = true;
+            boolean hasEntry = true;
 
             // 메시지 라벨 및 내용 분리
             String logLevel;
@@ -146,7 +142,7 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
             }
 
             String message = String.format("[%s] %s | 시간: %s | 출입자 수: %d",
-                    logLevel, messagePrefix, dto.getTime(), dto.getCount());
+                    logLevel, messagePrefix, dto.getTime(), 1);
 
             String fullMessage = message + " | 데이터: " + json;
 
@@ -157,7 +153,7 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
                         "⚠️ 이상 출입 감지 알림",
                         dto.getTime()+"\n이상 출입자 발생.\n관리자 확인 바랍니다."
                 );
-                emailController.sendEmail(notifyEntry);
+                notifyAdapter.sendTextEmail(notifyEntry);
 
                 log.error(fullMessage);
             } else {

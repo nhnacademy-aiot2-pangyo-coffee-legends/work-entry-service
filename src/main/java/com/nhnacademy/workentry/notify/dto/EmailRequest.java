@@ -1,4 +1,4 @@
-package com.nhnacademy.workentry.entry.email.dto;
+package com.nhnacademy.workentry.notify.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
