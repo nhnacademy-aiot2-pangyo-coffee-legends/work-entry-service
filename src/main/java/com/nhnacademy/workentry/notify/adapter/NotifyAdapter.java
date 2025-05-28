@@ -1,4 +1,4 @@
-package com.nhnacademy.workentry.adapter.notify;
+package com.nhnacademy.workentry.notify.adapter;
 
 import com.nhnacademy.workentry.notify.dto.EmailRequest;
 import org.springframework.cloud.openfeign.FeignClient;
