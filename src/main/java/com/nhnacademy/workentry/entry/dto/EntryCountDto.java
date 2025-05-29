@@ -1,5 +1,6 @@
 package com.nhnacademy.workentry.entry.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Value;
 
 /**
@@ -7,6 +8,7 @@ import lombok.Value;
  */
 @Value
 public class EntryCountDto {
+    @NotNull(message = "출입 날짜가 비어있습니다.")
     String date; // yyyy-MM-dd
     int count;
 
