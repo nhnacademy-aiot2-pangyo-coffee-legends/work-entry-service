@@ -121,6 +121,7 @@ public class AttendanceServiceImpl implements AttendanceService {
      * 출근 기록 생성
      */
     @Transactional
+    @Override
     public void createAttendance(AttendanceRequest request) {
         // 실제 외래 키 값(code)이 DB에 저장
         AttendanceStatus status = attendanceStatusRepository.findByDescription(request.getStatus())
@@ -142,6 +143,7 @@ public class AttendanceServiceImpl implements AttendanceService {
      * 퇴근 처리 (체크아웃)
      */
     @Transactional
+    @Override
     public void checkOut(Long mbNo, LocalDate workDate) {
         Attendance attendance = attendanceRepository.findByMbNoAndWorkDate(mbNo, workDate)
                 .orElseThrow(() -> new AttendanceNotFoundException(mbNo));
