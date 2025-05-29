@@ -10,6 +10,5 @@ import lombok.Value;
 public class EntryRealtimeDto {
     @NotNull(message = "출입 시간이 비어있습니다.")
     String time; // yyyy-MM-dd HH:mm
-
     int count;
 }

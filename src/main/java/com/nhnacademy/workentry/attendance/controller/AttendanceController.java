@@ -35,21 +35,21 @@ public class AttendanceController {
     /**
      * 특정 회원의 기간별 출결 내역을 페이지네이션 방식으로 조회합니다.
      *
-     * @param no 회원 고유 번호
+     * @param mbNo 회원 고유 번호
      * @param start 조회 시작 일시 (ISO-8601 형식)
      * @param end 조회 종료 일시 (ISO-8601 형식)
      * @param pageable 페이지 정보 (page, size 등)
      * @return {@link AttendanceDto} 페이징 결과
      */
-    @GetMapping("/{no}")
+    @GetMapping("/{mbNo}")
     public Page<AttendanceDto> getAttendanceByNo(
-            @PathVariable Long no,
+            @PathVariable Long mbNo,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end,
             @PageableDefault(size = 365) Pageable pageable) {
 
-        log.info("🔍 회원 {}의 출결 조회 요청: {} ~ {}", no, start, end);
-        return attendanceService.getAttendanceByNoAndDateRange(no, start, end, pageable);
+        log.info("🔍 회원 {}의 출결 조회 요청: {} ~ {}", mbNo, start, end);
+        return attendanceService.getAttendanceByNoAndDateRange(mbNo, start, end, pageable);
     }
 
     /**
@@ -68,20 +68,20 @@ public class AttendanceController {
      * 특정 회원의 최근 30일 근무 통계를 조회합니다.
      * 데이터가 존재하지 않을 경우 404 응답을 반환합니다.
      *
-     * @param no 회원 고유 번호
+     * @param mbNo 회원 고유 번호
      * @param pageable 페이지 정보
      * @return 출결 요약 페이지
      */
-    @GetMapping("/{no}/summary/recent")
+    @GetMapping("/{mbNo}/summary/recent")
     public Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(
-            @PathVariable Long no,
+            @PathVariable("mbNo") Long mbNo,
             @PageableDefault(size = 365) Pageable pageable) {
 
-        log.info("📊 회원 {} 최근 30일 근무 통계 요청", no);
-        Page<AttendanceSummaryDto> result = attendanceService.getRecentWorkingHoursByMember(no, pageable);
+        log.info("📊 회원 {} 최근 30일 근무 통계 요청", mbNo);
+        Page<AttendanceSummaryDto> result = attendanceService.getRecentWorkingHoursByMember(mbNo, pageable);
 
         if (result.isEmpty()) {
-            log.warn("⚠️ 회원 {}의 최근 30일 근무 통계 없음", no);
+            log.warn("⚠️ 회원 {}의 최근 30일 근무 통계 없음", mbNo);
             throw new ResponseStatusException(NOT_FOUND, "최근 30일간 근무 기록이 존재하지 않습니다.");
         }
 
