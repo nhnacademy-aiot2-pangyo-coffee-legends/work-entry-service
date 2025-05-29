@@ -1,6 +1,6 @@
-package com.nhnacademy.workentry.adaptor.member.client;
+package com.nhnacademy.workentry.adapter.member.client;
 
-import com.nhnacademy.workentry.adaptor.member.dto.MemberNoResponse;
+import com.nhnacademy.workentry.adapter.member.dto.MemberNoResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 

@@ -1,7 +1,9 @@
 package com.nhnacademy.workentry.attendance.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nhnacademy.workentry.attendance.entity.Attendance;
 import com.querydsl.core.annotations.QueryProjection;
+import jakarta.validation.constraints.NotNull;
 import lombok.Value;
 
 import java.time.LocalDate;
@@ -12,11 +14,23 @@ import java.time.LocalDateTime;
  */
 @Value
 public class AttendanceDto {
+
+    @JsonProperty(value = "attendanceId")
+    @NotNull(message = "출결 아이디가 비어있습니다.")
      Long id;
-     Long no;
+
+    @JsonProperty(value = "memberNo")
+    @NotNull(message = "멤버 아이디가 비어있습니다.")
+     Long mbNo;
+
+    @NotNull(message = "출결 날짜가 비어있습니다.")
      LocalDate workDate;
+
      LocalDateTime inTime;
+
      LocalDateTime outTime;
+
+     @NotNull(message = "출결 상태 정보가 비어있습니다.")
      String statusDescription;
 
     /**
@@ -43,16 +57,16 @@ public class AttendanceDto {
      * DTO의 각 필드는 쿼리에서 직접 선택(select)되어 주입됩니다.
      *
      * @param id 출결 ID
-     * @param no 회원 번호
+     * @param mbNo 회원 번호
      * @param workDate 근무 일자
      * @param inTime 출근 시간
      * @param outTime 퇴근 시간
      * @param statusDescription 출결 상태 설명
      */
     @QueryProjection
-    public AttendanceDto(Long id, Long no, LocalDate workDate, LocalDateTime inTime, LocalDateTime outTime, String statusDescription){
+    public AttendanceDto(Long id, Long mbNo, LocalDate workDate, LocalDateTime inTime, LocalDateTime outTime, String statusDescription){
         this.id = id;
-        this.no = no;
+        this.mbNo = mbNo;
         this.workDate = workDate;
         this.inTime = inTime;
         this.outTime = outTime;

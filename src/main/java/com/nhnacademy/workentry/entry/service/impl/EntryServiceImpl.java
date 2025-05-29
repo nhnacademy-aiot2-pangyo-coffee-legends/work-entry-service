@@ -9,6 +9,7 @@ import com.influxdb.query.FluxTable;
 import com.nhnacademy.workentry.entry.dto.EntryCountDto;
 import com.nhnacademy.workentry.entry.service.EntryService;
 import com.nhnacademy.workentry.log.realtime.LogWebSocketHandler;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
@@ -26,16 +27,11 @@ import java.util.Objects;
  */
 @Slf4j
 @Service
+@AllArgsConstructor
 public class EntryServiceImpl implements EntryService {
     private final InfluxDBClient influxDBClient;
     private final LogWebSocketHandler logWebSocketHandler;
     private final ObjectMapper objectMapper;
-
-    public EntryServiceImpl(InfluxDBClient influxDBClient, LogWebSocketHandler logWebSocketHandler, ObjectMapper objectMapper) {
-        this.influxDBClient = influxDBClient;
-        this.logWebSocketHandler = logWebSocketHandler;
-        this.objectMapper = objectMapper;
-    }
 
     /**
      * InfluxDB에 저장된 센서 데이터를 조회하여

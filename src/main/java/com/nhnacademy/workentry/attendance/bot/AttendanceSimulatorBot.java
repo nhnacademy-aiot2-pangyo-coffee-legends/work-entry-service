@@ -1,7 +1,7 @@
 package com.nhnacademy.workentry.attendance.bot;
 
-import com.nhnacademy.workentry.adaptor.member.client.MemberServiceClient;
-import com.nhnacademy.workentry.adaptor.member.dto.MemberNoResponse;
+import com.nhnacademy.workentry.adapter.member.client.MemberServiceClient;
+import com.nhnacademy.workentry.adapter.member.dto.MemberNoResponse;
 import com.nhnacademy.workentry.attendance.constant.AttendanceStatusConstants;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
 import com.nhnacademy.workentry.attendance.service.AttendanceService;
@@ -17,7 +17,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -31,14 +30,14 @@ public class AttendanceSimulatorBot {
     private final Random random = new Random();
 
     // 매일 오전 9시에 체크인 생성
-    @Scheduled(cron = "0 13 9 * * *", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 0 9 * * *", zone = "Asia/Seoul")
     public void createCheckInAttendanceData() {
         log.info("오전 스케줄 실행: {}", LocalDateTime.now());
-        List<MemberNoResponse> memberIds = new ArrayList<>();
+        List<MemberNoResponse> memberIds;
         try{
             memberIds = memberServiceClient.getAllMemberIds();
         }catch(FeignException.NotFound e){
-            throw new MemberNotFoundException("FeginClient : 멤버 정보를 찾을 수 없습니다.");
+            throw new MemberNotFoundException("FeignClient : 멤버 정보를 찾을 수 없습니다.");
         }
 
         LocalDate today = LocalDate.now(ZoneId.of("Asia/Seoul"));
@@ -48,7 +47,7 @@ public class AttendanceSimulatorBot {
 
             // 새로운 출근 레코드 생성
             attendanceService.createAttendance(
-                    new AttendanceRequest(mbNo.no(), today, generateCheckInTimeForStatus(status), null, null, status)
+                    new AttendanceRequest(mbNo.mbNo(), today, generateCheckInTimeForStatus(status), null, null, status)
             );
         }
     }
@@ -62,9 +61,9 @@ public class AttendanceSimulatorBot {
 
         for (MemberNoResponse mbNo : memberIds) {
             try{
-                attendanceService.checkOut(mbNo.no(), today);
+                attendanceService.checkOut(mbNo.mbNo(), today);
             }catch (AttendanceNotFoundException e){
-                log.warn("체크인 기록 없음: memberNo={}, date={}", mbNo.no(), today);
+                log.warn("체크인 기록 없음: memberNo={}, date={}", mbNo.mbNo(), today);
             }
         }
     }

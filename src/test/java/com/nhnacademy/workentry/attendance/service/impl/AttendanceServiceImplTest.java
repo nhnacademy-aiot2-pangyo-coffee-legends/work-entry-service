@@ -8,6 +8,7 @@ import com.nhnacademy.workentry.attendance.entity.AttendanceStatus;
 import com.nhnacademy.workentry.attendance.repository.AttendanceRepository;
 import com.nhnacademy.workentry.attendance.repository.AttendanceStatusRepository;
 import com.nhnacademy.workentry.common.exception.AttendanceNotFoundException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -40,6 +41,7 @@ class AttendanceServiceImplTest {
     private AttendanceServiceImpl attendanceService;
 
     @Test
+    @DisplayName("특정 회원의 전체 출결 기록 조회 테스트")
     void testGetAttendanceByNo() {
         Long mbNo = 1L;
         Attendance attendance = mock(Attendance.class);
@@ -52,6 +54,7 @@ class AttendanceServiceImplTest {
     }
 
     @Test
+    @DisplayName("특정 회원의 지정된 기간 내 출결 기록을 페이지 단위로 조회 테스트")
     void testGetAttendanceByNoAndDateRange() {
         Long mbNo = 1L;
         Pageable pageable = PageRequest.of(0, 10);
@@ -73,11 +76,12 @@ class AttendanceServiceImplTest {
         Page<AttendanceDto> result = attendanceService.getAttendanceByNoAndDateRange(mbNo, start.toLocalDate(), end.toLocalDate(), pageable);
 
         assertThat(result.getTotalElements()).isEqualTo(1);
-        assertThat(result.getContent().get(0).getNo()).isEqualTo(mbNo);
+        assertThat(result.getContent().get(0).getMbNo()).isEqualTo(mbNo);
         verify(attendanceRepository).getAttendanceByNoAndDateRange(mbNo, start.toLocalDate(), end.toLocalDate(), pageable);
     }
 
     @Test
+    @DisplayName("출근 기록 생성 테스트")
     void testCreateAttendance() {
         AttendanceRequest request = new AttendanceRequest();
         request.setMbNo(1L);
@@ -97,6 +101,7 @@ class AttendanceServiceImplTest {
     }
 
     @Test
+    @DisplayName("출근 기록 생성 테스트")
     void testCheckOut_successful() {
         Long mbNo = 1L;
         LocalDate workDate = LocalDate.now();
@@ -115,6 +120,7 @@ class AttendanceServiceImplTest {
     }
 
     @Test
+    @DisplayName("존재하지 않는 출근 기록 에러 발생 테스트")
     void testCheckOut_attendanceNotFound() {
         Long mbNo = 999L;
         LocalDate workDate = LocalDate.now();
@@ -126,6 +132,7 @@ class AttendanceServiceImplTest {
     }
 
     @Test
+    @DisplayName("존재하지 않는 근무 통계 조회 exception 발생 테스트")
     void testGetRecentWorkingHoursByMember_noRecords() {
         Long mbNo = 1L;
         Pageable pageable = PageRequest.of(0, 10);
@@ -139,6 +146,7 @@ class AttendanceServiceImplTest {
     }
 
     @Test
+    @DisplayName("최근 일주일 출결 정보 조회 테스트")
     void testGetRecentAttendanceSummary() {
         Pageable pageable = PageRequest.of(0, 10);
         Page<Attendance> page = new PageImpl<>(List.of(mock(Attendance.class)));

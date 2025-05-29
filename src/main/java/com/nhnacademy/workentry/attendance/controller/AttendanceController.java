@@ -72,7 +72,7 @@ public class AttendanceController {
      * @param pageable 페이지 정보
      * @return 출결 요약 페이지
      */
-    @GetMapping("/summary/recent/{no}")
+    @GetMapping("/{no}/summary/recent")
     public Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(
             @PathVariable Long no,
             @PageableDefault(size = 365) Pageable pageable) {

@@ -3,8 +3,11 @@ package com.nhnacademy.workentry.entry.controller;
 
 import com.nhnacademy.workentry.entry.dto.EntryCountDto;
 import com.nhnacademy.workentry.entry.realtime.dto.EntryRealtimeDto;
+import com.nhnacademy.workentry.entry.realtime.service.EntryRealtimeService;
 import com.nhnacademy.workentry.entry.realtime.service.impl.EntryRealtimeServiceImpl;
+import com.nhnacademy.workentry.entry.service.EntryService;
 import com.nhnacademy.workentry.entry.service.impl.EntryServiceImpl;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,13 +24,10 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/entries")
+@RequiredArgsConstructor
 public class EntryController {
-    private final EntryServiceImpl entryServiceImpl;
-    private final EntryRealtimeServiceImpl entryRealtimeServiceImpl;
-    public EntryController(EntryServiceImpl entryServiceImpl, EntryRealtimeServiceImpl entryRealtimeServiceImpl) {
-        this.entryServiceImpl = entryServiceImpl;
-        this.entryRealtimeServiceImpl = entryRealtimeServiceImpl;
-    }
+    private final EntryService entryService;
+    private final EntryRealtimeService entryRealtimeService;
 
     /**
      * 주간 출입 통계를 조회합니다.
@@ -36,7 +36,7 @@ public class EntryController {
     @GetMapping("/weekly")
     public List<EntryCountDto> getMonthlyEntryCounts() {
         try {
-            List<EntryCountDto> result = entryServiceImpl.getMonthlyEntryCounts();
+            List<EntryCountDto> result = entryService.getMonthlyEntryCounts();
             log.info("[주간 출입 통계] 조회됨: {}", result);
             return result;
         } catch (Exception e) {
@@ -53,7 +53,7 @@ public class EntryController {
     @GetMapping("/realtime")
     public EntryRealtimeDto getRealtimeEntry() {
         try {
-            EntryRealtimeDto dto = entryRealtimeServiceImpl.getLatestEntry();
+            EntryRealtimeDto dto = entryRealtimeService.getLatestEntry();
             log.info("[실시간 출입 통계] 조회됨: {}", dto);
             return dto;
         } catch (Exception e) {

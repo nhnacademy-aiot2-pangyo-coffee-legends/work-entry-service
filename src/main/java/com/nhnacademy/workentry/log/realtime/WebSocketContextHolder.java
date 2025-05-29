@@ -10,6 +10,10 @@ public class WebSocketContextHolder {
 
     private static LogWebSocketHandler handler;
 
+    private WebSocketContextHolder(){
+        throw new IllegalStateException("Utility class");
+    }
+
     /**
      * WebSocket 핸들러를 설정합니다.
      *

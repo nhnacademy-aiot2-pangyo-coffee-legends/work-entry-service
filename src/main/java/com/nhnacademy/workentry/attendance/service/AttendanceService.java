@@ -21,21 +21,21 @@ public interface AttendanceService {
     /**
      * 특정 회원의 전체 출결 내역을 조회합니다.
      *
-     * @param no 회원 번호
+     * @param mbNo 회원 번호
      * @return 해당 회원의 전체 출결 정보를 담은 DTO 리스트
      */
-    List<AttendanceDto> getAttendanceByNo(Long no);
+    List<AttendanceDto> getAttendanceByNo(Long mbNo);
 
     /**
      * 특정 회원의 지정된 기간 내 출결 내역을 페이지네이션으로 조회합니다.
      *
-     * @param no        회원 고유 번호
+     * @param mbNo        회원 고유 번호
      * @param start     시작 날짜 및 시간
      * @param end       종료 날짜 및 시간
      * @param pageable  페이지 번호, 크기 등 페이징 정보
      * @return {@link AttendanceDto} 객체를 담은 페이지 객체
      */
-    Page<AttendanceDto> getAttendanceByNoAndDateRange(Long no, LocalDate start, LocalDate end, Pageable pageable);
+    Page<AttendanceDto> getAttendanceByNoAndDateRange(Long mbNo, LocalDate start, LocalDate end, Pageable pageable);
 
     /**
      * 최근 30일 전체 출결 데이터를 페이지 단위로 조회합니다.
@@ -48,10 +48,10 @@ public interface AttendanceService {
     /**
      * 특정 회원의 최근 30일 근무 데이터를  조회합니다.
      *
-     * @param no       회원 번호
+     * @param mbNo       회원 번호
      * @return 페이지 형태의 근무 통계
      */
-    Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no,Pageable pageable);
+    Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long mbNo, Pageable pageable);
 
     void createAttendance(AttendanceRequest attendanceRequest);
 
