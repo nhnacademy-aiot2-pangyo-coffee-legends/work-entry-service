@@ -22,6 +22,7 @@ public class AttendanceDto {
     @JsonProperty(value = "memberNo")
     @NotNull(message = "멤버 아이디가 비어있습니다.")
      Long mbNo;
+
     @NotNull(message = "출결 날짜가 비어있습니다.")
      LocalDate workDate;
 

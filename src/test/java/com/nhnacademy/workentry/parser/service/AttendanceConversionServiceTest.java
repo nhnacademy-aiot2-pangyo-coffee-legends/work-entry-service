@@ -37,15 +37,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class AttendanceConversionServiceTest {
 
     @Autowired
-    private PdfExtractor pdfExtractor;
-
-    @Autowired
-    private TextParser textParser;
-
-    @Autowired
-    private CsvWriter csvWriter;
-
-    @Autowired
     private AttendanceConversionService attendanceConversionService;
 
     private static final Path PDF_PATH = Paths.get("src/test/resources/kyeongyeong.pdf");
