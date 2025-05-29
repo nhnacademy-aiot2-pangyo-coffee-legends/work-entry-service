@@ -3,6 +3,7 @@ package com.nhnacademy.workentry.parser.service;
 import com.nhnacademy.workentry.parser.component.CsvWriter;
 import com.nhnacademy.workentry.parser.component.PdfExtractor;
 import com.nhnacademy.workentry.parser.component.TextParser;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -67,6 +68,7 @@ class AttendanceConversionServiceTest {
      * @throws IOException 변환 과정 중 파일 입출력 오류가 발생할 경우
      */
     @Test
+    @DisplayName("PDF -> CSV 변환 테스트")
     void convert() throws IOException {
 
         String name = PDF_PATH.getFileName().toString().replaceFirst("\\.pdf$", "");

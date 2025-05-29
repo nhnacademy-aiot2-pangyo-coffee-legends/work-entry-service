@@ -1,15 +1,13 @@
 package com.nhnacademy.workentry.attendance.bot;
 
-import com.nhnacademy.workentry.adaptor.member.client.MemberServiceClient;
-import com.nhnacademy.workentry.adaptor.member.dto.MemberNoResponse;
-import com.nhnacademy.workentry.attendance.constant.AttendanceStatusConstants;
+import com.nhnacademy.workentry.adapter.member.client.MemberServiceClient;
+import com.nhnacademy.workentry.adapter.member.dto.MemberNoResponse;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
 import com.nhnacademy.workentry.attendance.service.AttendanceService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;

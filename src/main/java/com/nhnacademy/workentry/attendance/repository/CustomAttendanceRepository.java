@@ -17,6 +17,6 @@ public interface CustomAttendanceRepository {
      *
      * @return 페이지 형태의 출결 DTO 목록
      */
-    Page<AttendanceDto> getAttendanceByNoAndDateRange(Long no, LocalDate start, LocalDate end, Pageable pageable);
+    Page<AttendanceDto> getAttendanceByNoAndDateRange(Long mbNo, LocalDate start, LocalDate end, Pageable pageable);
 
 }
