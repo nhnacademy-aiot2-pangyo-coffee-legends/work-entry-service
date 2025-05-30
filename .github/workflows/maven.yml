@@ -31,7 +31,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             mkdir -p ~/work-entry-service/target
-            rm -f ~/work-entry/target/*.jar
+            rm -f ~/work-entry-service/target/*.jar
 
       # 2. JAR 파일 업로드
       - name: Upload JAR
@@ -42,7 +42,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           source: "target/*.jar"
-          target: "~/work-entry/target"
+          target: "~/work-entry-service/target"
           strip_components: 1
           overwrite: true
 
@@ -55,5 +55,5 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            chmod +x ~/work-entry/startup.sh
-            cd ~/work-entry && ./startup.sh
+            chmod +x ~/work-entry-service/startup.sh
+            cd ~/work-entry-service && ./startup.sh
