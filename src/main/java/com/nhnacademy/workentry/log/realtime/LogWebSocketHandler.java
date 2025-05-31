@@ -1,6 +1,7 @@
 package com.nhnacademy.workentry.log.realtime;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.*;
 
@@ -112,5 +113,41 @@ public class LogWebSocketHandler implements WebSocketHandler {
                 }
             }
         }
+    }
+
+    /**
+     * 일정 주기로 WebSocket 세션 상태를 모니터링하고,
+     * 연결이 살아있는 클라이언트에게 "ping" 메시지를 전송합니다.
+     * <p>
+     * isOpen()이 false인 세션은 더 이상 유효하지 않다고 판단하여
+     * {@code sessions}에서 제거합니다.
+     * </p>
+     * <p>
+     * {@code sessions}는 동기화된 Set이므로,
+     * 직접 순회하면서 수정하지 않고 복사본을 만들어 순회 후 원본을 수정합니다.
+     * </p>
+     */
+    @Scheduled(fixedRate = 30000)
+    public void keepAlive() {
+        synchronized (sessions){
+            for (WebSocketSession session : sessions) {
+                log.info("[세션 상태 모니터링] session {} isOpen: {}", session.getId(), session.isOpen());
+
+                if (session.isOpen()) {
+                    try {
+                        session.sendMessage(new TextMessage("ping"));
+                        log.debug("[KeepAlive] Ping 메시지 전송 to session: {}", session.getId());
+                    } catch (IOException e) {
+                        log.error("[KeepAlive] Ping 전송 실패", e);
+                    }
+                }
+                else{
+                    // 닫힌 세션 제거 (유효하지 않은 클라이언트 연결 정리) -> 메모리 누수 및 불필요한 작업 방지
+                    sessions.remove(session);
+                    log.info("[KeepAlive] 닫힌 세션 제거됨: {}", session.getId());
+                }
+            }
+        }
+
     }
 }
