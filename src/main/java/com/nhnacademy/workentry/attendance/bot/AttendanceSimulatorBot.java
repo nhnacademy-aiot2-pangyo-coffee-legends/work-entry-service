@@ -44,7 +44,7 @@ public class AttendanceSimulatorBot {
 //    }
 
     // 매일 오전 9시에 체크인 생성
-    @Scheduled(cron = "0 27 16 * * *", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 8 17 * * *", zone = "Asia/Seoul")
     public void createCheckInAttendanceData() {
         log.info("오전 스케줄 실행: {}", LocalDateTime.now());
         List<MemberNoResponse> memberIds;
