@@ -8,6 +8,7 @@ import com.nhnacademy.workentry.attendance.service.AttendanceService;
 import com.nhnacademy.workentry.common.exception.AttendanceNotFoundException;
 import com.nhnacademy.workentry.common.exception.MemberNotFoundException;
 import feign.FeignException;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -28,6 +29,11 @@ public class AttendanceSimulatorBot {
     private final AttendanceService attendanceService;
 
     private final Random random = new Random();
+
+    @PostConstruct
+    public void init() {
+        log.info("✅ AttendanceSimulatorBot initialized");
+    }
 
     // 매일 오전 9시에 체크인 생성
     @Scheduled(cron = "0 0 9 * * *", zone = "Asia/Seoul")
