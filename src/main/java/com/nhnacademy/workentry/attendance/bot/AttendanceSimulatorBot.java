@@ -31,20 +31,8 @@ public class AttendanceSimulatorBot {
 
     private final Random random = new Random();
 
-//    @PostConstruct
-//    public void init() {
-//        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
-//        log.info("✅ 시스템 기본 시간대 설정: {}", TimeZone.getDefault().getID());
-//        log.info("✅ AttendanceSimulatorBot initialized");
-//    }
-//
-//    @Scheduled(fixedRate = 10000)
-//    public void testSchedule() {
-//        log.info("✅ 스케줄러 테스트: {}", LocalDateTime.now());
-//    }
-
     // 매일 오전 9시에 체크인 생성
-    @Scheduled(cron = "0 8 17 * * *", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 0 9 * * *", zone = "Asia/Seoul")
     public void createCheckInAttendanceData() {
         log.info("오전 스케줄 실행: {}", LocalDateTime.now());
         List<MemberNoResponse> memberIds;
