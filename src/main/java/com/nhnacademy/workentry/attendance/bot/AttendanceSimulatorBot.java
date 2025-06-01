@@ -44,7 +44,7 @@ public class AttendanceSimulatorBot {
     }
 
     // 매일 오전 9시에 체크인 생성
-    @Scheduled(cron = "0 36 15 * * *", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 10 16 * * *", zone = "Asia/Seoul")
     public void createCheckInAttendanceData() {
         log.info("오전 스케줄 실행: {}", LocalDateTime.now());
         List<MemberNoResponse> memberIds;
@@ -55,14 +55,22 @@ public class AttendanceSimulatorBot {
         }
 
         LocalDate today = LocalDate.now(ZoneId.of("Asia/Seoul"));
+        log.info("오늘 날짜 확인 : {}", LocalDateTime.now());
 
         for (MemberNoResponse mbNo : memberIds) {
             String status = decideAttendanceStatus();
 
-            // 새로운 출근 레코드 생성
-            attendanceService.createAttendance(
-                    new AttendanceRequest(mbNo.mbNo(), today, generateCheckInTimeForStatus(status), null, null, status)
-            );
+            try {
+                // 새로운 출근 레코드 생성
+                log.debug("check-in 생성 시도: memberNo={}, status={}, checkInTime={}", mbNo.mbNo(), status, generateCheckInTimeForStatus(status));
+
+                attendanceService.createAttendance(
+                        new AttendanceRequest(mbNo.mbNo(), today, generateCheckInTimeForStatus(status), null, null, status)
+                );
+            } catch (Exception e) {
+                log.error("❌ 출근 데이터 생성 실패: memberNo={}, status={}, error={}",
+                        mbNo.mbNo(), status, e.getMessage(), e);
+            }
         }
     }
 
