@@ -36,9 +36,9 @@ class AttendanceSimulatorBotTest {
     void createCheckInAttendanceData_정상작동() {
         // given
         List<MemberNoResponse> mockMemberIds = List.of(
-                MemberNoResponse.of(1L),
-                MemberNoResponse.of(2L),
-                MemberNoResponse.of(3L)
+                new MemberNoResponse(1L),
+                new MemberNoResponse(2L),
+                new MemberNoResponse(3L)
         );
         when(memberServiceClient.getAllMemberIds()).thenReturn(mockMemberIds);
 
@@ -54,7 +54,7 @@ class AttendanceSimulatorBotTest {
     void createCheckOutAttendanceData_정상작동() {
         // given
         List<MemberNoResponse> mockMemberIds = List.of(
-                MemberNoResponse.of(1L)
+                new MemberNoResponse(1L)
         );
         when(memberServiceClient.getAllMemberIds()).thenReturn(mockMemberIds);
 
@@ -68,7 +68,7 @@ class AttendanceSimulatorBotTest {
     @Test
     @DisplayName("출근 출결 요청이 정상적으로 생성되어야 함")
     void createCheckInAttendanceData_실제값검증() {
-        when(memberServiceClient.getAllMemberIds()).thenReturn(List.of(MemberNoResponse.of(99L)));
+        when(memberServiceClient.getAllMemberIds()).thenReturn(List.of(new MemberNoResponse(99L)));
 
         bot.createCheckInAttendanceData();
 

@@ -62,14 +62,14 @@ public class AttendanceSimulatorBot {
 
             try {
                 // 새로운 출근 레코드 생성
-                log.debug("check-in 생성 시도: memberNo={}, status={}, checkInTime={}", mbNo.mbNo(), status, generateCheckInTimeForStatus(status));
+                log.debug("check-in 생성 시도: memberNo={}, status={}, checkInTime={}", mbNo.getMbNo(), status, generateCheckInTimeForStatus(status));
 
                 attendanceService.createAttendance(
-                        new AttendanceRequest(mbNo.mbNo(), today, generateCheckInTimeForStatus(status), null, null, status)
+                        new AttendanceRequest(mbNo.getMbNo(), today, generateCheckInTimeForStatus(status), null, null, status)
                 );
             } catch (Exception e) {
                 log.error("❌ 출근 데이터 생성 실패: memberNo={}, status={}, error={}",
-                        mbNo.mbNo(), status, e.getMessage(), e);
+                        mbNo.getMbNo(), status, e.getMessage(), e);
             }
         }
     }
@@ -83,9 +83,9 @@ public class AttendanceSimulatorBot {
 
         for (MemberNoResponse mbNo : memberIds) {
             try{
-                attendanceService.checkOut(mbNo.mbNo(), today);
+                attendanceService.checkOut(mbNo.getMbNo(), today);
             }catch (AttendanceNotFoundException e){
-                log.warn("체크인 기록 없음: memberNo={}, date={}", mbNo.mbNo(), today);
+                log.warn("체크인 기록 없음: memberNo={}, date={}", mbNo.getMbNo(), today);
             }
         }
     }
