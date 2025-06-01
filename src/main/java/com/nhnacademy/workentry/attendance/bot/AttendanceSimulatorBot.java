@@ -20,6 +20,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Random;
+import java.util.TimeZone;
 
 @Slf4j
 @Component
@@ -32,7 +33,14 @@ public class AttendanceSimulatorBot {
 
     @PostConstruct
     public void init() {
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+        log.info("✅ 시스템 기본 시간대 설정: {}", TimeZone.getDefault().getID());
         log.info("✅ AttendanceSimulatorBot initialized");
+    }
+
+    @Scheduled(fixedRate = 10000)
+    public void testSchedule() {
+        log.info("✅ 스케줄러 테스트: {}", LocalDateTime.now());
     }
 
     // 매일 오전 9시에 체크인 생성
