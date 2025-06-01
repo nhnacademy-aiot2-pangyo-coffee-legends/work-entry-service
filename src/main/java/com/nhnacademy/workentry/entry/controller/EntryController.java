@@ -33,7 +33,7 @@ public class EntryController {
     @GetMapping("/weekly")
     public List<EntryCountDto> getMonthlyEntryCounts() {
         try {
-            List<EntryCountDto> result = entryService.getMonthlyEntryCounts();
+            List<EntryCountDto> result = entryService.getWeeklyEntryCounts();
             log.info("[주간 출입 통계] 조회됨: {}", result);
             return result;
         } catch (Exception e) {
