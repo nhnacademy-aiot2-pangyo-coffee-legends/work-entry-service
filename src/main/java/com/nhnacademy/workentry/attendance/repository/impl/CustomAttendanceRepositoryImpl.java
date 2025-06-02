@@ -1,9 +1,11 @@
 package com.nhnacademy.workentry.attendance.repository.impl;
 
+import com.nhnacademy.workentry.adapter.member.dto.MemberNoResponse;
 import com.nhnacademy.workentry.attendance.dto.AttendanceDto;
 import com.nhnacademy.workentry.attendance.dto.QAttendanceDto;
 import com.nhnacademy.workentry.attendance.entity.QAttendance;
 import com.nhnacademy.workentry.attendance.repository.CustomAttendanceRepository;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -73,5 +75,28 @@ public class CustomAttendanceRepositoryImpl implements CustomAttendanceRepositor
         ).orElse(0L);
 
         return new PageImpl<>(content, pageable, total);
+    }
+
+    /**
+     * 오늘 날짜에 체크인한 멤버들의 목록을 조회합니다.
+     * 출근 레코드가 아예 없으면 주말로 간주되어 결과는 빈 리스트가 됩니다.
+     *
+     * @param date 조회할 날짜
+     * @return 체크인한 멤버 번호 리스트
+     */
+    @Override
+    public List<MemberNoResponse> getCheckedInMembers(LocalDate date) {
+        QAttendance attendance = QAttendance.attendance;
+
+        return queryFactory
+                .select(Projections.constructor(MemberNoResponse.class,
+                attendance.mbNo))
+                .from(attendance)
+                .where(
+                        attendance.workDate.eq(date),
+                        attendance.inTime.isNotNull()
+                )
+                .groupBy(attendance.mbNo)
+                .fetch();
     }
 }

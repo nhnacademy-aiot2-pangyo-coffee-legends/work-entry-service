@@ -14,13 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.List;
-import java.util.Random;
-import java.util.TimeZone;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -31,7 +31,13 @@ public class AttendanceSimulatorBot {
 
     private final Random random = new Random();
 
-    // 매일 오전 9시에 체크인 생성
+    /**
+     * 매일 오전 9시에 실행되어 출근 출결 데이터를 생성합니다.
+     *
+     * 평일에는 일반적인 출근 상태를 기반으로 데이터를 생성하며,
+     * 주말(토요일, 일요일)에는 낮은 확률로 출근 상태를 결정합니다.
+     * 각 멤버에 대해 출결 요청을 생성하고 AttendanceService에 전달합니다.
+     */
     @Scheduled(cron = "0 0 9 * * *", zone = "Asia/Seoul")
     public void createCheckInAttendanceData() {
         log.info("오전 스케줄 실행: {}", LocalDateTime.now());
@@ -46,7 +52,17 @@ public class AttendanceSimulatorBot {
         log.info("오늘 날짜 확인 : {}", LocalDateTime.now());
 
         for (MemberNoResponse mbNo : memberIds) {
-            String status = decideAttendanceStatus();
+            String status;
+            int dayCode = getDateDayCode(today.toString());
+            if(dayCode == 1 || dayCode == 7){
+                status = decideWeekendAttendanceStatus();
+                if(status == null){
+                    log.info("주말 비출근 처리 : memberNo = {}", mbNo.getMbNo());
+                    continue; // 기록 생성 생략
+                }
+            } else {
+                status = decideAttendanceStatus();
+            }
 
             try {
                 // 새로운 출근 레코드 생성
@@ -62,14 +78,26 @@ public class AttendanceSimulatorBot {
         }
     }
 
-    // 매일 오후 6시에 체크아웃 생성
+    /**
+     * 매일 오후 6시에 체크아웃 데이터를 생성합니다.
+     *
+     * <p>
+     * 오늘 날짜에 체크인 기록이 존재하는 멤버들만 대상으로 체크아웃을 수행합니다.<br>
+     * 주말에는 출결 레코드 자체가 생성되지 않으므로 체크아웃도 생략됩니다.
+     * </p>
+     */
     @Scheduled(cron = "0 0 18 * * *", zone = "Asia/Seoul")
     public void createCheckOutAttendanceData() {
         log.info("오후 스케줄 실행: {}", LocalDateTime.now());
-        List<MemberNoResponse> memberIds = memberServiceClient.getAllMemberIds();
         LocalDate today = LocalDate.now(ZoneId.of("Asia/Seoul"));
+        List<MemberNoResponse> checkedInMembers = attendanceService.getCheckedInMembers(today);
 
-        for (MemberNoResponse mbNo : memberIds) {
+        if(checkedInMembers.isEmpty()){
+            log.info("오늘({}) 체크인한 멤버 없음 - 주말 또는 공휴일", today);
+            return;
+        }
+
+        for (MemberNoResponse mbNo : checkedInMembers) {
             try{
                 attendanceService.checkOut(mbNo.getMbNo(), today);
             }catch (AttendanceNotFoundException e){
@@ -79,7 +107,7 @@ public class AttendanceSimulatorBot {
     }
 
     /**
-     * 랜덤한 출결 상태를 결정하는 메서드입니다.
+     * 랜덤한 출결 상태를 결정하는 메소드 입니다.
      *
      * 출석 상태는 다른 상태들보다 더 높은 확률(60%)로 선택됩니다.
      * 나머지 상태들은 각각 5~10% 사이의 확률로 분포되어 있으며,
@@ -116,6 +144,25 @@ public class AttendanceSimulatorBot {
             return AttendanceStatusConstants.STATUS_EARLY_LEAVE;    // 90 ~ 94
         } else {
             return AttendanceStatusConstants.STATUS_BEREAVEMENT;    // 95 ~ 99
+        }
+    }
+
+    /**
+     * 주말 출근 여부를 확률적으로 결정합니다.
+     *
+     * 주말 출근은 드문 상황으로 간주되므로,
+     * 약 20% 확률로 출근 상태를 반환하고,
+     * 나머지 경우에는 null을 반환하여 출근하지 않음을 나타냅니다.
+     *
+     * @return 출근 상태 상수(출근 시) 또는 null(비출근 시)
+     */
+    private String decideWeekendAttendanceStatus(){
+        int randValue = (int) (Math.random() * 100); // 0~99
+
+        if (randValue < 20) {
+            return AttendanceStatusConstants.STATUS_PRESENT; // 0 ~ 19
+        } else {
+            return null;
         }
     }
 
@@ -158,7 +205,30 @@ public class AttendanceSimulatorBot {
         return LocalDateTime.of(today, baseTime);
     }
 
+    /**
+     * 입력된 날짜의 요일 코드를 반환합니다.
+     *
+     * Calendar 기준으로 일요일은 1, 토요일은 7입니다.
+     * 이를 통해 주말(1: 일요일, 7: 토요일)과 평일을 구분할 수 있습니다.
+     *
+     * @param date "yyyy-MM-dd" 형식의 날짜 문자열
+     * @return 요일 코드 (1~7)
+     * @throws RuntimeException 날짜 파싱에 실패한 경우 예외 발생
+     */
+    private Integer getDateDayCode(String date){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try{
+            Date parseDate = dateFormat.parse(date);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(parseDate);
 
+            return calendar.get(Calendar.DAY_OF_WEEK);
+
+        } catch (ParseException e) {
+            throw new RuntimeException("얍얍~");
+        }
+
+    }
 
 
 
