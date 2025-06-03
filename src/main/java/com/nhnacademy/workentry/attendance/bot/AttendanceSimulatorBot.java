@@ -5,12 +5,15 @@ import com.nhnacademy.workentry.adapter.member.dto.MemberNoResponse;
 import com.nhnacademy.workentry.attendance.constant.AttendanceStatusConstants;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
 import com.nhnacademy.workentry.attendance.service.AttendanceService;
-import com.nhnacademy.workentry.common.exception.AttendanceNotFoundException;
-import com.nhnacademy.workentry.common.exception.MemberNotFoundException;
+import com.nhnacademy.workentry.common.exception.*;
+import com.nhnacademy.workentry.common.time.TodayProvider;
 import feign.FeignException;
+import feign.codec.DecodeException;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +31,7 @@ import java.util.*;
 public class AttendanceSimulatorBot {
     private final MemberServiceClient memberServiceClient;
     private final AttendanceService attendanceService;
+    private final TodayProvider todayProvider;
 
     private final Random random = new Random();
 
@@ -44,11 +48,16 @@ public class AttendanceSimulatorBot {
         List<MemberNoResponse> memberIds;
         try{
             memberIds = memberServiceClient.getAllMemberIds();
-        } catch(FeignException.NotFound e){
-            throw new MemberNotFoundException("FeignClient : 멤버 정보를 찾을 수 없습니다.");
+        } catch (FeignException.NotFound e) {
+            throw new MemberNotFoundException("FeignClient: 멤버 정보를 찾을 수 없습니다.", e);
+        } catch (DecodeException e) {
+            throw new MemberDataFormatException("FeignClient: 멤버 응답 파싱 실패 (JSON 형식 오류)", e);
+        } catch (FeignException e) {
+            throw new MemberCallException("FeignClient: 멤버 호출 실패 (기타 오류)", e);
         }
 
-        LocalDate today = LocalDate.now(ZoneId.of("Asia/Seoul"));
+        LocalDate today = todayProvider.getToday();
+
         log.info("오늘 날짜 확인 : {}", LocalDateTime.now());
 
         for (MemberNoResponse mbNo : memberIds) {
@@ -89,7 +98,7 @@ public class AttendanceSimulatorBot {
     @Scheduled(cron = "0 0 18 * * *", zone = "Asia/Seoul")
     public void createCheckOutAttendanceData() {
         log.info("오후 스케줄 실행: {}", LocalDateTime.now());
-        LocalDate today = LocalDate.now(ZoneId.of("Asia/Seoul"));
+        LocalDate today = todayProvider.getToday();
         List<MemberNoResponse> checkedInMembers = attendanceService.getCheckedInMembers(today);
 
         if(checkedInMembers.isEmpty()){
@@ -156,7 +165,7 @@ public class AttendanceSimulatorBot {
      *
      * @return 출근 상태 상수(출근 시) 또는 null(비출근 시)
      */
-    private String decideWeekendAttendanceStatus(){
+    protected String decideWeekendAttendanceStatus(){
         int randValue = (int) (Math.random() * 100); // 0~99
 
         if (randValue < 20) {
@@ -172,9 +181,9 @@ public class AttendanceSimulatorBot {
      * @param status 출결 상태 (예: 출근, 지각, 결근 등)
      * @return 해당 상태에 맞는 체크인 시간, 없으면 null
      */
-    private LocalDateTime generateCheckInTimeForStatus(String status) {
-        ZoneId zoneId = ZoneId.of("Asia/Seoul");
-        LocalDate today = LocalDate.now(zoneId);
+    @Nullable
+    private LocalDateTime generateCheckInTimeForStatus(@NotNull String status) {
+        LocalDate today = todayProvider.getToday();
         LocalTime baseTime;
 
         switch (status) {
@@ -213,7 +222,7 @@ public class AttendanceSimulatorBot {
      *
      * @param date "yyyy-MM-dd" 형식의 날짜 문자열
      * @return 요일 코드 (1~7)
-     * @throws RuntimeException 날짜 파싱에 실패한 경우 예외 발생
+     * @throws InvalidDateFormatException 날짜 파싱에 실패한 경우 예외 발생
      */
     private Integer getDateDayCode(String date){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -225,11 +234,9 @@ public class AttendanceSimulatorBot {
             return calendar.get(Calendar.DAY_OF_WEEK);
 
         } catch (ParseException e) {
-            throw new RuntimeException("얍얍~");
+            throw new InvalidDateFormatException("유효하지 않은 날짜 형식입니다. yyyy-MM-dd 형식을 따르세요 : 입력값 = " + date, e);
         }
 
     }
-
-
 
 }
