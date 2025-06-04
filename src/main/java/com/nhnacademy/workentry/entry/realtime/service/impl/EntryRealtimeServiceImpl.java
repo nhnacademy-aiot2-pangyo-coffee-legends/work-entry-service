@@ -6,16 +6,17 @@ import com.influxdb.client.InfluxDBClient;
 import com.influxdb.client.QueryApi;
 import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
-import com.nhnacademy.workentry.notify.adapter.NotifyAdapter;
-import com.nhnacademy.workentry.notify.dto.EmailRequest;
 import com.nhnacademy.workentry.entry.realtime.dto.EntryRealtimeDto;
 import com.nhnacademy.workentry.entry.realtime.service.EntryRealtimeService;
 import com.nhnacademy.workentry.log.realtime.LogWebSocketHandler;
+import com.nhnacademy.workentry.notify.adapter.NotifyAdapter;
+import com.nhnacademy.workentry.notify.dto.EmailRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -28,6 +29,7 @@ import java.util.Objects;
  */
 @Slf4j
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class EntryRealtimeServiceImpl implements EntryRealtimeService {
 
@@ -35,7 +37,7 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
     private final LogWebSocketHandler logWebSocketHandler;
     private final ObjectMapper objectMapper;
     private final NotifyAdapter notifyAdapter;
-//    private final EmailSender emailSender;
+
     @Value("${admin.email}")
     private String adminEmail;
 
@@ -104,7 +106,7 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
      * @param time 출입이 감지된 시간
      * @return 출입이 금지된 시간대일 경우 true, 그렇지 않으면 false
      */
-    boolean isInTargetTime(LocalDateTime time) {
+    private boolean isInTargetTime(LocalDateTime time) {
         int hour = time.getHour();
 
         return hour < 5; // 00:00~04:59, 이상 출입으로 간주
@@ -121,18 +123,18 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
      * @param dto       출입 정보를 담은 DTO 객체 (시간, 출입자 수)
      * @param entryTime 출입이 감지된 시간 (심야 여부 판단에 사용)
      */
-    void logAndBroadcast(EntryRealtimeDto dto, LocalDateTime entryTime) {
+    private void logAndBroadcast(EntryRealtimeDto dto, LocalDateTime entryTime) {
         try {
             String json = objectMapper.writeValueAsString(dto);
 
-            boolean isNight = true;
-            boolean hasEntry = true;
+            boolean isNight = isInTargetTime(entryTime);
+            boolean hasEntry = dto.getCount() > 0;
 
             // 메시지 라벨 및 내용 분리
             String logLevel;
             String messagePrefix;
 
-            if (true) {
+            if (isNight && hasEntry) {
                 logLevel = "ALERT";
                 messagePrefix = "이상 출입자 발생";
             } else {
@@ -141,7 +143,7 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
             }
 
             String message = String.format("[%s] %s | 시간: %s | 출입자 수: %d",
-                    logLevel, messagePrefix, dto.getTime(), 1);
+                    logLevel, messagePrefix, dto.getTime(), dto.getCount());
 
             String fullMessage = message + " | 데이터: " + json;
 

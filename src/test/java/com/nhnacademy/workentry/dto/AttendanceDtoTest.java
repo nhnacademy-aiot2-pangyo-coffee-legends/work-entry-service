@@ -22,7 +22,7 @@ class AttendanceDtoTest {
      * 모든 필드를 정확히 매핑하는지 확인하는 테스트입니다.
      */
     @Test
-    @DisplayName("1. Attendance 엔티티 → AttendanceDto 변환 테스트")
+    @DisplayName("Attendance 엔티티 → AttendanceDto 변환 테스트")
     void testFrom() {
         Long id = 100L;
         Long mbNo = 1L;
@@ -43,7 +43,7 @@ class AttendanceDtoTest {
         AttendanceDto dto = AttendanceDto.from(attendance);
 
         assertThat(dto.getId()).isEqualTo(id);
-        assertThat(dto.getNo()).isEqualTo(mbNo);
+        assertThat(dto.getMbNo()).isEqualTo(mbNo);
         assertThat(dto.getWorkDate()).isEqualTo(workDate);
         assertThat(dto.getInTime()).isEqualTo(inTime);
         assertThat(dto.getOutTime()).isEqualTo(outTime);

@@ -9,22 +9,23 @@ import com.nhnacademy.workentry.attendance.service.impl.AttendanceServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
-
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.web.server.ResponseStatusException;
 
 /**
  * {@link AttendanceServiceImpl} 클래스에 대한 단위 테스트입니다.
@@ -68,7 +69,7 @@ class AttendanceServiceImplTest {
         List<AttendanceDto> results = attendanceService.getAttendanceByNo(99L);
 
         assertThat(results).hasSize(1);
-        assertThat(results.get(0).getNo()).isEqualTo(99L);
+        assertThat(results.getFirst().getMbNo()).isEqualTo(99L);
         verify(attendanceRepository).findAllByMbNo(99L);
     }
 
@@ -100,7 +101,7 @@ class AttendanceServiceImplTest {
         );
 
         assertThat(result.getContent()).hasSize(1);
-        assertThat(result.getContent().get(0).getNo()).isEqualTo(99L);
+        assertThat(result.getContent().getFirst().getMbNo()).isEqualTo(99L);
     }
 
     /**
@@ -116,7 +117,7 @@ class AttendanceServiceImplTest {
         Page<AttendanceDto> result = attendanceService.getRecentAttendanceSummary(pageable);
 
         assertThat(result.getTotalElements()).isEqualTo(1);
-        assertThat(result.getContent().get(0).getStatusDescription()).isEqualTo("출석");
+        assertThat(result.getContent().getFirst().getStatusDescription()).isEqualTo("출석");
     }
     /**
      * 최근 30일 회원 근무 통계 데이터를 성공적으로 반환하는 경우를 테스트합니다.
@@ -139,7 +140,7 @@ class AttendanceServiceImplTest {
 
         // then
         assertThat(result.getContent()).hasSize(1);
-        AttendanceSummaryDto dto = result.getContent().get(0);
+        AttendanceSummaryDto dto = result.getContent().getFirst();
         assertThat(dto.getHoursWorked()).isEqualTo(9); // 'getTotalHours()' → 'getHoursWorked()'로 수정
         assertThat(dto.getInTime()).isEqualTo(sampleAttendance.getInTime());
         assertThat(dto.getOutTime()).isEqualTo(sampleAttendance.getOutTime());

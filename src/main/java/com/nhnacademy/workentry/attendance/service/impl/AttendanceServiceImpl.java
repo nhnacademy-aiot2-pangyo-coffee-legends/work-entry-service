@@ -1,5 +1,6 @@
 package com.nhnacademy.workentry.attendance.service.impl;
 
+import com.nhnacademy.workentry.adapter.member.dto.MemberNoResponse;
 import com.nhnacademy.workentry.attendance.constant.AttendanceStatusConstants;
 import com.nhnacademy.workentry.attendance.dto.AttendanceDto;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
@@ -34,6 +35,7 @@ import java.util.Random;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AttendanceServiceImpl implements AttendanceService {
 
     private final AttendanceRepository attendanceRepository;
@@ -48,7 +50,7 @@ public class AttendanceServiceImpl implements AttendanceService {
      */
     @Override
     public List<AttendanceDto> getAttendanceByNo(Long mbNo) {
-        log.info("전체 출결 조회 요청: no={}", mbNo);
+        log.info("전체 출결 조회 요청: mbNo={}", mbNo);
 
         List<Attendance> attendanceList = attendanceRepository.findAllByMbNo(mbNo);
         log.debug("조회된 전체 출결 수: {}", attendanceList.size());
@@ -60,18 +62,17 @@ public class AttendanceServiceImpl implements AttendanceService {
     /**
      * 특정 회원의 지정된 기간 내 출결 기록을 페이지 단위로 조회합니다.
      *
-     * @param no 회원 고유 번호
+     * @param mbNo 회원 고유 번호
      * @param start 시작 시간
      * @param end 종료 시간
      * @param pageable 페이지 정보
      * @return 페이지 형태의 출결 DTO 목록
      */
-    //TODO : dev에 병합 후 LocalDateTime start, end -> LocalDate로 타입 수정
     @Override
-    public Page<AttendanceDto> getAttendanceByNoAndDateRange(Long no, LocalDate start, LocalDate end, Pageable pageable) {
-        log.info("기간별 출결 조회 요청: no={}, from={} to={}", no, start, end);
+    public Page<AttendanceDto> getAttendanceByNoAndDateRange(Long mbNo, LocalDate start, LocalDate end, Pageable pageable) {
+        log.info("기간별 출결 조회 요청: mbNo={}, from={} to={}", mbNo, start, end);
 
-        return attendanceRepository.getAttendanceByNoAndDateRange(no, start, end, pageable);
+        return attendanceRepository.getAttendanceByNoAndDateRange(mbNo, start, end, pageable);
     }
 
     /**
@@ -90,16 +91,16 @@ public class AttendanceServiceImpl implements AttendanceService {
     /**
      * 특정 회원의 최근 30일간 근무 통계(날짜별 근무시간 등)를 조회합니다.
      *
-     * @param no 회원 고유 번호
+     * @param mbNo 회원 고유 번호
      * @return 날짜별 근무 통계 DTO 리스트
      * @throws ResponseStatusException 해당 기간 내 출결 기록이 없을 경우 404 응답 예외 발생
      */
     @Override
-    public Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long no, Pageable pageable) {
+    public Page<AttendanceSummaryDto> getRecentWorkingHoursByMember(Long mbNo, Pageable pageable) {
         LocalDate now = LocalDate.now();
         LocalDate monthAgo = now.minusDays(364);
 
-        Page<Attendance> records = attendanceRepository.findByMbNoAndWorkDateBetween(no, monthAgo, now.plusDays(1), pageable);
+        Page<Attendance> records = attendanceRepository.findByMbNoAndWorkDateBetween(mbNo, monthAgo, now.plusDays(1), pageable);
 
         if (records.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "최근 30일간 근무 기록이 존재하지 않습니다.");
@@ -120,6 +121,7 @@ public class AttendanceServiceImpl implements AttendanceService {
      * 출근 기록 생성
      */
     @Transactional
+    @Override
     public void createAttendance(AttendanceRequest request) {
         // 실제 외래 키 값(code)이 DB에 저장
         AttendanceStatus status = attendanceStatusRepository.findByDescription(request.getStatus())
@@ -141,9 +143,10 @@ public class AttendanceServiceImpl implements AttendanceService {
      * 퇴근 처리 (체크아웃)
      */
     @Transactional
-    public void checkOut(Long no, LocalDate workDate) {
-        Attendance attendance = attendanceRepository.findByMbNoAndWorkDate(no, workDate)
-                .orElseThrow(() -> new AttendanceNotFoundException(no));
+    @Override
+    public void checkOut(Long mbNo, LocalDate workDate) {
+        Attendance attendance = attendanceRepository.findByMbNoAndWorkDate(mbNo, workDate)
+                .orElseThrow(() -> new AttendanceNotFoundException(mbNo));
 
         String statusDescription = attendance.getStatus().getDescription();
 
@@ -156,7 +159,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         );
 
         if (!validStatuses.contains(statusDescription)) {
-            log.info("no={} 은 퇴근 처리 대상이 아닌 상태({})입니다. 퇴근 생략", no, statusDescription);
+            log.info("mbNo={} 은 퇴근 처리 대상이 아닌 상태({})입니다. 퇴근 생략", mbNo, statusDescription);
             return;
         }
 
@@ -170,6 +173,15 @@ public class AttendanceServiceImpl implements AttendanceService {
         attendance.updateCheckOut(checkOutTime, workMinutes, status);
 
         attendanceRepository.save(attendance);
+    }
+
+    /**
+     * 오늘 체크인한 멤버만 조회
+     *
+     */
+    @Override
+    public List<MemberNoResponse> getCheckedInMembers(LocalDate today) {
+        return attendanceRepository.getCheckedInMembers(today);
     }
 
     /**

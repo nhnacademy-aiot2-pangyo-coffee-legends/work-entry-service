@@ -9,6 +9,7 @@ import com.influxdb.query.FluxTable;
 import com.nhnacademy.workentry.entry.dto.EntryCountDto;
 import com.nhnacademy.workentry.entry.service.EntryService;
 import com.nhnacademy.workentry.log.realtime.LogWebSocketHandler;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
@@ -26,20 +27,15 @@ import java.util.Objects;
  */
 @Slf4j
 @Service
+@AllArgsConstructor
 public class EntryServiceImpl implements EntryService {
     private final InfluxDBClient influxDBClient;
     private final LogWebSocketHandler logWebSocketHandler;
     private final ObjectMapper objectMapper;
 
-    public EntryServiceImpl(InfluxDBClient influxDBClient, LogWebSocketHandler logWebSocketHandler, ObjectMapper objectMapper) {
-        this.influxDBClient = influxDBClient;
-        this.logWebSocketHandler = logWebSocketHandler;
-        this.objectMapper = objectMapper;
-    }
-
     /**
      * InfluxDB에 저장된 센서 데이터를 조회하여
-     * 최근 30일간의 일별 출입 횟수를 가져옵니다.
+     * 최근 7일간의 일별 출입 횟수를 가져옵니다.
      *
      * <p>Flux 쿼리를 통해 '입구' 위치의 'activity(인원이 지나간 횟수)' 타입 센서 값을 집계하여,
      * 날짜별 출입 횟수를 계산합니다.</p>
@@ -48,7 +44,7 @@ public class EntryServiceImpl implements EntryService {
      * @return 날짜와 해당 날짜의 출입 횟수를 담은 EntryCountDto 객체 리스트
      */
     @Override
-    public List<EntryCountDto> getMonthlyEntryCounts() {
+    public List<EntryCountDto> getWeeklyEntryCounts() {
         List<FluxTable> tables = getFluxTables();
         log.info("FluxTable 수: {}", tables.size());
         List<EntryCountDto> result = new ArrayList<>();

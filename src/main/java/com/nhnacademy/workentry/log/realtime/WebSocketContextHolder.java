@@ -8,10 +8,13 @@ import lombok.extern.slf4j.Slf4j;
  * WebSocket 핸들러를 전역에서 접근 가능하도록 보관하는 유틸 클래스입니다.
  */
 @Slf4j
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class WebSocketContextHolder {
 
     private static LogWebSocketHandler handler;
+
+    private WebSocketContextHolder(){
+        throw new IllegalStateException("Utility class");
+    }
 
     /**
      * WebSocket 핸들러를 설정합니다.

@@ -1,20 +1,16 @@
 package com.nhnacademy.workentry.entry.dto;
 
-import lombok.Data;
+import jakarta.validation.constraints.NotNull;
+import lombok.Value;
 
 /**
  * 날짜별 출입 횟수를 나타내는 DTO 클래스입니다.
  */
-@Data
+@Value
 public class EntryCountDto {
-    private final String date; // yyyy-MM-dd
-    private final int count;
-
-    public EntryCountDto(String date, int count) {
-        this.date = date;
-        this.count = count;
-    }
-
+    @NotNull(message = "출입 날짜가 비어있습니다.")
+    String date; // yyyy-MM-dd
+    int count;
 
 }
 

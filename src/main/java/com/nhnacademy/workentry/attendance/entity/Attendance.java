@@ -3,6 +3,7 @@ package com.nhnacademy.workentry.attendance.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 /**
  * 출결 기록 정보를 담는 엔티티입니다.
  */
+@Getter
 @Entity
 @Table(name = "attendances")
 @NoArgsConstructor
@@ -75,42 +77,6 @@ public class Attendance {
     @PreUpdate
     public void preUpdate() {
         updatedAt = LocalDateTime.now();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Long getMbNo() {
-        return mbNo;
-    }
-
-    public LocalDate getWorkDate() {
-        return workDate;
-    }
-
-    public LocalDateTime getInTime() {
-        return inTime;
-    }
-
-    public LocalDateTime getOutTime() {
-        return outTime;
-    }
-
-    public Integer getWorkMinutes() {
-        return workMinutes;
-    }
-
-    public AttendanceStatus getStatus() {
-        return status;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
     }
 
     public void updateCheckOut(LocalDateTime outTime, Integer workMinutes, AttendanceStatus status) {

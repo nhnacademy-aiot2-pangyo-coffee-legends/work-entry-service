@@ -2,7 +2,7 @@ name: work-entry-service CI/CD
 
 on:
   push:
-    branches: [ "main","dev" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -30,8 +30,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            mkdir -p ~/work-entry/target
-            rm -f ~/work-entry/target/*.jar
+            mkdir -p ~/work-entry-service/target
+            rm -f ~/work-entry-service/target/*.jar
 
       # 2. JAR 파일 업로드
       - name: Upload JAR
@@ -42,20 +42,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           source: "target/*.jar"
-          target: "~/work-entry/target"
+          target: "~/work-entry-service/target"
           strip_components: 1
           overwrite: true
-
-      # 3. application.properties 파일 생성
-      - name: Create application.properties file
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_IP }}
-          username: ${{ secrets.SSH_ID }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            echo "${{ secrets.APPLICATION_PROPERTIES }}" > ~/work-entry/application.properties
 
       # 4. startup.sh 실행
       - name: Execute startup script
@@ -66,5 +55,5 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            chmod +x ~/work-entry/startup.sh
-            cd ~/work-entry && ./startup.sh
+            chmod +x ~/work-entry-service/startup.sh
+            cd ~/work-entry-service && ./startup.sh
