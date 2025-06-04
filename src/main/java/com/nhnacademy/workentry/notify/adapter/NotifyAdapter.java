@@ -7,7 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "notify-service", url = "http://localhost:10260")
+@FeignClient(name = "notify-service")
 public interface NotifyAdapter {
 
     @PostMapping("api/v1/email/text")

@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @Data
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class EmailRequest implements Serializable {
 

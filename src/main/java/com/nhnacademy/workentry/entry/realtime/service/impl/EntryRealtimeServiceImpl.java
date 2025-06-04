@@ -62,7 +62,6 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
 
                 logAndBroadcast(dto, entryTime);
 
-                return dto;
             }
         }
 
