@@ -36,7 +36,7 @@
 
 ## **아키텍처**
 
-```
+```sql
 [Front] → Nginx → Gateway → Eureka → Member Service / Token Service
                                  ↓
                       [WorkEntry Service] → MySQL / InfluxDB / NotifyService
@@ -57,7 +57,8 @@
 
 ## **폴더 구조**
 
-```src/
+```bash
+src/
 └── main/
     └── java/
         └── com/
@@ -112,7 +113,7 @@
 
 ---
 
-## ** 기술 스택**
+## **기술 스택**
 
 | 분류         | 기술 스택                                |
 |--------------|-------------------------------------------|
