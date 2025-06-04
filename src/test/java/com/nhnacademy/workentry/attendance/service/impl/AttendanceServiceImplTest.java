@@ -76,7 +76,7 @@ class AttendanceServiceImplTest {
         Page<AttendanceDto> result = attendanceService.getAttendanceByNoAndDateRange(mbNo, start.toLocalDate(), end.toLocalDate(), pageable);
 
         assertThat(result.getTotalElements()).isEqualTo(1);
-        assertThat(result.getContent().get(0).getMbNo()).isEqualTo(mbNo);
+        assertThat(result.getContent().getFirst().getMbNo()).isEqualTo(mbNo);
         verify(attendanceRepository).getAttendanceByNoAndDateRange(mbNo, start.toLocalDate(), end.toLocalDate(), pageable);
     }
 

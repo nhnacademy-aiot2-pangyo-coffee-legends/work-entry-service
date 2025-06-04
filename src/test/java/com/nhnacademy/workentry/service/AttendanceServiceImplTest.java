@@ -69,7 +69,7 @@ class AttendanceServiceImplTest {
         List<AttendanceDto> results = attendanceService.getAttendanceByNo(99L);
 
         assertThat(results).hasSize(1);
-        assertThat(results.get(0).getMbNo()).isEqualTo(99L);
+        assertThat(results.getFirst().getMbNo()).isEqualTo(99L);
         verify(attendanceRepository).findAllByMbNo(99L);
     }
 
@@ -101,7 +101,7 @@ class AttendanceServiceImplTest {
         );
 
         assertThat(result.getContent()).hasSize(1);
-        assertThat(result.getContent().get(0).getMbNo()).isEqualTo(99L);
+        assertThat(result.getContent().getFirst().getMbNo()).isEqualTo(99L);
     }
 
     /**
@@ -117,7 +117,7 @@ class AttendanceServiceImplTest {
         Page<AttendanceDto> result = attendanceService.getRecentAttendanceSummary(pageable);
 
         assertThat(result.getTotalElements()).isEqualTo(1);
-        assertThat(result.getContent().get(0).getStatusDescription()).isEqualTo("출석");
+        assertThat(result.getContent().getFirst().getStatusDescription()).isEqualTo("출석");
     }
     /**
      * 최근 30일 회원 근무 통계 데이터를 성공적으로 반환하는 경우를 테스트합니다.
@@ -140,7 +140,7 @@ class AttendanceServiceImplTest {
 
         // then
         assertThat(result.getContent()).hasSize(1);
-        AttendanceSummaryDto dto = result.getContent().get(0);
+        AttendanceSummaryDto dto = result.getContent().getFirst();
         assertThat(dto.getHoursWorked()).isEqualTo(9); // 'getTotalHours()' → 'getHoursWorked()'로 수정
         assertThat(dto.getInTime()).isEqualTo(sampleAttendance.getInTime());
         assertThat(dto.getOutTime()).isEqualTo(sampleAttendance.getOutTime());

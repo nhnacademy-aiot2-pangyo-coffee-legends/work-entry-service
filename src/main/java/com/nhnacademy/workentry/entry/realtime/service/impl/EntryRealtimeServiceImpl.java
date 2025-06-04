@@ -7,9 +7,10 @@ import com.influxdb.client.QueryApi;
 import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
 import com.nhnacademy.workentry.entry.realtime.dto.EntryRealtimeDto;
-import com.nhnacademy.workentry.entry.realtime.service.EmailService;
 import com.nhnacademy.workentry.entry.realtime.service.EntryRealtimeService;
 import com.nhnacademy.workentry.log.realtime.LogWebSocketHandler;
+import com.nhnacademy.workentry.notify.adapter.NotifyAdapter;
+import com.nhnacademy.workentry.notify.dto.EmailRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -35,7 +36,7 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
     private final InfluxDBClient influxDBClient;
     private final LogWebSocketHandler logWebSocketHandler;
     private final ObjectMapper objectMapper;
-    private final EmailService emailService;
+    private final NotifyAdapter notifyAdapter;
 
     @Value("${admin.email}")
     private String adminEmail;
@@ -50,18 +51,17 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
         List<FluxTable> tables = getFluxTables();
 
         for (FluxTable table : tables) {
-            for (FluxRecord record : table.getRecords()) {
-                LocalDateTime entryTime = Objects.requireNonNull(record.getTime()).atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();
+            for (FluxRecord fRecord : table.getRecords()) {
+                LocalDateTime entryTime = Objects.requireNonNull(fRecord.getTime()).atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();
 
                 String time = entryTime.toString().replace("T", " ").substring(0, 16);
 
-                int count = ((Number) Objects.requireNonNull(record.getValue())).intValue();
+                int count = ((Number) Objects.requireNonNull(fRecord.getValue())).intValue();
 
                 EntryRealtimeDto dto = new EntryRealtimeDto(time, count);
 
                 logAndBroadcast(dto, entryTime);
 
-                return dto;
             }
         }
 
@@ -148,11 +148,13 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
 
             // 로그 출력
             if (isNight && hasEntry) {
-                emailService.sendIntrusionAlertToAdmin(
+                EmailRequest notifyEntry = new EmailRequest(
                         adminEmail,
                         "⚠️ 이상 출입 감지 알림",
                         dto.getTime()+"\n이상 출입자 발생.\n관리자 확인 바랍니다."
                 );
+                notifyAdapter.sendTextEmail(notifyEntry);
+
                 log.error(fullMessage);
             } else {
                 log.info(fullMessage);

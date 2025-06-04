@@ -8,6 +8,7 @@ import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
 import com.nhnacademy.workentry.entry.realtime.dto.EntryRealtimeDto;
 import com.nhnacademy.workentry.log.realtime.LogWebSocketHandler;
+import com.nhnacademy.workentry.notify.adapter.NotifyAdapter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,7 +41,7 @@ class EntryRealtimeServiceImplTest {
     LogWebSocketHandler logWebSocketHandler;
 
     @Mock
-    EmailServiceImpl emailService;
+    NotifyAdapter notifyAdapter;
 
     @InjectMocks
     EntryRealtimeServiceImpl service;
