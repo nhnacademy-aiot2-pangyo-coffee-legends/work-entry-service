@@ -7,10 +7,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "notify-service", url = "${notify.service.url}")
+@FeignClient(name = "notify-service", url = "http://localhost:10260")
 public interface NotifyAdapter {
 
-    //text로 보내느냐 html로 보내느냐 그것이 고민이로다.
     @PostMapping("api/v1/email/text")
     ResponseEntity<String> sendTextEmail(@Validated @RequestBody EmailRequest request);
 
