@@ -132,8 +132,79 @@
 ![mysql](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
 ![intellijIdea](https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
 
+---
+
+## 📈 근무시간 통계 시각화 기능
+
+해당 기능은 사원의 근무기록을 기반으로 **주간 근무시간 변화**와 **근태 상태(출근, 지각 등)** 를  
+**Chart.js** 기반 그래프와 테이블로 직관적으로 시각화하여 HR 관리자에게 실시간 통계 정보를 제공합니다.
+
+---
+
+### ✅ 주요 기능 요약
+
+| 항목 | 설명 |
+|------|------|
+| **사원 선택 & 날짜 필터** | 연도 / 월 / 일 기준으로 근무 통계 범위 설정 가능 |
+| **근태 상태별 필터(체크박스)** | `출근`, `지각`, `결근`, `외근`, `연차`, `질병/임원`, `반차`, `상(喪)` 중 선택 |
+| **Chart.js 시각화** | 주 단위 일별 근무시간 막대그래프 제공 (색상별 렌더링) |
+| **근태 테이블 출력** | 근태 코드별 색상(배경) 적용된 테이블과 평균 근무시간 표시 |
+| **필터링 효과** | 선택된 근태 유형만 시각화 및 테이블 반영되어 **1석 3조 효과** |
+
+---
+
+## 🖼 화면 예시
+
+### 초기조회화면
+![image](https://github.com/user-attachments/assets/bb654069-0cb3-4858-82c2-c91fdf4c60ba)
+
+### 주간 일별 근무시간 표시
+![image](https://github.com/user-attachments/assets/f8bf112f-8989-42aa-a01c-4e77bda9aa19)
+
+### 근태 종류별 필터링 적용 후
+![image](https://github.com/user-attachments/assets/b8068f9b-be99-48d6-85b9-5f944dd9710d)
+
+---
+
+## 🗂 디렉토리 구조 (근무시간 통계)
+
+```bash
+📦 work-entry-service
+ ┣ 📂 attendance
+ ┃ ┣ 📂 config
+ ┃ ┃ ┗ 📄 QuerydslConfig.java
+ ┃ ┣ 📂 controller
+ ┃ ┃ ┗ 📄 AttendanceController.java
+ ┃ ┣ 📂 dto
+ ┃ ┃ ┣ 📄 AttendanceDto.java
+ ┃ ┃ ┣ 📄 AttendanceRequest.java
+ ┃ ┃ ┗ 📄 AttendanceSummaryDto.java
+ ┃ ┣ 📂 entity
+ ┃ ┃ ┣ 📄 Attendance.java
+ ┃ ┃ ┗ 📄 AttendanceStatus.java
+ ┃ ┣ 📂 repository
+ ┃ ┃ ┣ 📂 impl
+ ┃ ┃ ┃ ┗ 📄 CustomAttendanceRepositoryImpl.java
+ ┃ ┃ ┣ 📄 AttendanceRepository.java
+ ┃ ┃ ┣ 📄 AttendanceStatusRepository.java
+ ┃ ┃ ┗ 📄 CustomAttendanceRepository.java
+ ┃ ┗ 📂 service
+ ┃     ┣ 📂 impl
+ ┃     ┃ ┗ 📄 AttendanceServiceImpl.java
+ ┃     ┗ 📄 AttendanceService.java
+```
+
+## 📌 특징 요약
+- ✔ Chart.js 기반 주간 근무시간 막대그래프
+- ✔ 근태 유형별 컬러 테이블 자동 적용
+- ✔ 주차별 평균 근무시간 계산
+- ✔ 체크박스를 통한 근태 상태 필터링
+- ✔ 단일 페이지에서 통계/그래프/표를 모두 시각화 가능
+
 -------
 ## 기여자
 | <img src="https://avatars.githubusercontent.com/u/97999152?v=4" width="300" height="300" alt="woo"/> | <img src="https://avatars.githubusercontent.com/u/176984173?v=4" width="300" height="300" alt="ho"/> |
 |--------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
 | [김경영의 GitHub](https://github.com/rudduddl)                                                  | [김미성의 GitHub](https://github.com/Migong0311)                                                |
+
+#### © 2025 rudduddl, Migong0311. All rights reserved.
