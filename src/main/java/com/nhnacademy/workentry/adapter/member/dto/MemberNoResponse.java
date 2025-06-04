@@ -10,4 +10,5 @@ public class MemberNoResponse {
 
     @JsonProperty("memberNo")
     Long mbNo;
+
 }
