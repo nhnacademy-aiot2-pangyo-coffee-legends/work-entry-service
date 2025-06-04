@@ -1,5 +1,6 @@
 package com.nhnacademy.workentry.attendance.service.impl;
 
+import com.nhnacademy.workentry.adapter.member.dto.MemberNoResponse;
 import com.nhnacademy.workentry.attendance.constant.AttendanceStatusConstants;
 import com.nhnacademy.workentry.attendance.dto.AttendanceDto;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
@@ -23,6 +24,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 /**
@@ -173,6 +175,15 @@ public class AttendanceServiceImpl implements AttendanceService {
         attendance.updateCheckOut(checkOutTime, workMinutes, status);
 
         attendanceRepository.save(attendance);
+    }
+
+    /**
+     * 오늘 체크인한 멤버만 조회
+     *
+     */
+    @Override
+    public List<MemberNoResponse> getCheckedInMembers(LocalDate today) {
+        return attendanceRepository.getCheckedInMembers(today);
     }
 
     /**

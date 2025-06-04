@@ -1,5 +1,6 @@
 package com.nhnacademy.workentry.attendance.service;
 
+import com.nhnacademy.workentry.adapter.member.dto.MemberNoResponse;
 import com.nhnacademy.workentry.attendance.dto.AttendanceDto;
 import com.nhnacademy.workentry.attendance.dto.AttendanceRequest;
 import com.nhnacademy.workentry.attendance.dto.AttendanceSummaryDto;
@@ -56,4 +57,6 @@ public interface AttendanceService {
     void createAttendance(AttendanceRequest attendanceRequest);
 
     void checkOut(Long mbNo, LocalDate workDate);
+
+    List<MemberNoResponse> getCheckedInMembers(LocalDate today);
 }
