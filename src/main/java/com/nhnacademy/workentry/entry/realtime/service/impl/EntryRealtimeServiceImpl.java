@@ -1,7 +1,5 @@
 package com.nhnacademy.workentry.entry.realtime.service.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.influxdb.client.InfluxDBClient;
 import com.influxdb.client.QueryApi;
 import com.influxdb.query.FluxRecord;
@@ -20,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,7 +34,6 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
 
     private final InfluxDBClient influxDBClient;
     private final LogWebSocketHandler logWebSocketHandler;
-    private final ObjectMapper objectMapper;
     private final NotifyAdapter notifyAdapter;
 
     @Value("${admin.email}")
@@ -53,23 +51,22 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
         for (FluxTable table : tables) {
             for (FluxRecord fRecord : table.getRecords()) {
                 LocalDateTime entryTime = Objects.requireNonNull(fRecord.getTime()).atZone(ZoneId.of("Asia/Seoul")).toLocalDateTime();
-
-                String time = entryTime.toString().replace("T", " ").substring(0, 16);
-
                 int count = ((Number) Objects.requireNonNull(fRecord.getValue())).intValue();
 
-                EntryRealtimeDto dto = new EntryRealtimeDto(time, count);
+                EntryRealtimeDto dto = new EntryRealtimeDto(entryTime, count);
 
                 logAndBroadcast(dto, entryTime);
+
+                return dto; // 정상적인 FluxRecord가 존재할 경우 무조건 바로 반환
 
             }
         }
 
-        String fallbackMessage = "[WARN] 실시간 출입 데이터가 존재하지 않습니다.";
-        log.warn(fallbackMessage);
-        logWebSocketHandler.broadcast(fallbackMessage);
+//        String fallbackMessage = "[WARN] 실시간 출입 데이터가 존재하지 않습니다.";
+//        log.warn(fallbackMessage);
+//        logWebSocketHandler.broadcast(fallbackMessage);
 
-        return new EntryRealtimeDto("N/A", 0);
+        return new EntryRealtimeDto(LocalDateTime.now(ZoneId.of("Asia/Seoul")), 0);
     }
 
     @NotNull
@@ -123,51 +120,37 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
      * @param entryTime 출입이 감지된 시간 (심야 여부 판단에 사용)
      */
     private void logAndBroadcast(EntryRealtimeDto dto, LocalDateTime entryTime) {
-        try {
-            String json = objectMapper.writeValueAsString(dto);
 
-            boolean isNight = isInTargetTime(entryTime);
-            boolean hasEntry = dto.getCount() > 0;
+        boolean isNight = isInTargetTime(entryTime);
+        boolean hasEntry = dto.getCount() > 0;
 
-            // 메시지 라벨 및 내용 분리
-            String logLevel;
-            String messagePrefix;
+        String logTime = entryTime.format( DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")); // "2025-06-05 21:44"
+        String message;
 
-            if (isNight && hasEntry) {
-                logLevel = "ALERT";
-                messagePrefix = "이상 출입자 발생";
-            } else {
-                logLevel = "INFO";
-                messagePrefix = "실시간 출입 데이터";
-            }
-
-            String message = String.format("[%s] %s | 시간: %s | 출입자 수: %d",
-                    logLevel, messagePrefix, dto.getTime(), dto.getCount());
-
-            String fullMessage = message + " | 데이터: " + json;
-
-            // 로그 출력
-            if (isNight && hasEntry) {
-                EmailRequest notifyEntry = new EmailRequest(
-                        adminEmail,
-                        "⚠️ 이상 출입 감지 알림",
-                        dto.getTime()+"\n이상 출입자 발생.\n관리자 확인 바랍니다."
-                );
-                notifyAdapter.sendTextEmail(notifyEntry);
-
-                log.error(fullMessage);
-            } else {
-                log.info(fullMessage);
-            }
-
-            // WebSocket 방송
-            logWebSocketHandler.broadcast(fullMessage);
-
-        }  catch (JsonProcessingException e) {
-            String errorMessage = "[ERROR] JSON 직렬화 실패: 실시간 출입 데이터 로그 전송 중 예외 발생";
-            log.error(errorMessage, e);
-            logWebSocketHandler.broadcast(errorMessage + " - " + e.getMessage());
+        if (isNight && hasEntry) {
+            message = String.format("[%s]이상 출입자 발생. 관리자는 확인 부탁드립니다.", logTime);
+        } else {
+            message = String.format("[%s] 현재 출입자 수는 %d명 입니다.", logTime, dto.getCount());
         }
+
+
+        // 로그 출력
+        if (isNight && hasEntry) {
+            EmailRequest notifyEntry = new EmailRequest(
+                    adminEmail,
+                    "⚠️ 이상 출입 감지 알림",
+                    dto.getTime()+"\n이상 출입자 발생.\n관리자 확인 바랍니다."
+            );
+            notifyAdapter.sendTextEmail(notifyEntry);
+
+            log.error(message);
+        } else {
+            log.info(message);
+        }
+
+        // WebSocket 방송
+        logWebSocketHandler.broadcast(message);
+
     }
 
 }

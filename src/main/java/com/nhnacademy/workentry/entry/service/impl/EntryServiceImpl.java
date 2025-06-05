@@ -63,7 +63,7 @@ public class EntryServiceImpl implements EntryService {
                     String fallbackMessage = "[Influx Entry] " + json;
                     log.info(fallbackMessage);
 
-                    logWebSocketHandler.broadcast(fallbackMessage);
+//                    logWebSocketHandler.broadcast(fallbackMessage);
                 } catch (JsonProcessingException e) {
                     log.error("[Influx Entry] JSON 직렬화 실패", e);
                 }
