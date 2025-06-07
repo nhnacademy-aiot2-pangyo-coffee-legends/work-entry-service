@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,7 +57,7 @@ public class EntryController {
             return dto;
         } catch (Exception e) {
             log.error("[실시간 출입 통계] 조회 실패", e);
-            return new EntryRealtimeDto("N/A", 0); // 실패 시 기본값
+            return new EntryRealtimeDto(LocalDateTime.now(ZoneId.of("Asia/Seoul")), 0); // 실패 시 기본값
         }
     }
 }

@@ -9,7 +9,6 @@ import com.nhnacademy.workentry.common.exception.*;
 import com.nhnacademy.workentry.common.time.TodayProvider;
 import feign.FeignException;
 import feign.codec.DecodeException;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -22,8 +21,10 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 @Slf4j
 @Component
