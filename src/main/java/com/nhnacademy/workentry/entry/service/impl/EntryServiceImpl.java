@@ -8,12 +8,13 @@ import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
 import com.nhnacademy.workentry.entry.dto.EntryCountDto;
 import com.nhnacademy.workentry.entry.service.EntryService;
-import com.nhnacademy.workentry.log.realtime.LogWebSocketHandler;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -30,7 +31,6 @@ import java.util.Objects;
 @AllArgsConstructor
 public class EntryServiceImpl implements EntryService {
     private final InfluxDBClient influxDBClient;
-    private final LogWebSocketHandler logWebSocketHandler;
     private final ObjectMapper objectMapper;
 
     /**
@@ -63,7 +63,6 @@ public class EntryServiceImpl implements EntryService {
                     String fallbackMessage = "[Influx Entry] " + json;
                     log.info(fallbackMessage);
 
-//                    logWebSocketHandler.broadcast(fallbackMessage);
                 } catch (JsonProcessingException e) {
                     log.error("[Influx Entry] JSON 직렬화 실패", e);
                 }
@@ -77,16 +76,29 @@ public class EntryServiceImpl implements EntryService {
 
     @NotNull
     private List<FluxTable> getFluxTables() {
-        String flux = """
-                        from(bucket: "coffee-mqtt")
-                          |> range(start: -7d) // 최근 7일간
-                          |> filter(fn: (r) => r["_measurement"] == "sensor")
-                          |> filter(fn: (r) => r["_field"] == "value")
-                          |> filter(fn: (r) => r["location"] == "입구")
-                          |> filter(fn: (r) => r["type"] == "activity")
-                          |> aggregateWindow(every: 1d, fn: count, createEmpty: false)
-                          |> yield(name: "daily_entry")
-                      """;
+        // 현재 날짜 기준으로 이번 주 월요일 00:00 (한국 시간, Asia/Seoul) 계산
+        // InfluxDB는 UTC 기반이므로, 이를 UTC로 변환한 ISO 8601 형식으로 사용함
+        LocalDate today = LocalDate.now(ZoneId.of("Asia/Seoul"));
+        LocalDate monday = today.with(DayOfWeek.MONDAY);
+        ZonedDateTime startOfWeek = monday.atStartOfDay(ZoneId.of("Asia/Seoul")).withZoneSameInstant(ZoneOffset.UTC);
+        String startTime = startOfWeek.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+
+
+        String flux = String.format("""
+            import "date"
+            from(bucket: "coffee-mqtt")
+              |> range(start: %s)
+              |> filter(fn: (r) => r["_measurement"] == "sensor")
+              |> filter(fn: (r) => r["_field"] == "value")
+              |> filter(fn: (r) => r["location"] == "입구")
+              |> filter(fn: (r) => r["type"] == "activity")
+              |> aggregateWindow(every: 1d, fn: count, createEmpty: false)
+              |> map(fn: (r) => ({ r with _time: date.truncate(t: r._time, unit: 1d) }))  // _time 자정으로 통일
+              |> group(columns: ["_time"])
+              |> sum(column: "_value")
+              |> keep(columns: ["_time", "_value"])
+              |> yield(name: "daily_count")
+        """, startTime);
 
         QueryApi queryApi = influxDBClient.getQueryApi();
         return queryApi.query(flux);

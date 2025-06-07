@@ -62,10 +62,6 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
             }
         }
 
-//        String fallbackMessage = "[WARN] 실시간 출입 데이터가 존재하지 않습니다.";
-//        log.warn(fallbackMessage);
-//        logWebSocketHandler.broadcast(fallbackMessage);
-
         return new EntryRealtimeDto(LocalDateTime.now(ZoneId.of("Asia/Seoul")), 0);
     }
 
