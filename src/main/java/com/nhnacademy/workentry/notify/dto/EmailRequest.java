@@ -14,10 +14,10 @@ public class EmailRequest implements Serializable {
     private String content;
     private String type; // "TEXT" 또는 "HTML"
 
-    public EmailRequest(String to, String subject, String content) {
+    public EmailRequest(String to, String subject, String content, String type) {
         this.to = to;
         this.subject = subject;
         this.content = content;
-        this.type = null;
+        this.type = type;
     }
 }

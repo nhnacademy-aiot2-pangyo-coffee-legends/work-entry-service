@@ -135,7 +135,8 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
             EmailRequest notifyEntry = new EmailRequest(
                     adminEmail,
                     "⚠️ 이상 출입 감지 알림",
-                    dto.getTime()+"\n이상 출입자 발생.\n관리자 확인 바랍니다."
+                    dto.getTime()+"\n이상 출입자 발생.\n관리자 확인 바랍니다.",
+                    "ROLE_ADMIN"
             );
             notifyAdapter.sendTextEmail(notifyEntry);
 
