@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -127,6 +128,8 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
             message = String.format("[%s]이상 출입자 발생. 관리자는 확인 부탁드립니다.", logTime);
         } else {
             message = String.format("[%s] 현재 출입자 수는 %d명 입니다.", logTime, dto.getCount());
+            log.info("[{}] 현재 출입자 수는 {}명입니다. (Session: {})",
+                    logTime, dto.getCount(), RequestContextHolder.currentRequestAttributes().getSessionId());
         }
 
 
