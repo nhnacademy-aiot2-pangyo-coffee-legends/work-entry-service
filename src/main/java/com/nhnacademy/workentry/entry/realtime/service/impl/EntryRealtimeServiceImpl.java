@@ -118,8 +118,8 @@ public class EntryRealtimeServiceImpl implements EntryRealtimeService {
      */
     private void logAndBroadcast(EntryRealtimeDto dto, LocalDateTime entryTime) {
 
-        boolean isNight = isInTargetTime(entryTime);
-        boolean hasEntry = dto.getCount() > 0;
+        boolean isNight = true;
+        boolean hasEntry = true;
 
         String logTime = entryTime.format( DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")); // "2025-06-05 21:44"
         String message;
